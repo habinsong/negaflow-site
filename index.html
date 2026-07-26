@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-lang="en" data-scheme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>negaflow — a macOS app for analog film</title>
+<meta name="description" content="A macOS app for the complete analog-film workflow, from camera or scanner capture through development and print.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="negaflow">
+<meta property="og:description" content="A macOS app for film. Import, invert, develop, print.">
+<meta property="og:image" content="assets/shots/develop-en-dark.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon-64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="preload" as="image" href="assets/icon-512.webp">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>
+/* set appearance + language before first paint */
+(function () {
+  var d = document.documentElement;
+  var SCHEMES = ['auto', 'light', 'dark'];
+  var LANGS = ['ko', 'en', 'ja', 'zh', 'fr', 'de'];
+  var scheme = localStorage.getItem('nf-scheme');
+  if (SCHEMES.indexOf(scheme) < 0) scheme = 'auto';
+  var lang = localStorage.getItem('nf-lang');
+  if (LANGS.indexOf(lang) < 0) lang = 'en';
+  d.dataset.scheme = scheme;
+  d.dataset.theme = (scheme === 'dark' || (scheme === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches)) ? 'dark' : 'light';
+  d.dataset.lang = lang;
+  d.lang = lang === 'zh' ? 'zh-Hans' : lang;
+})();
+</script>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="glow" aria-hidden="true"></div>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner glass">
+    <a class="brand" href="#top">
+      <img src="assets/icon-256.webp" width="24" height="24" alt="">
+      <span>negaflow</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#chroma">Chroma Engine</a>
+      <a href="#grainmend">GrainMend</a>
+      <a href="#profiles" data-i18n="nav.profiles">Dataset</a>
+      <a href="#download" data-i18n="nav.download">Download</a>
+    </nav>
+
+    <div class="nav-tools">
+      <div class="lang">
+        <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
+          <span id="langNow">Language</span>
+          <svg width="9" height="6" viewBox="0 0 9 6" aria-hidden="true"><path d="M1 1l3.5 3.5L8 1" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <ul class="lang-menu glass" id="langMenu" role="listbox" hidden>
+          <li><button role="option" data-lang="ko">한국어</button></li>
+          <li><button role="option" data-lang="en">English</button></li>
+          <li><button role="option" data-lang="ja">日本語</button></li>
+          <li><button role="option" data-lang="zh">简体中文</button></li>
+          <li><button role="option" data-lang="fr">Français</button></li>
+          <li><button role="option" data-lang="de">Deutsch</button></li>
+        </ul>
+      </div>
+
+      <div class="seg" id="scheme" role="radiogroup" aria-label="Appearance">
+        <span class="seg-pill" aria-hidden="true"></span>
+        <button role="radio" data-scheme="auto" aria-label="Auto"><span>A</span></button>
+        <button role="radio" data-scheme="light" aria-label="Light">
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="2.9" fill="currentColor"/><g stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M7 .9v1.6M7 11.5v1.6M13.1 7h-1.6M2.5 7H.9M11.3 2.7l-1.1 1.1M3.8 10.2l-1.1 1.1M11.3 11.3l-1.1-1.1M3.8 3.8L2.7 2.7"/></g></svg>
+        </button>
+        <button role="radio" data-scheme="dark" aria-label="Dark">
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M12.1 8.7A5.7 5.7 0 0 1 5.3 1.9 5.7 5.7 0 1 0 12.1 8.7z" fill="currentColor"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <span id="top"></span>
+
+  <!-- ── hero ──────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="wrap">
+      <img class="hero-icon reveal" src="assets/icon-512.webp" width="112" height="112" alt="negaflow" fetchpriority="high">
+      <h1 class="hero-title reveal">negaflow</h1>
+      <p class="hero-tagline reveal" data-i18n="hero.tagline">Camera or scanner capture, <br class="hero-break">development and print in one analog-film workflow.</p>
+      <div class="cta reveal">
+        <a class="btn btn-primary" href="https://github.com/habinsong/negaflow/releases" data-i18n="hero.download">Download</a>
+        <a class="btn" href="https://github.com/habinsong/negaflow" data-i18n="hero.source">View source</a>
+      </div>
+      <p class="hero-req reveal" data-i18n="hero.req">macOS 14.0 or later · Apple Silicon and Intel · Apache-2.0</p>
+    </div>
+
+    <div class="hero-stage wrap">
+      <div class="frame" id="heroFrame">
+        <img class="shot" id="heroShot" data-view="develop" width="2000" height="1125" alt="negaflow" fetchpriority="high">
+      </div>
+    </div>
+  </section>
+  <script>
+    (function () {
+      var d = document.documentElement.dataset;
+      document.getElementById('heroShot').src = 'assets/shots/develop-' + d.lang + '-' + d.theme + '.webp';
+    })();
+  </script>
+
+  <!-- ── product core ──────────────────────────────────── -->
+  <section class="product-core">
+    <div class="wrap">
+      <p class="core-intro reveal" data-i18n="intro.body">negaflow imports film captured with a scanner or a digital camera and develops it on macOS. Chroma Engine handles development, GrainMend restores dust and scratches, and the entire process is developed independently.</p>
+      <div class="core-grid">
+        <a class="core-item reveal" href="#chroma">
+          <span class="core-index">01</span>
+          <strong>Chroma Engine</strong>
+          <span data-i18n="core.chroma">Film inversion and development</span>
+        </a>
+        <a class="core-item reveal" href="#grainmend">
+          <span class="core-index">02</span>
+          <strong>GrainMend</strong>
+          <span data-i18n="core.grainmend">Dust and scratch restoration</span>
+        </a>
+        <a class="core-item reveal" href="#profiles">
+          <span class="core-index">03</span>
+          <strong data-i18n="core.dataset">Measured dataset</strong>
+          <span data-i18n="core.dataset.detail">15 scanner profiles · 928 observations</span>
+        </a>
+        <a class="core-item reveal" href="#views">
+          <span class="core-index">04</span>
+          <strong data-i18n="core.workspace">Native workspace</strong>
+          <span data-i18n="core.workspace.detail">Library · Develop · Print · Settings</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── chroma engine ─────────────────────────────────── -->
+  <section id="chroma" class="block chroma">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="chroma.kicker">Development engine</p>
+      <h2 class="reveal">Chroma&nbsp;Engine</h2>
+      <p class="lede reveal" data-i18n="chroma.lede">Chroma Engine is the film inversion and development engine in the Chromabase module.</p>
+
+      <div class="base-measure reveal">
+        <div>
+          <span class="eyebrow">FILM BASE</span>
+          <strong data-i18n="base.title">Automatic / Manual</strong>
+        </div>
+        <p data-i18n="base.body">The film base is measured automatically with no setup, and the negative is inverted to a positive. For manual control, select an unexposed area with the eyedropper or enter RGB values directly.</p>
+      </div>
+
+      <p class="target-heading reveal" data-i18n="target.heading">Seven development targets</p>
+      <div class="targets">
+        <div class="target target-primary reveal"><code>MAIN</code><span data-i18n="target.main">General development</span></div>
+        <div class="target reveal"><code>PRINT</code><span data-i18n="target.print">Output using a printer ICC profile</span></div>
+        <div class="target reveal"><code>HS</code><span>Noritsu HS-1800</span></div>
+        <div class="target reveal"><code>SP</code><span>Fujifilm Frontier SP-3000</span></div>
+        <div class="target reveal"><code>F135</code><span>Pakon F-135 Plus</span></div>
+        <div class="target reveal"><code>HR</code><span>Kodak Professional HR 500 Plus</span></div>
+        <div class="target reveal"><code>EXPIRED</code><span data-i18n="target.expired">Recovery for old film</span></div>
+        <div class="target reveal"><code>PROFILES</code><span data-i18n="target.profiles">15 bundled scanner profiles · realOnly</span></div>
+      </div>
+
+      <div class="notes">
+        <p class="reveal" data-i18n="chroma.auto">The default is <b>MAIN</b> with manual adjustments. Auto Tone, Auto White Balance, Auto Levels, and Auto Color are applied only when you run them.</p>
+        <p class="reveal" data-i18n="chroma.output">Output can use sRGB, Display P3, Adobe RGB, or a custom RGB ICC profile.</p>
+      </div>
+
+      <div class="target-context reveal">
+        <p data-i18n="target.context">HS, SP, F135, and HR target film scanners that have long been used in professional lab workflows.</p>
+        <p class="fine" data-i18n="target.disclaimer">The model names identify development targets only. They do not imply an implementation of the manufacturers’ software or internal algorithms, a compatibility mode, affiliation, or endorsement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── grainmend ─────────────────────────────────────── -->
+  <section id="grainmend" class="block">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="gm.kicker">Defect restoration</p>
+      <h2 class="reveal">GrainMend</h2>
+      <p class="lede reveal" data-i18n="gm.lede"><b>GrainMend RGB</b> is an independently developed software method that detects and restores dust, pinholes, scratches, and emulsion damage without an infrared channel.</p>
+
+      <div class="gm-rgb-focus reveal">
+        <div>
+          <p class="sub">GrainMend RGB</p>
+          <h3 data-i18n="gm.rgb.title">Fast restoration without an infrared channel</h3>
+        </div>
+        <p data-i18n="gm.rgb.speed"><b>Guided and Brush: about 1 second · Auto: 5–10 seconds</b> Compared with the 30–90 seconds typically required for a hardware IR pass, GrainMend RGB is about 3–90× faster.</p>
+      </div>
+      <div class="rows tools">
+        <article class="tool reveal">
+          <h3 data-i18n="tool.auto.t">Auto</h3>
+          <p data-i18n="tool.auto.d">Finds and restores defects across the photograph.</p>
+        </article>
+        <article class="tool reveal">
+          <h3 data-i18n="tool.guided.t">Guided</h3>
+          <p data-i18n="tool.guided.d">Finds defects inside an area you specify.</p>
+        </article>
+        <article class="tool reveal">
+          <h3 data-i18n="tool.brush.t">Brush</h3>
+          <p data-i18n="tool.brush.d">Paints the area to restore directly.</p>
+        </article>
+        <article class="tool reveal">
+          <h3 data-i18n="tool.clone.t">Clone Stamp</h3>
+          <p data-i18n="tool.clone.d">Copies pixels from a selected source to another location.</p>
+        </article>
+      </div>
+
+      <div class="gm-grid">
+        <article class="gm-card reveal"><h3 data-i18n="gm.detect.t">Detection that rivals hardware IR</h3><p data-i18n="gm.note">GrainMend RGB detects defects directly in the RGB image and checks nearby texture, direction, and structure before restoring them. Lines and grids in the photograph are kept separate from scratches.</p></article>
+        <article class="gm-card reveal"><h3 data-i18n="gm.review.t">Review and correct it yourself</h3><p data-i18n="gm.review">You can inspect the detection mask and restored result, then correct the affected area yourself.</p></article>
+        <article class="gm-card reveal"><h3 data-i18n="gm.layer.t">Non-destructive layers</h3><p data-i18n="gm.layer">Each GrainMend RGB layer can be adjusted in strength, inspected as a mask, disabled, or deleted separately.</p></article>
+        <article class="gm-card reveal"><h3 data-i18n="gm.safe.t">False-detection warning</h3><p data-i18n="gm.warn">GrainMend alerts the user when false-detected areas are likely to occur.</p></article>
+      </div>
+      <div class="gm-secondary">
+        <article class="gm-ir-card reveal">
+          <h3>GrainMend IR</h3>
+          <p data-i18n="gm.ir">GrainMend IR is an optional path when the scanner plugin provides an infrared channel. Its detection result is added to the same edit history as GrainMend RGB.</p>
+        </article>
+        <p class="fine gm-disclaimer reveal" data-i18n="gm.disclaimer">GrainMend RGB is an independently developed software method, separate from hardware infrared cleaning. GrainMend IR uses the scanner’s infrared channel; it is not an implementation or compatibility mode of Digital ICE, iSRD, or SRDx.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── film profiles ─────────────────────────────────── -->
+  <section id="profiles" class="block">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="pr.kicker">Film profiles</p>
+      <h2 class="reveal" data-i18n="pr.title">A dataset built from my own film scans</h2>
+
+      <div class="stats">
+        <div class="stat reveal">
+          <span class="num" data-count="928">928</span>
+          <span class="lbl" data-i18n="pr.n1">Recorded image observations</span>
+        </div>
+        <div class="stat reveal">
+          <span class="num" data-count="15">15</span>
+          <span class="lbl" data-i18n="pr.n2">Bundled scanner profiles</span>
+        </div>
+      </div>
+
+      <div class="dataset-grid">
+        <article class="dataset-card reveal"><p data-i18n="pr.lede">The bundle contains 15 scanner profiles made from film material I photographed myself. The profiles record 928 image observations, and every profile is currently marked <code>realOnly</code>.</p></article>
+        <article class="dataset-card reveal"><p data-i18n="pr.realonly"><code>realOnly</code> identifies a profile built from real scans and still under active development and refinement. More scan material from a wider range of films and equipment will be added, and the profiles will continue to expand and improve with it.</p></article>
+        <article class="dataset-card reveal"><p data-i18n="pr.select">Profiles are never applied from the scanner name alone; the user selects one explicitly. SHA-256 hashes are provided for both the files and the list.</p></article>
+        <article class="dataset-card reveal"><p data-i18n="pr.fine">928 is the sum of the observations in each profile, not 928 distinct photographs. The same film can be counted for more than one scanner. The scans were reviewed directly, files with false detections were excluded, and the profiles were built from those measurements.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── application views ─────────────────────────────── -->
+  <section id="views" class="views">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="views.kicker">The workspace</p>
+      <h2 class="reveal" data-i18n="views.title">Library · Develop · Print · Settings</h2>
+
+      <div class="view-grid">
+      <article class="view reveal">
+        <p class="view-num">01</p>
+        <h3 data-i18n="tab.library">Library</h3>
+        <p class="view-desc" data-i18n="cap.library">Organise rolls, folders, collections, ratings, stacks, and virtual copies.</p>
+        <div class="view-detail">
+          <span data-i18n="cap.library.scanner">SANE scanners use the separate <code>negaflow-scanner-sane</code> plugin. Scan results are easy to review from Library.</span>
+          <a href="https://github.com/habinsong/negaflow-scanner-sane">GitHub ↗</a>
+        </div>
+        <div class="shot-wrap"><img class="shot" data-view="library" width="2000" height="1125" alt="Library" loading="lazy" decoding="async"></div>
+      </article>
+
+      <article class="view reveal">
+        <p class="view-num">02</p>
+        <h3 data-i18n="tab.develop">Develop</h3>
+        <p class="view-desc" data-i18n="cap.develop">The development engine is called Chroma Engine, and dust and scratch restoration is called GrainMend. The entire process is developed independently, with 15 scanner profiles built from film material I photographed myself.</p>
+        <div class="shot-wrap"><img class="shot" data-view="develop" width="2000" height="1125" alt="Develop" loading="lazy" decoding="async"></div>
+      </article>
+
+      <article class="view reveal">
+        <p class="view-num">03</p>
+        <h3 data-i18n="tab.print">Print</h3>
+        <p class="view-desc" data-i18n="cap.print">JPEG and 16-bit TIFF export, ICC profiles, and print layouts.</p>
+        <div class="shot-wrap"><img class="shot" data-view="print" width="2000" height="1125" alt="Print" loading="lazy" decoding="async"></div>
+      </article>
+
+      <article class="view reveal">
+        <p class="view-num">04</p>
+        <h3 data-i18n="tab.settings">Settings</h3>
+        <p class="view-desc" data-i18n="cap.settings">Customise shortcuts, folder paths, presets, and adjustments.</p>
+        <div class="shot-wrap"><img class="shot shot-tall" data-view="settings" width="1400" height="1253" alt="Settings" loading="lazy" decoding="async"></div>
+      </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── features ──────────────────────────────────────── -->
+  <section class="features">
+    <div class="wrap">
+      <ul class="rows feature-grid">
+        <li class="reveal" data-i18n="feat.1">Film-base measurement and colour or black-and-white film inversion</li>
+        <li class="reveal" data-i18n="feat.2">Exposure, contrast, curves, HSL, colour grading, and black-and-white toning</li>
+        <li class="reveal" data-i18n="feat.3">Sharpening, noise reduction, grain, vignette, and halation</li>
+        <li class="reveal" data-i18n="feat.4">Rolls, folders, collections, ratings, stacks, and virtual copies</li>
+        <li class="reveal" data-i18n="feat.5">Zoom, crop, rotate, compare, histogram, and clipping indicators</li>
+        <li class="reveal" data-i18n="feat.6">JPEG and 16-bit TIFF export, ICC profiles, and print layouts</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── workflow ──────────────────────────────────────── -->
+  <section class="block">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="wf.kicker">Basic workflow</p>
+      <ol class="steps">
+        <li class="reveal" data-i18n="wf.1">Import image files or scan with an installed plugin.</li>
+        <li class="reveal" data-i18n="wf.2">Choose the film type and measure the film base.</li>
+        <li class="reveal" data-i18n="wf.3">Adjust colour and tone in Chroma Engine.</li>
+        <li class="reveal" data-i18n="wf.4">Apply GrainMend to photographs that need it.</li>
+        <li class="reveal" data-i18n="wf.5">Check the result with Compare and the histogram, then print or export.</li>
+        <li class="reveal" data-i18n="wf.note">Shortcuts, folder paths, presets, and adjustments can all be customised.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── scanner plugin ────────────────────────────────── -->
+  <section class="scanner-plugin">
+    <div class="wrap">
+      <div class="scanner-plugin-panel reveal">
+        <div>
+          <p class="kicker" data-i18n="scanner.kicker">Scanner plugin</p>
+          <h2>negaflow-scanner-sane</h2>
+        </div>
+        <div class="scanner-plugin-copy">
+          <p data-i18n="scanner.body"><b>negaflow-scanner-sane</b> is the plugin used by <b>Scanner Import</b> in negaflow.</p>
+          <a class="scanner-plugin-link" href="https://github.com/habinsong/negaflow-scanner-sane" data-i18n="scanner.link">View on GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── story ─────────────────────────────────────────── -->
+  <section class="story">
+    <div class="wrap">
+      <div class="story-grid">
+        <p class="reveal" data-i18n="story.1">Analog photography is growing again, but the process behind it has stalled.<span class="story-gap" aria-hidden="true"></span>Unless film is printed optically, it has to be converted to digital before we can see it.<span class="story-gap" aria-hidden="true"></span>Yet that whole process is slowing down as labs close and support from manufacturers and products declines.</p>
+        <p class="reveal" data-i18n="story.2">This project began with the things that felt inconvenient and the features I wished existed.<span class="story-gap" aria-hidden="true"></span>Drawing on what I learned from using 35mm and medium-format film, I built the entire process myself, one piece at a time.<span class="story-gap" aria-hidden="true"></span>It began as a toy project for my own use, but negaflow has become something more.</p>
+        <p class="reveal" data-i18n="story.3">What matters most is that it works well, is comfortable and fast to use, and produces a proper result.<span class="story-gap" aria-hidden="true"></span>The independently developed <b>negaflow</b> is native to macOS and brings together workflows for both film labs and individuals.</p>
+        <p class="story-mark reveal" data-i18n="story.4">For the summer of the 200th anniversary of the first photograph made by Niépce.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── download ──────────────────────────────────────── -->
+  <section id="download" class="block download">
+    <div class="wrap">
+      <h2 class="reveal" data-i18n="dl.title">Download</h2>
+      <p class="lede reveal" data-i18n="dl.body">Download the current version from GitHub Releases. The Universal PKG is the right choice for most Macs and installs <code>negaflow.app</code> directly in <code>/Applications</code>. DMG and ZIP files are available on the same release page for manual installation.</p>
+
+      <div class="pkgs">
+        <div class="pkg reveal">
+          <code>negaflow-1.0.0-1-macOS-universal.pkg</code>
+          <span data-i18n="dl.universal">Apple Silicon, Intel</span>
+        </div>
+        <div class="pkg reveal">
+          <code>negaflow-1.0.0-1-macOS-arm64.pkg</code>
+          <span data-i18n="dl.arm">Apple Silicon only</span>
+        </div>
+      </div>
+
+      <div class="cta reveal">
+        <a class="btn btn-primary" href="https://github.com/habinsong/negaflow/releases" data-i18n="dl.cta">GitHub Releases</a>
+        <a class="btn" href="https://github.com/habinsong/negaflow#readme" data-i18n="dl.docs">Documentation</a>
+      </div>
+      <p class="fine reveal" data-i18n="dl.note">Connecting a physical scanner requires a separate <a href="https://github.com/habinsong/negaflow-scanner-sane">scanner plugin</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <img src="assets/icon-256.webp" width="20" height="20" alt="">
+      <span>negaflow</span>
+    </div>
+    <p class="fine">
+      <span data-i18n="ft.lic1">negaflow is distributed under the Apache License 2.0.</span>
+      <a href="https://github.com/habinsong/negaflow/blob/main/LICENSE">Apache-2.0</a>
+      · <span data-i18n="ft.lic2">The negaflow-scanner-sane plugin is distributed under GPL-2.0-or-later.</span>
+      <a href="https://github.com/habinsong/negaflow-scanner-sane/blob/main/LICENSE">GPL-2.0-or-later</a>
+    </p>
+    <p class="fine" data-i18n="ft.tm">negaflow is not affiliated with or endorsed by Kodak, Fujifilm, Noritsu, LaserSoft Imaging, or other trademark owners. Product names are used only to identify development targets or measured sources.</p>
+    <p class="fine">© 2026 habin song</p>
+  </div>
+</footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
