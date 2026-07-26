@@ -86,6 +86,148 @@
     });
   }
 
+  /* ── screenshot lightbox ────────────────────────────── */
+
+  var lightbox = document.getElementById('shotLightbox');
+  var lightboxImage = lightbox.querySelector('.shot-lightbox-image');
+  var activeShot = null;
+  var lightboxHistoryEntry = false;
+  var lightboxAnimation = null;
+
+  function visibleShotRect(shot) {
+    var box = shot.getBoundingClientRect();
+    if (getComputedStyle(shot).objectFit !== 'contain' || !shot.naturalWidth || !shot.naturalHeight) {
+      return box;
+    }
+
+    var imageRatio = shot.naturalWidth / shot.naturalHeight;
+    var boxRatio = box.width / box.height;
+    if (boxRatio > imageRatio) {
+      var width = box.height * imageRatio;
+      return { left: box.left + (box.width - width) / 2, top: box.top, width: width, height: box.height };
+    }
+
+    var height = box.width / imageRatio;
+    return { left: box.left, top: box.top + (box.height - height) / 2, width: box.width, height: height };
+  }
+
+  function shotTransform(from, to) {
+    var dx = from.left + from.width / 2 - (to.left + to.width / 2);
+    var dy = from.top + from.height / 2 - (to.top + to.height / 2);
+    return 'translate(' + dx + 'px, ' + dy + 'px) scale(' +
+      from.width / to.width + ', ' + from.height / to.height + ')';
+  }
+
+  function animateShot(opening) {
+    if (reduce.matches || !lightboxImage.animate || !activeShot) return null;
+
+    var source = visibleShotRect(activeShot);
+    var target = lightboxImage.getBoundingClientRect();
+    if (!source.width || !source.height || !target.width || !target.height) return null;
+
+    if (lightboxAnimation) lightboxAnimation.cancel();
+    var thumbnailTransform = shotTransform(source, target);
+    var thumbnailRadius = getComputedStyle(activeShot).borderRadius;
+    var fullRadius = getComputedStyle(lightboxImage).borderRadius;
+
+    lightboxAnimation = lightboxImage.animate(
+      opening
+        ? [
+            { transform: thumbnailTransform, borderRadius: thumbnailRadius },
+            { transform: 'none', borderRadius: fullRadius }
+          ]
+        : [
+            { transform: 'none', borderRadius: fullRadius },
+            { transform: thumbnailTransform, borderRadius: thumbnailRadius }
+          ],
+      {
+        duration: opening ? 480 : 360,
+        easing: opening ? 'cubic-bezier(.32, .72, 0, 1)' : 'cubic-bezier(.4, 0, .2, 1)',
+        fill: 'both'
+      }
+    );
+    return lightboxAnimation;
+  }
+
+  function finishLightboxClose() {
+    lightbox.hidden = true;
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lightbox-open');
+    lightboxImage.removeAttribute('src');
+    lightboxImage.alt = '';
+    if (activeShot) activeShot.focus({ preventScroll: true });
+    activeShot = null;
+    lightboxAnimation = null;
+  }
+
+  function closeLightbox(fromHistory) {
+    if (lightbox.hidden) return;
+    if (!fromHistory && lightboxHistoryEntry) {
+      history.back();
+      return;
+    }
+
+    lightboxHistoryEntry = false;
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    var animation = animateShot(false);
+    if (animation) animation.finished.then(finishLightboxClose, finishLightboxClose);
+    else finishLightboxClose();
+  }
+
+  function openLightbox(shot) {
+    if (!lightbox.hidden) return;
+
+    activeShot = shot;
+    lightboxImage.src = shot.currentSrc || shot.src;
+    lightboxImage.alt = shot.alt;
+    lightbox.setAttribute('aria-label', shot.alt);
+    lightbox.hidden = false;
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lightbox-open');
+
+    requestAnimationFrame(function () {
+      lightbox.classList.add('is-open');
+      animateShot(true);
+      lightbox.focus({ preventScroll: true });
+    });
+
+    history.pushState(
+      Object.assign({}, history.state || {}, { nfShotLightbox: true }),
+      '',
+      location.href
+    );
+    lightboxHistoryEntry = true;
+  }
+
+  document.querySelectorAll('.shot').forEach(function (shot) {
+    shot.tabIndex = 0;
+    shot.setAttribute('role', 'button');
+    shot.setAttribute('aria-haspopup', 'dialog');
+    shot.addEventListener('click', function () { openLightbox(shot); });
+    shot.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      openLightbox(shot);
+    });
+  });
+
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox) closeLightbox(false);
+  });
+  addEventListener('popstate', function () {
+    if (!lightbox.hidden) closeLightbox(true);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (lightbox.hidden) return;
+    if (e.key === 'Escape') closeLightbox(false);
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      lightbox.focus();
+    }
+  });
+
   /* ── segmented controls ─────────────────────────────── */
 
   function layoutPill(seg) {

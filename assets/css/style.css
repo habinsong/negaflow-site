@@ -701,6 +701,8 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
   margin-top: 0;
   border-radius: clamp(5px, .8vw, 12px);
   box-shadow: var(--shot-drop);
+  cursor: zoom-in;
+  transition: transform .5s var(--ease-spring), box-shadow .5s var(--ease);
 }
 .shot-wrap {
   width: 100%;
@@ -717,6 +719,57 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
   max-width: none;
   object-fit: contain;
   background: var(--paper-2);
+}
+
+#heroShot { cursor: zoom-in; }
+
+@media (hover: hover) and (pointer: fine) {
+  .shot-wrap .shot:hover {
+    transform: translateY(-4px) scale(1.006);
+    box-shadow: 0 38px 88px -30px rgba(0, 0, 0, .38), 0 5px 16px -8px rgba(0, 0, 0, .2);
+  }
+}
+
+.shot-wrap .shot:active { transform: translateY(-1px) scale(.996); }
+
+body.lightbox-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.shot-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding:
+    max(16px, env(safe-area-inset-top))
+    max(16px, env(safe-area-inset-right))
+    max(16px, env(safe-area-inset-bottom))
+    max(16px, env(safe-area-inset-left));
+  background: rgba(0, 0, 0, .84);
+  -webkit-backdrop-filter: blur(16px) saturate(115%);
+  backdrop-filter: blur(16px) saturate(115%);
+  cursor: zoom-out;
+  opacity: 0;
+  transition: opacity .36s var(--ease);
+}
+.shot-lightbox[hidden] { display: none; }
+.shot-lightbox.is-open { opacity: 1; }
+.shot-lightbox:focus { outline: none; }
+.shot-lightbox-image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  object-fit: contain;
+  border-radius: clamp(6px, .7vw, 10px);
+  box-shadow: 0 34px 110px rgba(0, 0, 0, .56);
+  cursor: default;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 /* ── notes ──────────────────────────────────────────────── */
@@ -1018,6 +1071,11 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
     background: var(--paper-2);
   }
   .glass::after { display: none; }
+  .shot-lightbox {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(0, 0, 0, .94);
+  }
 }
 
 @media (prefers-contrast: more) {
@@ -1027,6 +1085,6 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
 }
 
 @media print {
-  .nav, .grain, .glow { display: none; }
+  .nav, .grain, .glow, .shot-lightbox { display: none; }
   body { background: #fff; color: #000; }
 }
