@@ -375,7 +375,30 @@
 
   /* ── boot ───────────────────────────────────────────── */
 
-  applyLang(doc.dataset.lang);
+  function detectLanguage() {
+    var saved = localStorage.getItem('nf-lang');
+    if (saved && I18N[saved]) return saved;
+
+    var langs = Array.isArray(navigator.languages) && navigator.languages.length
+      ? navigator.languages
+      : [navigator.language || navigator.userLanguage || ''];
+
+    for (var i = 0; i < langs.length; i++) {
+      var code = (langs[i] || '').toLowerCase();
+      if (!code) continue;
+
+      if (code.indexOf('ko') === 0) return 'ko';
+      if (code.indexOf('ja') === 0) return 'ja';
+      if (code.indexOf('zh') === 0) return 'zh';
+      if (code.indexOf('fr') === 0) return 'fr';
+      if (code.indexOf('de') === 0) return 'de';
+      if (code.indexOf('en') === 0) return 'en';
+    }
+
+    return doc.dataset.lang || 'en';
+  }
+
+  applyLang(detectLanguage());
   applyScheme(doc.dataset.scheme);
 
   var relayout = function () { layoutPill(schemeSeg); };
