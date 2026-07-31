@@ -45,37 +45,57 @@ const HEAD_END = '<!-- nf:head:end -->';
 /* Each topic gets its own URL so it can answer its own search.
  * `heading` and `desc` name existing i18n keys; a literal is used as written,
  * which is what the two engine names need. `sections` lists the section ids
- * lifted out of index.html, in order. */
+ * lifted out of index.html, in order. `card` names the picture the page shows
+ * when it is shared; without one it falls back to the app's own card. */
 const TOPICS = [
   {
     slug: 'chroma-engine',
     heading: { literal: 'Chroma Engine' },
     desc: { key: 'chroma.lede' },
-    sections: ['chroma', 'color-science']
+    sections: ['chroma', 'color-science'],
+    card: 'chroma-engine.jpg'
   },
   {
     slug: 'grainmend',
     heading: { literal: 'GrainMend' },
     desc: { key: 'gm.lede' },
-    sections: ['grainmend']
+    sections: ['grainmend'],
+    card: 'grainmend.jpg'
   },
   {
     slug: 'print-layouts',
     heading: { key: 'print.title' },
     desc: { key: 'print.lede' },
-    sections: ['print']
+    sections: ['print'],
+    card: 'print-layouts.jpg'
   },
   {
     slug: 'film-profiles',
     heading: { key: 'pr.title' },
     desc: { key: 'pr.lede' },
-    sections: ['profiles']
+    sections: ['profiles'],
+    card: 'film-profiles.jpg'
   },
   {
     slug: 'comparison',
     heading: { key: 'cmp.title' },
-    desc: { key: 'doc.desc' },
-    sections: ['comparison', 'capture-methods']
+    desc: { key: 'cmp.lede' },
+    sections: ['comparison', 'capture-methods'],
+    card: 'comparison.jpg'
+  },
+  {
+    slug: 'camera-scanning',
+    heading: { key: 'cam.title' },
+    desc: { key: 'cam.lede' },
+    sections: ['camera-scanning'],
+    card: 'chroma-engine.jpg'
+  },
+  {
+    slug: 'how-to-invert-film-negatives',
+    heading: { key: 'inv.title' },
+    desc: { key: 'inv.lede' },
+    sections: ['invert-guide'],
+    card: 'comparison.jpg'
   },
   {
     slug: 'faq',
@@ -87,7 +107,8 @@ const TOPICS = [
     slug: 'download',
     heading: { key: 'dl.title' },
     desc: { key: 'dl.body' },
-    sections: ['download']
+    sections: ['download'],
+    card: 'download.jpg'
   }
 ];
 
@@ -153,6 +174,21 @@ function closeTagStart(html, name, from) {
     i = c.index + c[0].length;
   }
   return -1;
+}
+
+/* Alt text is an attribute, not markup, so it is translated on its own. Search
+ * engines read it as the caption of the picture, once per language. */
+function applyAltDict(html, dict) {
+  return html.replace(/<img\b[^>]*\bdata-i18n-alt="([^"]+)"[^>]*>/g, (tag, key) => {
+    const value = dict[key];
+    if (value == null) return tag;
+    const alt = ` alt="${escapeAttr(stripTags(value))}"`;
+    /* index.html is the template and the English page at once, so this has to
+     * land the same way whether or not the tag already carries an alt */
+    return /\salt="[^"]*"/.test(tag)
+      ? tag.replace(/\salt="[^"]*"/, alt)
+      : tag.replace(/\s*\/?>$/, (end) => alt + end);
+  });
 }
 
 /* Replace the inner markup of every [data-i18n] element with its translation. */
@@ -242,8 +278,8 @@ function jsonLd(lang, dict, version, topic) {
     softwareHelp: 'https://github.com/habinsong/negaflow#readme',
     license: 'https://www.apache.org/licenses/LICENSE-2.0',
     isAccessibleForFree: true,
-    image: `${SITE}/assets/og-image.png`,
-    screenshot: `${SITE}/assets/og-image.png`,
+    image: `${SITE}/assets/og/default.jpg`,
+    screenshot: `${SITE}/assets/og/default.jpg`,
     author: { '@type': 'Person', name: 'habin song', url: 'https://github.com/habinsong' },
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     featureList: [1, 2, 3, 4, 5, 6]
@@ -316,7 +352,7 @@ function buildHead(lang, dict, version, topic) {
     : stripTags(dict['doc.title']);
   const desc = topic ? textFor(topic.desc, dict) : stripTags(dict['doc.desc']);
   const url = pageUrl(lang, slug);
-  const og = `${SITE}/assets/og-image.png`;
+  const og = `${SITE}/assets/og/${topic && topic.card ? topic.card : 'default.jpg'}`;
 
   const alternates = LANGS
     .map((l) => `<link rel="alternate" hreflang="${HREFLANG[l]}" href="${pageUrl(l, slug)}">`)
@@ -346,7 +382,7 @@ function buildHead(lang, dict, version, topic) {
     `<meta property="og:description" content="${escapeAttr(desc)}">`,
     `<meta property="og:image" content="${og}">`,
     `<meta property="og:image:secure_url" content="${og}">`,
-    '<meta property="og:image:type" content="image/png">',
+    '<meta property="og:image:type" content="image/jpeg">',
     '<meta property="og:image:width" content="1200">',
     '<meta property="og:image:height" content="630">',
     '<meta property="og:image:alt" content="negaflow for macOS with its film development workspace">',
@@ -371,7 +407,7 @@ function buildPage(lang, template, dict, version, topic) {
   /* the overview page of this language, relative to the page being written */
   const home = prefix + (lang === DEFAULT_LANG ? '' : lang + '/');
 
-  let html = applyDict(template, d);
+  let html = applyAltDict(applyDict(template, d), d);
 
   if (topic) {
     const body = topic.sections
@@ -441,9 +477,9 @@ function buildPage(lang, template, dict, version, topic) {
 /* ── sitemap and robots ───────────────────────────────────────────────── */
 
 function buildSitemap() {
-  const today = new Date().toISOString().slice(0, 10);
   const slugs = [null, ...TOPICS.map((t) => t.slug)];
   const entries = slugs.flatMap((slug) => LANGS.map((lang) => {
+    const dir = lang === DEFAULT_LANG ? '' : `${lang}/`;
     const alts = LANGS
       .map((l) => `    <xhtml:link rel="alternate" hreflang="${HREFLANG[l]}" href="${pageUrl(l, slug)}"/>`)
       .concat(`    <xhtml:link rel="alternate" hreflang="x-default" href="${pageUrl(DEFAULT_LANG, slug)}"/>`)
@@ -453,7 +489,7 @@ function buildSitemap() {
       '  <url>',
       `    <loc>${pageUrl(lang, slug)}</loc>`,
       alts,
-      `    <lastmod>${today}</lastmod>`,
+      `    <lastmod>${lastmodFor(`${dir}${slug ? slug + '/' : ''}index.html`)}</lastmod>`,
       `    <changefreq>weekly</changefreq>`,
       `    <priority>${priority}</priority>`,
       '  </url>'
@@ -482,10 +518,34 @@ function buildRobots() {
 
 /* ── run ──────────────────────────────────────────────────────────────── */
 
+/*
+ * A crawler reads <lastmod> as "this page changed on that day", so stamping
+ * every page with the build date on every build turns the whole sitemap into
+ * noise. The dates live in tools/lastmod.json and only the pages whose markup
+ * actually came out different are moved to today.
+ */
+const LASTMOD_FILE = 'tools/lastmod.json';
+const TODAY = new Date().toISOString().slice(0, 10);
+
+let lastmod = {};
+try {
+  lastmod = JSON.parse(readFileSync(join(ROOT, LASTMOD_FILE), 'utf8'));
+} catch {
+  lastmod = {};
+}
+
+function lastmodFor(relPath) {
+  return lastmod[relPath] || TODAY;
+}
+
 function emit(relPath, content) {
   const abs = join(ROOT, relPath);
   const current = existsSync(abs) ? readFileSync(abs, 'utf8') : null;
-  if (current === content) return;
+  if (current === content) {
+    if (relPath.endsWith('index.html') && !lastmod[relPath]) lastmod[relPath] = TODAY;
+    return;
+  }
+  if (relPath.endsWith('index.html')) lastmod[relPath] = TODAY;
   if (check) {
     stale.push(relPath);
     return;
@@ -510,6 +570,12 @@ for (const lang of LANGS) {
 }
 emit('sitemap.xml', buildSitemap());
 emit('robots.txt', buildRobots());
+
+if (!check) {
+  const sorted = {};
+  for (const key of Object.keys(lastmod).sort()) sorted[key] = lastmod[key];
+  writeFileSync(join(ROOT, LASTMOD_FILE), JSON.stringify(sorted, null, 2) + '\n');
+}
 
 if (check) {
   if (stale.length) {

@@ -1960,3 +1960,413 @@ Object.assign(window.NF_I18N.ja, { 'nav.menu': 'メニュー', 'nav.close': '閉
 Object.assign(window.NF_I18N.zh, { 'nav.menu': '菜单', 'nav.close': '关闭' });
 Object.assign(window.NF_I18N.fr, { 'nav.menu': 'Menu', 'nav.close': 'Fermer' });
 Object.assign(window.NF_I18N.de, { 'nav.menu': 'Menü', 'nav.close': 'Schließen' });
+
+/* ── what the pictures say ─────────────────────────────────
+   Alt text is the caption an image search reads, so it names the film, the
+   development target and what is being shown, in every language. */
+
+Object.assign(window.NF_I18N.ko, {
+  'alt.tg.main': '일반 현상 타깃으로 현상한 35mm 컬러 네거티브 — 후지컬러 간판이 있는 거리 사진',
+  'alt.tg.hs': 'Noritsu HS-1800 룩으로 현상한 같은 35mm 컬러 네거티브 프레임',
+  'alt.tg.sp': 'Fujifilm Frontier SP-3000 룩으로 현상한 같은 35mm 컬러 네거티브 프레임',
+  'alt.tg.f135': 'Pakon F-135 Plus 룩으로 현상한 같은 35mm 컬러 네거티브 프레임',
+  'alt.tg.hr': 'Kodak Professional HR 500 Plus 룩으로 현상한 같은 35mm 컬러 네거티브 프레임',
+  'alt.pl.contact': 'negaflow 인화 화면의 콘택트 시트 레이아웃 — 필름 한 롤을 한 장에 배열',
+  'alt.pl.single': 'negaflow 인화 화면의 단일 사진 레이아웃 — 여백을 두고 배치한 한 장',
+  'alt.pl.cyanotype': 'negaflow 인화 화면의 시아노타입 레이아웃 — 청색조 인화',
+  'alt.pl.glass': 'negaflow 인화 화면의 유리 건판 레이아웃',
+  'alt.pl.gelatin': 'negaflow 인화 화면의 젤라틴 실버 레이아웃 — 흑백 인화',
+  'alt.gm.before': 'GrainMend 복원 전 — 먼지와 스크래치가 남아 있는 필름 스캔',
+  'alt.gm.after': 'GrainMend 복원 후 — 먼지와 스크래치를 지운 같은 필름 스캔',
+  'alt.hero': 'negaflow 현상 화면 — 필름 네거티브를 반전하고 보정하는 macOS 작업 공간',
+  'alt.icon': 'negaflow 앱 아이콘'
+});
+
+Object.assign(window.NF_I18N.en, {
+  'alt.tg.main': '35mm colour negative developed with the standard target — a street with a Fujicolor sign',
+  'alt.tg.hs': 'The same 35mm colour negative frame developed with the Noritsu HS-1800 look',
+  'alt.tg.sp': 'The same 35mm colour negative frame developed with the Fujifilm Frontier SP-3000 look',
+  'alt.tg.f135': 'The same 35mm colour negative frame developed with the Pakon F-135 Plus look',
+  'alt.tg.hr': 'The same 35mm colour negative frame developed with the Kodak Professional HR 500 Plus look',
+  'alt.pl.contact': 'Contact sheet layout in the negaflow print workspace — a whole roll on one sheet',
+  'alt.pl.single': 'Single-photo layout in the negaflow print workspace, one frame with margins',
+  'alt.pl.cyanotype': 'Cyanotype layout in the negaflow print workspace, printed in blue',
+  'alt.pl.glass': 'Glass plate layout in the negaflow print workspace',
+  'alt.pl.gelatin': 'Gelatin silver layout in the negaflow print workspace, printed in black and white',
+  'alt.gm.before': 'Before GrainMend — a film scan with dust and scratches still on it',
+  'alt.gm.after': 'After GrainMend — the same film scan with the dust and scratches repaired',
+  'alt.hero': 'The negaflow develop workspace on macOS, inverting and grading a film negative',
+  'alt.icon': 'negaflow app icon'
+});
+
+Object.assign(window.NF_I18N.ja, {
+  'alt.tg.main': '標準の現像ターゲットで現像した35mmカラーネガ — フジカラーの看板がある街の写真',
+  'alt.tg.hs': '同じ35mmカラーネガのコマをNoritsu HS-1800のルックで現像',
+  'alt.tg.sp': '同じ35mmカラーネガのコマをFujifilm Frontier SP-3000のルックで現像',
+  'alt.tg.f135': '同じ35mmカラーネガのコマをPakon F-135 Plusのルックで現像',
+  'alt.tg.hr': '同じ35mmカラーネガのコマをKodak Professional HR 500 Plusのルックで現像',
+  'alt.pl.contact': 'negaflowのプリント画面のコンタクトシート — 1本のフィルムを1枚に配置',
+  'alt.pl.single': 'negaflowのプリント画面の単写真レイアウト — 余白をとった1枚',
+  'alt.pl.cyanotype': 'negaflowのプリント画面のサイアノタイプ・レイアウト（青の焼き付け）',
+  'alt.pl.glass': 'negaflowのプリント画面の乾板レイアウト',
+  'alt.pl.gelatin': 'negaflowのプリント画面のゼラチンシルバー・レイアウト（モノクロ）',
+  'alt.gm.before': 'GrainMend適用前 — ホコリと傷が残ったフィルムスキャン',
+  'alt.gm.after': 'GrainMend適用後 — ホコリと傷を除いた同じフィルムスキャン',
+  'alt.hero': 'macOS版negaflowの現像画面。フィルムネガを反転して調整しているところ',
+  'alt.icon': 'negaflowのアプリアイコン'
+});
+
+Object.assign(window.NF_I18N.zh, {
+  'alt.tg.main': '用标准显影目标处理的35mm彩色负片 — 有富士彩色招牌的街景',
+  'alt.tg.hs': '同一张35mm彩色负片，用Noritsu HS-1800风格处理',
+  'alt.tg.sp': '同一张35mm彩色负片，用Fujifilm Frontier SP-3000风格处理',
+  'alt.tg.f135': '同一张35mm彩色负片，用Pakon F-135 Plus风格处理',
+  'alt.tg.hr': '同一张35mm彩色负片，用Kodak Professional HR 500 Plus风格处理',
+  'alt.pl.contact': 'negaflow打印界面的印样表版式 — 整卷胶片排在一张纸上',
+  'alt.pl.single': 'negaflow打印界面的单张版式，带留白',
+  'alt.pl.cyanotype': 'negaflow打印界面的蓝晒版式',
+  'alt.pl.glass': 'negaflow打印界面的干版版式',
+  'alt.pl.gelatin': 'negaflow打印界面的银盐版式（黑白）',
+  'alt.gm.before': 'GrainMend修复前 — 仍有灰尘和划痕的胶片扫描',
+  'alt.gm.after': 'GrainMend修复后 — 同一张扫描，灰尘和划痕已去除',
+  'alt.hero': 'macOS版negaflow的显影界面，正在反转并调整一张胶片负片',
+  'alt.icon': 'negaflow应用图标'
+});
+
+Object.assign(window.NF_I18N.fr, {
+  'alt.tg.main': 'Négatif couleur 35 mm développé avec la cible standard — une rue avec une enseigne Fujicolor',
+  'alt.tg.hs': 'La même vue de négatif couleur 35 mm développée avec le rendu Noritsu HS-1800',
+  'alt.tg.sp': 'La même vue de négatif couleur 35 mm développée avec le rendu Fujifilm Frontier SP-3000',
+  'alt.tg.f135': 'La même vue de négatif couleur 35 mm développée avec le rendu Pakon F-135 Plus',
+  'alt.tg.hr': 'La même vue de négatif couleur 35 mm développée avec le rendu Kodak Professional HR 500 Plus',
+  'alt.pl.contact': 'Planche-contact dans l\'espace de tirage de negaflow — une pellicule entière sur une feuille',
+  'alt.pl.single': 'Mise en page à une seule photo dans l\'espace de tirage de negaflow, avec marges',
+  'alt.pl.cyanotype': 'Mise en page cyanotype dans l\'espace de tirage de negaflow, tirage bleu',
+  'alt.pl.glass': 'Mise en page plaque de verre dans l\'espace de tirage de negaflow',
+  'alt.pl.gelatin': 'Mise en page gélatino-argentique dans l\'espace de tirage de negaflow, en noir et blanc',
+  'alt.gm.before': 'Avant GrainMend — un scan de film avec ses poussières et ses rayures',
+  'alt.gm.after': 'Après GrainMend — le même scan, poussières et rayures réparées',
+  'alt.hero': 'L\'espace de développement de negaflow sur macOS, en train d\'inverser et d\'étalonner un négatif',
+  'alt.icon': 'Icône de l\'application negaflow'
+});
+
+Object.assign(window.NF_I18N.de, {
+  'alt.tg.main': '35-mm-Farbnegativ, entwickelt mit dem Standardziel — eine Straße mit Fujicolor-Schild',
+  'alt.tg.hs': 'Dasselbe 35-mm-Farbnegativ, entwickelt im Look des Noritsu HS-1800',
+  'alt.tg.sp': 'Dasselbe 35-mm-Farbnegativ, entwickelt im Look des Fujifilm Frontier SP-3000',
+  'alt.tg.f135': 'Dasselbe 35-mm-Farbnegativ, entwickelt im Look des Pakon F-135 Plus',
+  'alt.tg.hr': 'Dasselbe 35-mm-Farbnegativ, entwickelt im Look des Kodak Professional HR 500 Plus',
+  'alt.pl.contact': 'Kontaktbogen im Druckbereich von negaflow — ein ganzer Film auf einem Blatt',
+  'alt.pl.single': 'Einzelbild-Layout im Druckbereich von negaflow, mit Rand',
+  'alt.pl.cyanotype': 'Cyanotypie-Layout im Druckbereich von negaflow, blauer Druck',
+  'alt.pl.glass': 'Trockenplatten-Layout im Druckbereich von negaflow',
+  'alt.pl.gelatin': 'Silbergelatine-Layout im Druckbereich von negaflow, in Schwarzweiß',
+  'alt.gm.before': 'Vor GrainMend — ein Filmscan mit Staub und Kratzern',
+  'alt.gm.after': 'Nach GrainMend — derselbe Scan, Staub und Kratzer repariert',
+  'alt.hero': 'Der Entwicklungsbereich von negaflow unter macOS beim Umkehren und Abstimmen eines Negativs',
+  'alt.icon': 'negaflow-App-Symbol'
+});
+
+/* ── the comparison, aimed at what people actually search ──
+   Someone looking for this app types "Negative Lab Pro alternative" or
+   "free film inversion software", never "negaflow". The section names the
+   kinds of tool it stands next to, and the two rows that decide it. */
+
+Object.assign(window.NF_I18N.ko, {
+  'cmp.title': '유료 필름 반전 소프트웨어를 대신하는 무료 오픈소스 앱',
+  'cmp.lede': '필름 반전은 대부분 Lightroom 플러그인(Negative Lab Pro 등)이나 유료 독립 실행 앱(FilmLab, Negbase 등), 또는 스캐너에 딸려 오는 소프트웨어(SilverFast, VueScan 등)로 합니다. negaflow는 반전부터 현상, 먼지·스크래치 복원, 인화와 내보내기까지 혼자 처리하는 무료 오픈소스 macOS 앱입니다.',
+  'cmp.col3': '유료 플러그인 · 유료 앱 · 스캐너 번들',
+  'cmp.r0.f': '가격과 라이선스',
+  'cmp.r0.n': '무료, Apache-2.0 오픈소스. 구독도 체험판 제한도 없고 소스를 읽을 수 있음',
+  'cmp.r0.g': '유료 구매 또는 구독, 비공개 소스',
+  'cmp.r6.f': '실행 방식',
+  'cmp.r6.n': '독립 실행 macOS 앱. 불러오기·현상·복원·인화·내보내기를 한곳에서',
+  'cmp.r6.g': 'Lightroom·Photoshop 안에서 도는 플러그인이거나 특정 스캐너에 묶인 소프트웨어',
+  'ft.tm': 'negaflow는 Kodak, Fujifilm, Noritsu, Adobe, LaserSoft Imaging, Hamrick Software, Negative Lab Pro, FilmLab, Negbase를 비롯한 상표권자와 제휴하거나 후원받지 않습니다. 제품명은 현상 타깃이나 측정 대상, 비교 대상을 식별할 때만 사용합니다.'
+});
+
+Object.assign(window.NF_I18N.en, {
+  'cmp.title': 'A free, open-source alternative to paid film inversion software',
+  'cmp.lede': 'Film inversion is usually done with a Lightroom plug-in (Negative Lab Pro and the like), a paid standalone app (FilmLab, Negbase and others), or the software that comes with a scanner (SilverFast, VueScan). negaflow is a free, open-source macOS app that does the whole job on its own — inversion, development, dust and scratch repair, print and export.',
+  'cmp.col3': 'Paid plug-ins · paid apps · scanner bundles',
+  'cmp.r0.f': 'Price and licence',
+  'cmp.r0.n': 'Free, Apache-2.0 open source. No subscription, no trial limit, source readable',
+  'cmp.r0.g': 'Paid licence or subscription, closed source',
+  'cmp.r6.f': 'How it runs',
+  'cmp.r6.n': 'Standalone macOS app: import, develop, repair, print and export in one place',
+  'cmp.r6.g': 'A plug-in inside Lightroom or Photoshop, or software tied to one scanner',
+  'ft.tm': 'negaflow is not affiliated with or endorsed by Kodak, Fujifilm, Noritsu, Adobe, LaserSoft Imaging, Hamrick Software, Negative Lab Pro, FilmLab, Negbase or other trademark owners. Product names are used only to identify development targets, measured sources, or the tools being compared.'
+});
+
+Object.assign(window.NF_I18N.ja, {
+  'cmp.title': '有料のフィルム反転ソフトに代わる、無料・オープンソースのアプリ',
+  'cmp.lede': 'フィルム反転は普通、Lightroomのプラグイン（Negative Lab Proなど）か有料の単体アプリ（FilmLab、Negbaseなど）、あるいはスキャナ付属のソフト（SilverFast、VueScan）で行います。negaflowは反転から現像、ホコリと傷の修復、プリントと書き出しまでを単体でこなす、無料・オープンソースのmacOSアプリです。',
+  'cmp.col3': '有料プラグイン・有料アプリ・スキャナ付属ソフト',
+  'cmp.r0.f': '価格とライセンス',
+  'cmp.r0.n': '無料、Apache-2.0のオープンソース。サブスクも試用制限もなく、ソースを読める',
+  'cmp.r0.g': '有料の購入またはサブスク、ソース非公開',
+  'cmp.r6.f': '動作のしかた',
+  'cmp.r6.n': '単体のmacOSアプリ。読み込み・現像・修復・プリント・書き出しが一か所で完結',
+  'cmp.r6.g': 'LightroomやPhotoshopの中で動くプラグイン、または特定のスキャナに紐づいたソフト',
+  'ft.tm': 'negaflowはKodak、Fujifilm、Noritsu、Adobe、LaserSoft Imaging、Hamrick Software、Negative Lab Pro、FilmLab、Negbaseをはじめとする商標権者と提携しておらず、後援も受けていません。製品名は現像ターゲットや測定対象、比較対象を示すためだけに使用しています。'
+});
+
+Object.assign(window.NF_I18N.zh, {
+  'cmp.title': '替代付费胶片反转软件的免费开源应用',
+  'cmp.lede': '胶片反转通常靠 Lightroom 插件（如 Negative Lab Pro）、付费独立应用（FilmLab、Negbase 等），或扫描仪自带软件（SilverFast、VueScan）完成。negaflow 是一款免费开源的 macOS 应用，反转、显影、除尘去划痕、打印与导出全部自己搞定。',
+  'cmp.col3': '付费插件 · 付费应用 · 扫描仪自带软件',
+  'cmp.r0.f': '价格与许可',
+  'cmp.r0.n': '免费，Apache-2.0 开源。无订阅、无试用限制，源码可读',
+  'cmp.r0.g': '付费购买或订阅，闭源',
+  'cmp.r6.f': '运行方式',
+  'cmp.r6.n': '独立的 macOS 应用：导入、显影、修复、打印、导出都在一处',
+  'cmp.r6.g': '运行在 Lightroom 或 Photoshop 内的插件，或绑定某台扫描仪的软件',
+  'ft.tm': 'negaflow 与 Kodak、Fujifilm、Noritsu、Adobe、LaserSoft Imaging、Hamrick Software、Negative Lab Pro、FilmLab、Negbase 等商标持有者没有关联，也未获其背书。产品名称仅用于标识显影目标、测量来源或比较对象。'
+});
+
+Object.assign(window.NF_I18N.fr, {
+  'cmp.title': 'Une alternative libre et gratuite aux logiciels d\'inversion payants',
+  'cmp.lede': 'L\'inversion de négatifs passe le plus souvent par un module Lightroom (Negative Lab Pro et consorts), une application payante autonome (FilmLab, Negbase) ou le logiciel fourni avec un scanner (SilverFast, VueScan). negaflow est une application macOS libre et gratuite qui fait tout elle-même : inversion, développement, réparation des poussières et rayures, tirage et export.',
+  'cmp.col3': 'Modules payants · applications payantes · logiciels de scanner',
+  'cmp.r0.f': 'Prix et licence',
+  'cmp.r0.n': 'Gratuit, open source Apache-2.0. Ni abonnement ni version d\'essai limitée, code lisible',
+  'cmp.r0.g': 'Licence payante ou abonnement, code fermé',
+  'cmp.r6.f': 'Mode de fonctionnement',
+  'cmp.r6.n': 'Application macOS autonome : import, développement, réparation, tirage et export au même endroit',
+  'cmp.r6.g': 'Un module dans Lightroom ou Photoshop, ou un logiciel lié à un seul scanner',
+  'ft.tm': 'negaflow n\'est ni affilié ni approuvé par Kodak, Fujifilm, Noritsu, Adobe, LaserSoft Imaging, Hamrick Software, Negative Lab Pro, FilmLab, Negbase ou d\'autres titulaires de marques. Les noms de produits servent uniquement à identifier des cibles de développement, des sources mesurées ou les outils comparés.'
+});
+
+Object.assign(window.NF_I18N.de, {
+  'cmp.title': 'Eine freie, quelloffene Alternative zu kostenpflichtiger Umkehr-Software',
+  'cmp.lede': 'Negativumkehr läuft meist über ein Lightroom-Plug-in (etwa Negative Lab Pro), eine kostenpflichtige eigenständige App (FilmLab, Negbase) oder die Software, die dem Scanner beiliegt (SilverFast, VueScan). negaflow ist eine freie, quelloffene macOS-App, die alles selbst erledigt: Umkehr, Entwicklung, Staub- und Kratzerreparatur, Druck und Export.',
+  'cmp.col3': 'Kostenpflichtige Plug-ins · Apps · Scanner-Software',
+  'cmp.r0.f': 'Preis und Lizenz',
+  'cmp.r0.n': 'Kostenlos, Apache-2.0 Open Source. Kein Abo, keine Testbeschränkung, Quelltext lesbar',
+  'cmp.r0.g': 'Kauflizenz oder Abo, geschlossener Quelltext',
+  'cmp.r6.f': 'Art der Ausführung',
+  'cmp.r6.n': 'Eigenständige macOS-App: Import, Entwicklung, Reparatur, Druck und Export an einem Ort',
+  'cmp.r6.g': 'Ein Plug-in in Lightroom oder Photoshop oder Software, die an einen Scanner gebunden ist',
+  'ft.tm': 'negaflow steht in keiner Verbindung zu Kodak, Fujifilm, Noritsu, Adobe, LaserSoft Imaging, Hamrick Software, Negative Lab Pro, FilmLab, Negbase oder anderen Markeninhabern und wird von ihnen nicht unterstützt. Produktnamen dienen nur dazu, Entwicklungsziele, Messquellen oder die verglichenen Werkzeuge zu benennen.'
+});
+
+/* ── guides ────────────────────────────────────────────────
+   Two pages that answer the questions people type before they know any app
+   exists: how to copy film with a camera, and what inverting a negative
+   actually involves. Each one is its own URL in every language. */
+
+Object.assign(window.NF_I18N.ko, {
+  'cam.kicker': '가이드',
+  'cam.nav': '카메라 스캔',
+  'cam.title': '디지털 카메라로 필름 스캔하는 법',
+  'cam.lede': '카메라로 네거티브를 복사하면 평판 스캐너보다 빠르고, 쓸 만한 접사 렌즈가 있으면 해상력도 더 나옵니다. 카메라가 주는 것은 주황색 네거티브가 담긴 RAW 파일입니다. 현상이 깔끔하게 되도록 찍는 방법을 정리했습니다.',
+  'cam.s1.t': '준비물',
+  'cam.s1.d': 'RAW를 찍는 카메라, 1:1 배율 접사 렌즈, 센서와 필름을 평행하게 잡아 주는 복사대나 삼각대, 필름 홀더, 연색성(CRI)이 높은 광원.',
+  'cam.s2.t': '광원은 하나만, 고르게',
+  'cam.s2.d': 'CRI 95 이상 광원 하나만 쓰고 방의 다른 빛은 끕니다. 광원이 섞이면 화면 전체에 색이 얹히고, 이건 어떤 반전으로도 깔끔하게 빠지지 않습니다.',
+  'cam.s3.t': '필름은 평평하게, 센서와 평행하게',
+  'cam.s3.d': '홀더가 필름을 평평하게 잡고, 수평을 맞춘 복사대가 센서와 평행을 유지합니다. 말림과 기울기는 가장자리 흐림으로 나타나고 샤픈으로 살릴 수 없습니다.',
+  'cam.s4.t': '하이라이트를 살려서 노출',
+  'cam.s4.d': '기본 ISO에서 RAW로 찍고, 네거티브에서 가장 밝은 부분인 필름 베이스가 클리핑되지 않게 노출합니다. 베이스는 이후 계산 전부가 딛고 서는 기준입니다.',
+  'cam.s5.t': '미노광 영역을 같이 담기',
+  'cam.s5.d': '프레임에 노광되지 않은 필름을 조금 걸치거나, 롤당 한 컷은 빈 필름만 찍어 둡니다. negaflow가 여기서 오렌지 마스크를 측정해 롤 전체에 같은 베이스를 적용합니다.',
+  'cam.s6.t': 'RAW 파일 현상하기',
+  'cam.s6.d': 'RAW를 negaflow로 불러옵니다. 필름 베이스가 자동으로 측정되고, 32-bit Float 선형 공간에서 반전한 다음, 현상 타깃이 미니랩 스캐너의 룩을 입힙니다.',
+
+  'inv.kicker': '가이드',
+  'inv.nav': '네거티브 반전',
+  'inv.title': '필름 네거티브를 반전하는 법',
+  'inv.lede': '컬러 네거티브 반전은 한 단계가 아닙니다. 오렌지 마스크를 측정해서 나눠 내고, 선형 공간에서 반전한 다음, 마지막에 톤 커브가 밀도를 사진으로 바꿉니다. 커브 레이어 하나로 뒤집을 때 색이 탁해지는 이유가 여기 있습니다.',
+  'inv.s1.t': '1. 필름 베이스 측정',
+  'inv.s1.d': '오렌지 마스크는 화면 전체에 덮인 필터입니다. 사진의 한 귀퉁이가 아니라 노광되지 않은 필름에서 재야 합니다. 아니면 그 사진의 색이 마스크에 섞여 모든 프레임을 따라다닙니다.',
+  'inv.s2.t': '2. 빼지 말고 나누기',
+  'inv.s2.d': '마스크는 투과율이라 선형 공간에서 나눗셈으로 빠집니다 — <code>D = log₁₀(Dmin/T)</code>. 감마가 걸린 공간에서 빼면 색이 서로 어긋난 채로 남습니다.',
+  'inv.s3.t': '3. 32-bit Float 선형에서 반전',
+  'inv.s3.d': '감마를 씌운 뒤 8-bit에서 반전하면 필름이 가장 잘 담고 있는 어두운 부분의 계조가 버려집니다. negaflow는 감마를 씌우기 전 32-bit 부동소수점에서 계산을 끝냅니다.',
+  'inv.s4.t': '4. 인화 응답 곡선 적용',
+  'inv.s4.d': '네거티브에는 자기만의 검정이 없습니다. 인화지가 그것을 만들어 줬습니다. 검정점·18% 회색·흰색을 기준으로 잡은 인화 곡선이 있어야 결과가 사진처럼 읽힙니다.',
+  'inv.s5.t': '5. 롤 단위로 맞추기',
+  'inv.s5.d': '베이스 측정 하나는 같은 광원에서 찍은 한 롤의 것입니다. 프레임마다 따로 맞추지 말고 롤 전체에 같은 값을 물려야 톤이 고르게 갑니다.',
+  'inv.s6.t': '6. 룩을 고르고 내보내기',
+  'inv.s6.d': '7종 현상 타깃이 Frontier, Noritsu 같은 미니랩 스캐너 자리를 대신합니다. 편집용으로는 16-bit TIFF, 공유용으로는 롤 정보가 EXIF에 들어간 JPEG로 내보냅니다.'
+});
+
+Object.assign(window.NF_I18N.en, {
+  'cam.kicker': 'Guide',
+  'cam.nav': 'Camera scanning',
+  'cam.title': 'How to scan film with a digital camera',
+  'cam.lede': 'Copying a negative with a digital camera is faster than a flatbed scanner and, with a decent macro lens, it resolves more. What the camera gives you is a raw file of an orange negative — this is how to shoot it so that it develops cleanly.',
+  'cam.s1.t': 'What you need',
+  'cam.s1.d': 'A camera that shoots raw, a macro lens at 1:1, a copy stand or tripod that holds the sensor parallel to the film, a film holder, and a light source with a high CRI.',
+  'cam.s2.t': 'Light the film evenly',
+  'cam.s2.d': 'Use one light with a CRI of 95 or higher and nothing else in the room. Mixed light sources put a colour cast across the frame that no inversion can undo cleanly.',
+  'cam.s3.t': 'Get the film flat and square',
+  'cam.s3.d': 'A holder keeps the negative flat; a levelled copy stand keeps it parallel to the sensor. Curl and tilt show up as soft corners that sharpening cannot recover.',
+  'cam.s4.t': 'Expose to keep the highlights',
+  'cam.s4.d': 'Shoot raw at base ISO and expose so the brightest part of the negative — the film base — stays below clipping. The base is the measurement everything else is built on.',
+  'cam.s5.t': 'Include the unexposed rebate',
+  'cam.s5.d': 'Leave a sliver of unexposed film in the frame, or shoot one frame of bare film per roll. negaflow measures the orange mask from it and applies the same base across the roll.',
+  'cam.s6.t': 'Develop the raw files',
+  'cam.s6.d': 'Import the raw files into negaflow. The film base is measured automatically, the negative is inverted in 32-bit float linear, and a development target gives it the look of a lab scanner.',
+
+  'inv.kicker': 'Guide',
+  'inv.nav': 'Inverting negatives',
+  'inv.title': 'How to invert a film negative',
+  'inv.lede': 'Inverting a colour negative is not one step. The orange mask has to be measured and divided out, the result has to be inverted in linear light, and only then does a tone curve turn density into a picture. Doing it with a curves layer is where the muddy colour comes from.',
+  'inv.s1.t': '1. Measure the film base',
+  'inv.s1.d': 'The orange mask is a filter over the whole frame. Measure it on unexposed film, not on a corner of the picture, or the mask carries the picture\'s own colour into every frame.',
+  'inv.s2.t': '2. Divide, do not subtract',
+  'inv.s2.d': 'The mask is a transmission, so it comes out by division in linear light — <code>D = log₁₀(Dmin/T)</code>. Subtracting it in a gamma-encoded space is what leaves the colour crossed.',
+  'inv.s3.t': '3. Invert in 32-bit float linear',
+  'inv.s3.d': 'Inversion at 8-bit, after gamma, throws away the shadow detail film holds best. negaflow does the whole calculation in 32-bit floating point before any gamma is applied.',
+  'inv.s4.t': '4. Apply a print response curve',
+  'inv.s4.d': 'A negative has no black point of its own — photographic paper gave it one. A print curve anchored on black, 18% grey and white is what makes the result read as a photograph.',
+  'inv.s5.t': '5. Keep the roll consistent',
+  'inv.s5.d': 'One base measurement belongs to one roll under one light. Carry it across every frame instead of balancing each picture on its own, and the roll stays even.',
+  'inv.s6.t': '6. Choose a look, then export',
+  'inv.s6.d': 'Seven development targets stand in for lab scanners such as the Frontier and the Noritsu. Export to 16-bit TIFF for editing, or JPEG with the roll\'s EXIF written in.'
+});
+
+Object.assign(window.NF_I18N.ja, {
+  'cam.kicker': 'ガイド',
+  'cam.nav': 'カメラスキャン',
+  'cam.title': 'デジタルカメラでフィルムをスキャンする方法',
+  'cam.lede': 'カメラでネガを複写するとフラットベッドスキャナより速く、まともなマクロレンズがあれば解像も上です。カメラが返すのはオレンジのネガが写ったRAWファイルです。きれいに現像できる撮り方をまとめました。',
+  'cam.s1.t': '用意するもの',
+  'cam.s1.d': 'RAWで撮れるカメラ、等倍のマクロレンズ、センサーとフィルムを平行に保つ複写台か三脚、フィルムホルダー、演色性（CRI）の高い光源。',
+  'cam.s2.t': '光源はひとつ、むらなく',
+  'cam.s2.d': 'CRI 95以上の光源をひとつだけ使い、部屋の他の明かりは消します。光源が混ざると画面全体に色かぶりが乗り、どんな反転でもきれいには取れません。',
+  'cam.s3.t': 'フィルムは平らに、センサーと平行に',
+  'cam.s3.d': 'ホルダーがフィルムを平らに保ち、水平を出した複写台がセンサーとの平行を保ちます。カールや傾きは四隅の甘さとして出て、シャープネスでは戻りません。',
+  'cam.s4.t': 'ハイライトを残す露出で',
+  'cam.s4.d': 'ベースISOのRAWで撮り、ネガのいちばん明るい部分＝フィルムベースが白飛びしないように露出します。ベースはこの後の計算すべての土台です。',
+  'cam.s5.t': '未露光部を一緒に入れる',
+  'cam.s5.d': 'コマの端に未露光のフィルムを少し入れるか、1本につき1コマ、素のフィルムだけを撮っておきます。negaflowはそこからオレンジマスクを測り、同じベースをロール全体に当てます。',
+  'cam.s6.t': 'RAWを現像する',
+  'cam.s6.d': 'RAWをnegaflowに読み込みます。フィルムベースが自動で測られ、32-bit Floatリニアで反転し、現像ターゲットがミニラボスキャナのルックを与えます。',
+
+  'inv.kicker': 'ガイド',
+  'inv.nav': 'ネガの反転',
+  'inv.title': 'フィルムネガを反転する方法',
+  'inv.lede': 'カラーネガの反転はひとつの工程ではありません。オレンジマスクを測って割り、リニアで反転し、最後にトーンカーブが濃度を写真に変えます。カーブ一枚でひっくり返したときに色が濁るのは、ここを飛ばしているからです。',
+  'inv.s1.t': '1. フィルムベースを測る',
+  'inv.s1.d': 'オレンジマスクは画面全体にかかったフィルターです。写真の隅ではなく未露光のフィルムで測ります。そうしないと、その写真自身の色がマスクに混ざり、全コマに付いて回ります。',
+  'inv.s2.t': '2. 引かずに割る',
+  'inv.s2.d': 'マスクは透過率なので、リニア空間では割り算で外れます — <code>D = log₁₀(Dmin/T)</code>。ガンマのかかった空間で引くと、色がずれたまま残ります。',
+  'inv.s3.t': '3. 32-bit Floatリニアで反転する',
+  'inv.s3.d': 'ガンマをかけた後に8-bitで反転すると、フィルムがいちばんよく残している暗部の階調が捨てられます。negaflowはガンマをかける前に32-bit浮動小数点で計算を終えます。',
+  'inv.s4.t': '4. プリント応答カーブを当てる',
+  'inv.s4.d': 'ネガ自体に黒はありません。それを与えていたのは印画紙です。黒点・18%グレー・白を基準にしたプリントカーブがあって初めて、結果が写真として読めます。',
+  'inv.s5.t': '5. ロール単位で揃える',
+  'inv.s5.d': 'ベースの測定値は、同じ光で撮った1本のものです。コマごとに合わせ直さず、ロール全体に同じ値を通すとトーンが揃います。',
+  'inv.s6.t': '6. ルックを選んで書き出す',
+  'inv.s6.d': '7種類の現像ターゲットがFrontierやNoritsuといったミニラボスキャナの代わりになります。編集用は16-bit TIFF、共有用はロール情報をEXIFに入れたJPEGで書き出します。'
+});
+
+Object.assign(window.NF_I18N.zh, {
+  'cam.kicker': '指南',
+  'cam.nav': '相机翻拍',
+  'cam.title': '如何用数码相机扫描胶片',
+  'cam.lede': '用相机翻拍负片比平板扫描仪快，配一支像样的微距镜头，解析力也更高。相机给你的是一张橙色负片的 RAW 文件。下面是把它拍好、让显影干净的方法。',
+  'cam.s1.t': '需要准备什么',
+  'cam.s1.d': '能拍 RAW 的相机、1:1 微距镜头、让传感器与胶片保持平行的翻拍台或三脚架、胶片夹，以及显色指数（CRI）高的光源。',
+  'cam.s2.t': '光要单一且均匀',
+  'cam.s2.d': '只用一只 CRI 95 以上的光源，关掉房间里其他的灯。光源混杂会在整幅画面上留下色偏，任何反转都无法干净地去掉。',
+  'cam.s3.t': '胶片要平、要与传感器平行',
+  'cam.s3.d': '胶片夹让负片保持平整，调平的翻拍台让它与传感器平行。卷曲和倾斜会表现为四角发虚，锐化救不回来。',
+  'cam.s4.t': '按保住高光来曝光',
+  'cam.s4.d': '用基准 ISO 拍 RAW，让负片上最亮的部分——片基——不要过曝。片基是后面所有计算的基准。',
+  'cam.s5.t': '把未曝光的片边一起拍进去',
+  'cam.s5.d': '在画面里留一点未曝光的胶片，或者每卷拍一张纯片基。negaflow 从这里测量橙色蒙版，并把同一个片基应用到整卷。',
+  'cam.s6.t': '显影这些 RAW 文件',
+  'cam.s6.d': '把 RAW 导入 negaflow。片基会被自动测量，负片在 32-bit 浮点线性空间中反转，再由显影目标赋予冲印店扫描仪的风格。',
+
+  'inv.kicker': '指南',
+  'inv.nav': '负片反转',
+  'inv.title': '如何反转一张胶片负片',
+  'inv.lede': '彩色负片反转不是一步。要先测出橙色蒙版并把它除掉，在线性光下反转，最后才由色调曲线把密度变成照片。只拉一条曲线就翻过来，颜色发浑的原因就在这里。',
+  'inv.s1.t': '1. 测量片基',
+  'inv.s1.d': '橙色蒙版是覆盖整幅画面的一层滤镜。要在未曝光的胶片上测，而不是画面的某个角落，否则这张照片自身的颜色会混进蒙版，跟着每一格跑。',
+  'inv.s2.t': '2. 用除法，不要用减法',
+  'inv.s2.d': '蒙版是透射率，在线性空间里靠除法去掉 — <code>D = log₁₀(Dmin/T)</code>。在带伽马的空间里做减法，颜色就会交叉错位。',
+  'inv.s3.t': '3. 在 32-bit 浮点线性空间反转',
+  'inv.s3.d': '先加伽马再在 8-bit 下反转，会丢掉胶片保留得最好的暗部层次。negaflow 在加伽马之前，就在 32-bit 浮点里把计算做完。',
+  'inv.s4.t': '4. 套用印相响应曲线',
+  'inv.s4.d': '负片本身没有黑场，是相纸给的。以黑场、18% 中灰和白场为锚点的印相曲线，才能让结果读起来像一张照片。',
+  'inv.s5.t': '5. 保持整卷一致',
+  'inv.s5.d': '一次片基测量属于同一光源下的同一卷。不要逐张单独平衡，把同一个值贯穿整卷，色调才会均匀。',
+  'inv.s6.t': '6. 选定风格再导出',
+  'inv.s6.d': '七种显影目标代替了 Frontier、Noritsu 这类冲印店扫描仪。编辑用 16-bit TIFF 导出，分享用写入整卷 EXIF 的 JPEG。'
+});
+
+Object.assign(window.NF_I18N.fr, {
+  'cam.kicker': 'Guide',
+  'cam.nav': 'Numérisation à l\'appareil',
+  'cam.title': 'Numériser un film avec un appareil photo numérique',
+  'cam.lede': 'Reproduire un négatif à l\'appareil photo va plus vite qu\'un scanner à plat et, avec un bon objectif macro, résout davantage. Ce que l\'appareil vous donne, c\'est un fichier raw d\'un négatif orange — voici comment le photographier pour qu\'il se développe proprement.',
+  'cam.s1.t': 'Ce qu\'il faut',
+  'cam.s1.d': 'Un appareil qui enregistre en raw, un objectif macro au rapport 1:1, un statif ou un trépied qui maintient le capteur parallèle au film, un porte-film et une source lumineuse à IRC élevé.',
+  'cam.s2.t': 'Éclairer le film uniformément',
+  'cam.s2.d': 'Une seule source d\'IRC 95 ou plus, et rien d\'autre dans la pièce. Des sources mélangées déposent une dominante sur toute la vue qu\'aucune inversion ne rattrape proprement.',
+  'cam.s3.t': 'Film plat et parallèle',
+  'cam.s3.d': 'Le porte-film maintient le négatif plat, le statif mis à niveau le maintient parallèle au capteur. Tuilage et inclinaison se voient dans les angles mous, que l\'accentuation ne rattrape pas.',
+  'cam.s4.t': 'Exposer pour garder les hautes lumières',
+  'cam.s4.d': 'Photographiez en raw à la sensibilité de base et exposez pour que la partie la plus claire du négatif — la base du film — reste sous l\'écrêtage. Tout le reste s\'appuie sur cette mesure.',
+  'cam.s5.t': 'Inclure une zone non exposée',
+  'cam.s5.d': 'Laissez un filet de film non exposé dans le cadre, ou photographiez une vue de film nu par pellicule. negaflow y mesure le masque orange et applique la même base à toute la pellicule.',
+  'cam.s6.t': 'Développer les fichiers raw',
+  'cam.s6.d': 'Importez les raw dans negaflow. La base est mesurée automatiquement, le négatif est inversé en virgule flottante 32 bits linéaire, et une cible de développement lui donne le rendu d\'un scanner de laboratoire.',
+
+  'inv.kicker': 'Guide',
+  'inv.nav': 'Inverser un négatif',
+  'inv.title': 'Comment inverser un négatif argentique',
+  'inv.lede': 'Inverser un négatif couleur n\'est pas une seule opération. Il faut mesurer le masque orange et le diviser, inverser en lumière linéaire, et seulement ensuite une courbe de tonalité transforme la densité en image. Le faire avec un simple calque de courbes, c\'est de là que vient la couleur boueuse.',
+  'inv.s1.t': '1. Mesurer la base du film',
+  'inv.s1.d': 'Le masque orange est un filtre posé sur toute la vue. Mesurez-le sur du film non exposé, pas dans un coin de l\'image, sinon la couleur de l\'image elle-même se retrouve dans chaque vue.',
+  'inv.s2.t': '2. Diviser, pas soustraire',
+  'inv.s2.d': 'Le masque est une transmission : il s\'enlève par division en lumière linéaire — <code>D = log₁₀(Dmin/T)</code>. Le soustraire dans un espace gamma laisse les couleurs croisées.',
+  'inv.s3.t': '3. Inverser en flottant 32 bits linéaire',
+  'inv.s3.d': 'Inverser en 8 bits, après gamma, jette le détail des ombres que le film tient le mieux. negaflow fait tout le calcul en virgule flottante 32 bits avant tout gamma.',
+  'inv.s4.t': '4. Appliquer une courbe de tirage',
+  'inv.s4.d': 'Un négatif n\'a pas de noir à lui — c\'est le papier qui le lui donnait. Une courbe de tirage ancrée sur le noir, le gris 18 % et le blanc est ce qui fait lire le résultat comme une photographie.',
+  'inv.s5.t': '5. Garder la pellicule homogène',
+  'inv.s5.d': 'Une mesure de base vaut pour une pellicule sous une lumière. Reportez-la sur chaque vue au lieu d\'équilibrer image par image, et la pellicule reste régulière.',
+  'inv.s6.t': '6. Choisir un rendu, puis exporter',
+  'inv.s6.d': 'Sept cibles de développement remplacent les scanners de laboratoire comme le Frontier ou le Noritsu. Exportez en TIFF 16 bits pour la retouche, ou en JPEG avec l\'EXIF de la pellicule.'
+});
+
+Object.assign(window.NF_I18N.de, {
+  'cam.kicker': 'Anleitung',
+  'cam.nav': 'Abfotografieren',
+  'cam.title': 'Film mit einer Digitalkamera scannen',
+  'cam.lede': 'Ein Negativ mit der Kamera abzufotografieren geht schneller als ein Flachbettscanner und löst mit einem ordentlichen Makroobjektiv mehr auf. Was die Kamera liefert, ist eine Rohdatei eines orangefarbenen Negativs — so fotografieren Sie es, damit es sauber entwickelt.',
+  'cam.s1.t': 'Was Sie brauchen',
+  'cam.s1.d': 'Eine Kamera mit Rohdatenformat, ein Makroobjektiv im Maßstab 1:1, ein Reprostativ oder Stativ, das den Sensor parallel zum Film hält, einen Filmhalter und eine Lichtquelle mit hohem CRI.',
+  'cam.s2.t': 'Gleichmäßig ausleuchten',
+  'cam.s2.d': 'Eine einzige Lichtquelle mit CRI 95 oder höher, sonst nichts im Raum. Gemischtes Licht legt einen Farbstich über die ganze Aufnahme, den keine Umkehr sauber entfernt.',
+  'cam.s3.t': 'Film plan und parallel',
+  'cam.s3.d': 'Der Halter hält das Negativ plan, das ausgerichtete Reprostativ hält es parallel zum Sensor. Wellung und Neigung zeigen sich als weiche Ecken, die kein Schärfen zurückholt.',
+  'cam.s4.t': 'Auf die Lichter belichten',
+  'cam.s4.d': 'In Rohdaten bei Basis-ISO fotografieren und so belichten, dass die hellste Stelle des Negativs — die Filmbasis — nicht ausbricht. Auf dieser Messung baut alles Weitere auf.',
+  'cam.s5.t': 'Unbelichteten Rand mitnehmen',
+  'cam.s5.d': 'Lassen Sie einen Streifen unbelichteten Film im Bild oder fotografieren Sie pro Film eine Aufnahme nur vom blanken Material. negaflow misst daran die Orangemaske und legt dieselbe Basis über den ganzen Film.',
+  'cam.s6.t': 'Die Rohdateien entwickeln',
+  'cam.s6.d': 'Importieren Sie die Rohdateien in negaflow. Die Filmbasis wird automatisch gemessen, das Negativ in 32-Bit-Gleitkomma linear umgekehrt, und ein Entwicklungsziel gibt ihm den Look eines Laborscanners.',
+
+  'inv.kicker': 'Anleitung',
+  'inv.nav': 'Negative umkehren',
+  'inv.title': 'Wie man ein Filmnegativ umkehrt',
+  'inv.lede': 'Ein Farbnegativ umzukehren ist nicht ein Schritt. Die Orangemaske muss gemessen und herausdividiert werden, das Ergebnis wird in linearem Licht umgekehrt, und erst dann macht eine Tonwertkurve aus Dichte ein Bild. Mit einer Gradationskurve allein kommt genau daher die matschige Farbe.',
+  'inv.s1.t': '1. Die Filmbasis messen',
+  'inv.s1.d': 'Die Orangemaske ist ein Filter über der ganzen Aufnahme. Messen Sie sie auf unbelichtetem Film, nicht in einer Bildecke, sonst trägt die Maske die Farbe des Bildes in jede Aufnahme.',
+  'inv.s2.t': '2. Dividieren, nicht subtrahieren',
+  'inv.s2.d': 'Die Maske ist eine Transmission, sie geht in linearem Licht durch Division heraus — <code>D = log₁₀(Dmin/T)</code>. Sie im gammakodierten Raum abzuziehen lässt die Farben verkreuzt zurück.',
+  'inv.s3.t': '3. In 32-Bit-Gleitkomma linear umkehren',
+  'inv.s3.d': 'Eine Umkehr in 8 Bit nach dem Gamma wirft die Schattenzeichnung weg, die der Film am besten hält. negaflow rechnet alles in 32-Bit-Gleitkomma, bevor ein Gamma angewendet wird.',
+  'inv.s4.t': '4. Eine Printkurve anwenden',
+  'inv.s4.d': 'Ein Negativ hat kein eigenes Schwarz — das Fotopapier hat es ihm gegeben. Eine auf Schwarz, 18 % Grau und Weiß verankerte Printkurve lässt das Ergebnis erst als Fotografie lesen.',
+  'inv.s5.t': '5. Den Film einheitlich halten',
+  'inv.s5.d': 'Eine Basismessung gehört zu einem Film unter einem Licht. Übernehmen Sie sie für jede Aufnahme, statt jedes Bild einzeln abzustimmen, dann bleibt der Film gleichmäßig.',
+  'inv.s6.t': '6. Look wählen, dann exportieren',
+  'inv.s6.d': 'Sieben Entwicklungsziele stehen für Laborscanner wie den Frontier und den Noritsu. Exportieren Sie als 16-Bit-TIFF zum Bearbeiten oder als JPEG mit den EXIF-Daten des Films.'
+});

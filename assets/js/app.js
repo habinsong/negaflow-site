@@ -29,6 +29,12 @@
       if (v != null) el.innerHTML = v;
     });
 
+    /* alt text is what an image search reads, so it is translated too */
+    document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+      var v = dict[el.dataset.i18nAlt];
+      if (v != null) el.alt = v.replace(/<[^>]+>/g, '');
+    });
+
     /* A prerendered page already carries the title and description that belong
      * to it — a topic page has its own — so only the root page rewrites them. */
     if (!doc.dataset.langLocked) {

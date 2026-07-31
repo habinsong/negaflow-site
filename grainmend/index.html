@@ -26,16 +26,16 @@
 <meta property="og:url" content="https://habinsong.github.io/negaflow-site/grainmend/">
 <meta property="og:title" content="GrainMend — negaflow">
 <meta property="og:description" content="GrainMend RGB is an independently developed software method that detects and restores dust, pinholes, scratches, and emulsion damage without an infrared channel.">
-<meta property="og:image" content="https://habinsong.github.io/negaflow-site/assets/og-image.png">
-<meta property="og:image:secure_url" content="https://habinsong.github.io/negaflow-site/assets/og-image.png">
-<meta property="og:image:type" content="image/png">
+<meta property="og:image" content="https://habinsong.github.io/negaflow-site/assets/og/grainmend.jpg">
+<meta property="og:image:secure_url" content="https://habinsong.github.io/negaflow-site/assets/og/grainmend.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="negaflow for macOS with its film development workspace">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="GrainMend — negaflow">
 <meta name="twitter:description" content="GrainMend RGB is an independently developed software method that detects and restores dust, pinholes, scratches, and emulsion damage without an infrared channel.">
-<meta name="twitter:image" content="https://habinsong.github.io/negaflow-site/assets/og-image.png">
+<meta name="twitter:image" content="https://habinsong.github.io/negaflow-site/assets/og/grainmend.jpg">
 <meta name="twitter:image:alt" content="negaflow for macOS with its film development workspace">
 <script type="application/ld+json">
 {
@@ -58,8 +58,8 @@
       "softwareHelp": "https://github.com/habinsong/negaflow#readme",
       "license": "https://www.apache.org/licenses/LICENSE-2.0",
       "isAccessibleForFree": true,
-      "image": "https://habinsong.github.io/negaflow-site/assets/og-image.png",
-      "screenshot": "https://habinsong.github.io/negaflow-site/assets/og-image.png",
+      "image": "https://habinsong.github.io/negaflow-site/assets/og/default.jpg",
+      "screenshot": "https://habinsong.github.io/negaflow-site/assets/og/default.jpg",
       "author": {
         "@type": "Person",
         "name": "habin song",
@@ -213,8 +213,8 @@
           <div class="cmp" id="gmCompare" style="--gm-pos: 50%;">
             <div class="cmp-frame gm-frame" id="gmFrame">
               <div class="gm-zoom" id="gmZoom">
-                <img class="cmp-img gm-after" id="gmAfter" src="../assets/shots/grainmend/auto-after.webp" alt="" decoding="async">
-                <img class="cmp-img gm-before" id="gmBefore" src="../assets/shots/grainmend/auto-before.webp" alt="" decoding="async">
+                <img class="cmp-img gm-after" id="gmAfter" src="../assets/shots/grainmend/auto-after.webp" data-i18n-alt="alt.gm.after" alt="After GrainMend — the same film scan with the dust and scratches repaired" decoding="async">
+                <img class="cmp-img gm-before" id="gmBefore" src="../assets/shots/grainmend/auto-before.webp" data-i18n-alt="alt.gm.before" alt="Before GrainMend — a film scan with dust and scratches still on it" decoding="async">
               </div>
 
               <span class="cmp-tag cmp-tag-l">Before</span>
@@ -284,13 +284,25 @@
       <img src="../assets/icon-256.webp" width="20" height="20" alt="">
       <span>negaflow</span>
     </div>
+
+    <nav class="foot-nav" aria-label="Pages">
+      <a href="../chroma-engine/" data-path="chroma-engine/">Chroma Engine</a>
+      <a href="../grainmend/" data-path="grainmend/" aria-current="page">GrainMend</a>
+      <a href="../print-layouts/" data-path="print-layouts/" data-i18n="nav.print">Print & Export</a>
+      <a href="../film-profiles/" data-path="film-profiles/" data-i18n="nav.profiles">Dataset</a>
+      <a href="../comparison/" data-path="comparison/" data-i18n="cmp.kicker">Comparison</a>
+      <a href="../camera-scanning/" data-path="camera-scanning/" data-i18n="cam.nav">Camera scanning</a>
+      <a href="../how-to-invert-film-negatives/" data-path="how-to-invert-film-negatives/" data-i18n="inv.nav">Inverting negatives</a>
+      <a href="../faq/" data-path="faq/" data-i18n="nav.faq">FAQ</a>
+      <a href="../download/" data-path="download/" data-i18n="nav.download">Download</a>
+    </nav>
     <p class="fine">
       <span data-i18n="ft.lic1">negaflow is distributed under the Apache License 2.0.</span>
       <a href="https://github.com/habinsong/negaflow/blob/main/LICENSE">Apache-2.0</a>
       · <span data-i18n="ft.lic2">The negaflow-scanner-sane plugin is distributed under GPL-2.0-or-later.</span>
       <a href="https://github.com/habinsong/negaflow-scanner-sane/blob/main/LICENSE">GPL-2.0-or-later</a>
     </p>
-    <p class="fine" data-i18n="ft.tm">negaflow is not affiliated with or endorsed by Kodak, Fujifilm, Noritsu, LaserSoft Imaging, or other trademark owners. Product names are used only to identify development targets or measured sources.</p>
+    <p class="fine" data-i18n="ft.tm">negaflow is not affiliated with or endorsed by Kodak, Fujifilm, Noritsu, Adobe, LaserSoft Imaging, Hamrick Software, Negative Lab Pro, FilmLab, Negbase or other trademark owners. Product names are used only to identify development targets, measured sources, or the tools being compared.</p>
     <p class="fine">© 2026 habin song</p>
   </div>
 </footer>

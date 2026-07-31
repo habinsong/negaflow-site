@@ -26,16 +26,16 @@
 <meta property="og:url" content="https://habinsong.github.io/negaflow-site/zh/">
 <meta property="og:title" content="negaflow — 胶片负片反转与显影的 macOS 应用">
 <meta property="og:description" content="免费开源的 macOS 应用：反转彩色与黑白胶片负片、显影调色、修复灰尘与划痕并输出打印，支持相机翻拍与胶片扫描仪。">
-<meta property="og:image" content="https://habinsong.github.io/negaflow-site/assets/og-image.png">
-<meta property="og:image:secure_url" content="https://habinsong.github.io/negaflow-site/assets/og-image.png">
-<meta property="og:image:type" content="image/png">
+<meta property="og:image" content="https://habinsong.github.io/negaflow-site/assets/og/default.jpg">
+<meta property="og:image:secure_url" content="https://habinsong.github.io/negaflow-site/assets/og/default.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="negaflow for macOS with its film development workspace">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="negaflow — 胶片负片反转与显影的 macOS 应用">
 <meta name="twitter:description" content="免费开源的 macOS 应用：反转彩色与黑白胶片负片、显影调色、修复灰尘与划痕并输出打印，支持相机翻拍与胶片扫描仪。">
-<meta name="twitter:image" content="https://habinsong.github.io/negaflow-site/assets/og-image.png">
+<meta name="twitter:image" content="https://habinsong.github.io/negaflow-site/assets/og/default.jpg">
 <meta name="twitter:image:alt" content="negaflow for macOS with its film development workspace">
 <script type="application/ld+json">
 {
@@ -58,8 +58,8 @@
       "softwareHelp": "https://github.com/habinsong/negaflow#readme",
       "license": "https://www.apache.org/licenses/LICENSE-2.0",
       "isAccessibleForFree": true,
-      "image": "https://habinsong.github.io/negaflow-site/assets/og-image.png",
-      "screenshot": "https://habinsong.github.io/negaflow-site/assets/og-image.png",
+      "image": "https://habinsong.github.io/negaflow-site/assets/og/default.jpg",
+      "screenshot": "https://habinsong.github.io/negaflow-site/assets/og/default.jpg",
       "author": {
         "@type": "Person",
         "name": "habin song",
@@ -266,7 +266,7 @@
   <!-- ── hero ──────────────────────────────────────────── -->
   <section class="hero">
     <div class="wrap">
-      <img class="hero-icon reveal" src="../assets/icon-512.webp" width="112" height="112" alt="negaflow" fetchpriority="high">
+      <img class="hero-icon reveal" src="../assets/icon-512.webp" width="112" height="112" data-i18n-alt="alt.icon" alt="negaflow应用图标" fetchpriority="high">
       <h1 class="hero-title reveal">negaflow</h1>
       <p class="hero-tagline reveal" data-i18n="hero.tagline">相机或扫描仪采集、反相调整与打印，<br class="hero-break">整合为一套完整的胶片工作流程。</p>
       <div class="cta reveal">
@@ -278,7 +278,7 @@
 
     <div class="hero-stage wrap">
       <div class="frame" id="heroFrame">
-        <img class="shot" id="heroShot" data-view="develop" width="2000" height="1125" alt="negaflow" fetchpriority="high">
+        <img class="shot" id="heroShot" data-view="develop" width="2000" height="1125" data-i18n-alt="alt.hero" alt="macOS版negaflow的显影界面，正在反转并调整一张胶片负片" fetchpriority="high">
       </div>
     </div>
   </section>
@@ -331,17 +331,17 @@
         <div class="cmp-card glass">
           <div class="cmp" id="tgCompare">
             <div class="cmp-frame tg-frame" id="tgFrame">
-              <img class="cmp-img tg-img is-on" data-target="main" data-variant="auto" src="../assets/shots/targets/auto/main.webp" alt="" decoding="async">
-              <img class="cmp-img tg-img" data-target="hs"   data-variant="auto" src="../assets/shots/targets/auto/hs.webp"   alt="" loading="lazy" decoding="async">
-              <img class="cmp-img tg-img" data-target="sp"   data-variant="auto" src="../assets/shots/targets/auto/sp.webp"   alt="" loading="lazy" decoding="async">
-              <img class="cmp-img tg-img" data-target="f135" data-variant="auto" src="../assets/shots/targets/auto/f135.webp" alt="" loading="lazy" decoding="async">
-              <img class="cmp-img tg-img" data-target="hr"   data-variant="auto" src="../assets/shots/targets/auto/hr.webp"   alt="" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img is-on" data-target="main" data-variant="auto" src="../assets/shots/targets/auto/main.webp" data-i18n-alt="alt.tg.main" alt="用标准显影目标处理的35mm彩色负片 — 有富士彩色招牌的街景" decoding="async">
+              <img class="cmp-img tg-img" data-target="hs"   data-variant="auto" src="../assets/shots/targets/auto/hs.webp"   data-i18n-alt="alt.tg.hs" alt="同一张35mm彩色负片，用Noritsu HS-1800风格处理" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img" data-target="sp"   data-variant="auto" src="../assets/shots/targets/auto/sp.webp"   data-i18n-alt="alt.tg.sp" alt="同一张35mm彩色负片，用Fujifilm Frontier SP-3000风格处理" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img" data-target="f135" data-variant="auto" src="../assets/shots/targets/auto/f135.webp" data-i18n-alt="alt.tg.f135" alt="同一张35mm彩色负片，用Pakon F-135 Plus风格处理" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img" data-target="hr"   data-variant="auto" src="../assets/shots/targets/auto/hr.webp"   data-i18n-alt="alt.tg.hr" alt="同一张35mm彩色负片，用Kodak Professional HR 500 Plus风格处理" loading="lazy" decoding="async">
 
-              <img class="cmp-img tg-img" data-target="main" data-variant="orig" src="../assets/shots/targets/main.webp" alt="" loading="lazy" decoding="async">
-              <img class="cmp-img tg-img" data-target="hs"   data-variant="orig" src="../assets/shots/targets/hs.webp"   alt="" loading="lazy" decoding="async">
-              <img class="cmp-img tg-img" data-target="sp"   data-variant="orig" src="../assets/shots/targets/sp.webp"   alt="" loading="lazy" decoding="async">
-              <img class="cmp-img tg-img" data-target="f135" data-variant="orig" src="../assets/shots/targets/f135.webp" alt="" loading="lazy" decoding="async">
-              <img class="cmp-img tg-img" data-target="hr"   data-variant="orig" src="../assets/shots/targets/hr.webp"   alt="" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img" data-target="main" data-variant="orig" src="../assets/shots/targets/main.webp" data-i18n-alt="alt.tg.main" alt="用标准显影目标处理的35mm彩色负片 — 有富士彩色招牌的街景" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img" data-target="hs"   data-variant="orig" src="../assets/shots/targets/hs.webp"   data-i18n-alt="alt.tg.hs" alt="同一张35mm彩色负片，用Noritsu HS-1800风格处理" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img" data-target="sp"   data-variant="orig" src="../assets/shots/targets/sp.webp"   data-i18n-alt="alt.tg.sp" alt="同一张35mm彩色负片，用Fujifilm Frontier SP-3000风格处理" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img" data-target="f135" data-variant="orig" src="../assets/shots/targets/f135.webp" data-i18n-alt="alt.tg.f135" alt="同一张35mm彩色负片，用Pakon F-135 Plus风格处理" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img" data-target="hr"   data-variant="orig" src="../assets/shots/targets/hr.webp"   data-i18n-alt="alt.tg.hr" alt="同一张35mm彩色负片，用Kodak Professional HR 500 Plus风格处理" loading="lazy" decoding="async">
 
               <span class="cmp-tag cmp-tag-l tg-code" id="tgCode">MAIN</span>
               <span class="cmp-tag cmp-tag-r tg-variant" id="tgVariantTag" data-i18n="chroma.variant.auto">自动校正</span>
@@ -423,8 +423,8 @@
           <div class="cmp" id="gmCompare" style="--gm-pos: 50%;">
             <div class="cmp-frame gm-frame" id="gmFrame">
               <div class="gm-zoom" id="gmZoom">
-                <img class="cmp-img gm-after" id="gmAfter" src="../assets/shots/grainmend/auto-after.webp" alt="" decoding="async">
-                <img class="cmp-img gm-before" id="gmBefore" src="../assets/shots/grainmend/auto-before.webp" alt="" decoding="async">
+                <img class="cmp-img gm-after" id="gmAfter" src="../assets/shots/grainmend/auto-after.webp" data-i18n-alt="alt.gm.after" alt="GrainMend修复后 — 同一张扫描，灰尘和划痕已去除" decoding="async">
+                <img class="cmp-img gm-before" id="gmBefore" src="../assets/shots/grainmend/auto-before.webp" data-i18n-alt="alt.gm.before" alt="GrainMend修复前 — 仍有灰尘和划痕的胶片扫描" decoding="async">
               </div>
 
               <span class="cmp-tag cmp-tag-l">Before</span>
@@ -500,11 +500,11 @@
         <div class="cmp-card glass">
           <div class="cmp" id="plCompare">
             <div class="cmp-frame pl-frame" id="plFrame">
-              <img class="cmp-img pl-img is-on" data-layout="contact" src="../assets/shots/layouts/contact-sheet.webp" alt="" loading="lazy" decoding="async">
-              <img class="cmp-img pl-img" data-layout="single" src="../assets/shots/layouts/single.webp" alt="" loading="lazy" decoding="async">
-              <img class="cmp-img pl-img" data-layout="cyanotype" src="../assets/shots/layouts/cyanotype.webp" alt="" loading="lazy" decoding="async">
-              <img class="cmp-img pl-img" data-layout="glass" src="../assets/shots/layouts/glass-plate.webp" alt="" loading="lazy" decoding="async">
-              <img class="cmp-img pl-img" data-layout="gelatin" src="../assets/shots/layouts/gelatin.webp" alt="" loading="lazy" decoding="async">
+              <img class="cmp-img pl-img is-on" data-layout="contact" src="../assets/shots/layouts/contact-sheet.webp" data-i18n-alt="alt.pl.contact" alt="negaflow打印界面的印样表版式 — 整卷胶片排在一张纸上" loading="lazy" decoding="async">
+              <img class="cmp-img pl-img" data-layout="single" src="../assets/shots/layouts/single.webp" data-i18n-alt="alt.pl.single" alt="negaflow打印界面的单张版式，带留白" loading="lazy" decoding="async">
+              <img class="cmp-img pl-img" data-layout="cyanotype" src="../assets/shots/layouts/cyanotype.webp" data-i18n-alt="alt.pl.cyanotype" alt="negaflow打印界面的蓝晒版式" loading="lazy" decoding="async">
+              <img class="cmp-img pl-img" data-layout="glass" src="../assets/shots/layouts/glass-plate.webp" data-i18n-alt="alt.pl.glass" alt="negaflow打印界面的干版版式" loading="lazy" decoding="async">
+              <img class="cmp-img pl-img" data-layout="gelatin" src="../assets/shots/layouts/gelatin.webp" data-i18n-alt="alt.pl.gelatin" alt="negaflow打印界面的银盐版式（黑白）" loading="lazy" decoding="async">
             </div>
           </div>
 
@@ -622,7 +622,8 @@
   <section id="comparison" class="block">
     <div class="wrap">
       <p class="kicker reveal" data-i18n="cmp.kicker">功能对比</p>
-      <h2 class="reveal" data-i18n="cmp.title">与通用编辑软件的区别</h2>
+      <h2 class="reveal" data-i18n="cmp.title">替代付费胶片反转软件的免费开源应用</h2>
+      <p class="lede reveal" data-i18n="cmp.lede">胶片反转通常靠 Lightroom 插件（如 Negative Lab Pro）、付费独立应用（FilmLab、Negbase 等），或扫描仪自带软件（SilverFast、VueScan）完成。negaflow 是一款免费开源的 macOS 应用，反转、显影、除尘去划痕、打印与导出全部自己搞定。</p>
       <p class="topic-more reveal"><a href="../zh/comparison/" data-path="comparison/" data-i18n="topic.more">了解更多</a></p>
 
       <div class="cmp-table-wrap reveal">
@@ -631,10 +632,20 @@
             <tr>
               <th data-i18n="cmp.col1">功能特性</th>
               <th data-i18n="cmp.col2">negaflow</th>
-              <th data-i18n="cmp.col3">通用编辑软件 / 插件</th>
+              <th data-i18n="cmp.col3">付费插件 · 付费应用 · 扫描仪自带软件</th>
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td data-i18n="cmp.r0.f">价格与许可</td>
+              <td data-i18n="cmp.r0.n">免费，Apache-2.0 开源。无订阅、无试用限制，源码可读</td>
+              <td data-i18n="cmp.r0.g">付费购买或订阅，闭源</td>
+            </tr>
+            <tr>
+              <td data-i18n="cmp.r6.f">运行方式</td>
+              <td data-i18n="cmp.r6.n">独立的 macOS 应用：导入、显影、修复、打印、导出都在一处</td>
+              <td data-i18n="cmp.r6.g">运行在 Lightroom 或 Photoshop 内的插件，或绑定某台扫描仪的软件</td>
+            </tr>
             <tr>
               <td data-i18n="cmp.r1.f">胶片片基 (橙色面罩) 测量</td>
               <td data-i18n="cmp.r1.n">空间分析 (FilmBaseEstimator) 自动测量、吸管、RGB 手动输入</td>
@@ -662,6 +673,90 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── guide: camera scanning ────────────────────────── -->
+  <section id="camera-scanning" class="block">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="cam.kicker">指南</p>
+      <h2 class="reveal" data-i18n="cam.title">如何用数码相机扫描胶片</h2>
+      <p class="lede reveal" data-i18n="cam.lede">用相机翻拍负片比平板扫描仪快，配一支像样的微距镜头，解析力也更高。相机给你的是一张橙色负片的 RAW 文件。下面是把它拍好、让显影干净的方法。</p>
+      <p class="topic-more reveal"><a href="../zh/camera-scanning/" data-path="camera-scanning/" data-i18n="topic.more">了解更多</a></p>
+
+      <div class="faq-grid">
+        <article class="faq-card reveal">
+          <h3 data-i18n="cam.s1.t">需要准备什么</h3>
+          <p data-i18n="cam.s1.d">能拍 RAW 的相机、1:1 微距镜头、让传感器与胶片保持平行的翻拍台或三脚架、胶片夹，以及显色指数（CRI）高的光源。</p>
+        </article>
+
+        <article class="faq-card reveal">
+          <h3 data-i18n="cam.s2.t">光要单一且均匀</h3>
+          <p data-i18n="cam.s2.d">只用一只 CRI 95 以上的光源，关掉房间里其他的灯。光源混杂会在整幅画面上留下色偏，任何反转都无法干净地去掉。</p>
+        </article>
+
+        <article class="faq-card reveal">
+          <h3 data-i18n="cam.s3.t">胶片要平、要与传感器平行</h3>
+          <p data-i18n="cam.s3.d">胶片夹让负片保持平整，调平的翻拍台让它与传感器平行。卷曲和倾斜会表现为四角发虚，锐化救不回来。</p>
+        </article>
+
+        <article class="faq-card reveal">
+          <h3 data-i18n="cam.s4.t">按保住高光来曝光</h3>
+          <p data-i18n="cam.s4.d">用基准 ISO 拍 RAW，让负片上最亮的部分——片基——不要过曝。片基是后面所有计算的基准。</p>
+        </article>
+
+        <article class="faq-card reveal">
+          <h3 data-i18n="cam.s5.t">把未曝光的片边一起拍进去</h3>
+          <p data-i18n="cam.s5.d">在画面里留一点未曝光的胶片，或者每卷拍一张纯片基。negaflow 从这里测量橙色蒙版，并把同一个片基应用到整卷。</p>
+        </article>
+
+        <article class="faq-card reveal">
+          <h3 data-i18n="cam.s6.t">显影这些 RAW 文件</h3>
+          <p data-i18n="cam.s6.d">把 RAW 导入 negaflow。片基会被自动测量，负片在 32-bit 浮点线性空间中反转，再由显影目标赋予冲印店扫描仪的风格。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── guide: inverting negatives ────────────────────── -->
+  <section id="invert-guide" class="block">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="inv.kicker">指南</p>
+      <h2 class="reveal" data-i18n="inv.title">如何反转一张胶片负片</h2>
+      <p class="lede reveal" data-i18n="inv.lede">彩色负片反转不是一步。要先测出橙色蒙版并把它除掉，在线性光下反转，最后才由色调曲线把密度变成照片。只拉一条曲线就翻过来，颜色发浑的原因就在这里。</p>
+      <p class="topic-more reveal"><a href="../zh/how-to-invert-film-negatives/" data-path="how-to-invert-film-negatives/" data-i18n="topic.more">了解更多</a></p>
+
+      <div class="faq-grid">
+        <article class="faq-card reveal">
+          <h3 data-i18n="inv.s1.t">1. 测量片基</h3>
+          <p data-i18n="inv.s1.d">橙色蒙版是覆盖整幅画面的一层滤镜。要在未曝光的胶片上测，而不是画面的某个角落，否则这张照片自身的颜色会混进蒙版，跟着每一格跑。</p>
+        </article>
+
+        <article class="faq-card reveal">
+          <h3 data-i18n="inv.s2.t">2. 用除法，不要用减法</h3>
+          <p data-i18n="inv.s2.d">蒙版是透射率，在线性空间里靠除法去掉 — <code>D = log₁₀(Dmin/T)</code>。在带伽马的空间里做减法，颜色就会交叉错位。</p>
+        </article>
+
+        <article class="faq-card reveal">
+          <h3 data-i18n="inv.s3.t">3. 在 32-bit 浮点线性空间反转</h3>
+          <p data-i18n="inv.s3.d">先加伽马再在 8-bit 下反转，会丢掉胶片保留得最好的暗部层次。negaflow 在加伽马之前，就在 32-bit 浮点里把计算做完。</p>
+        </article>
+
+        <article class="faq-card reveal">
+          <h3 data-i18n="inv.s4.t">4. 套用印相响应曲线</h3>
+          <p data-i18n="inv.s4.d">负片本身没有黑场，是相纸给的。以黑场、18% 中灰和白场为锚点的印相曲线，才能让结果读起来像一张照片。</p>
+        </article>
+
+        <article class="faq-card reveal">
+          <h3 data-i18n="inv.s5.t">5. 保持整卷一致</h3>
+          <p data-i18n="inv.s5.d">一次片基测量属于同一光源下的同一卷。不要逐张单独平衡，把同一个值贯穿整卷，色调才会均匀。</p>
+        </article>
+
+        <article class="faq-card reveal">
+          <h3 data-i18n="inv.s6.t">6. 选定风格再导出</h3>
+          <p data-i18n="inv.s6.d">七种显影目标代替了 Frontier、Noritsu 这类冲印店扫描仪。编辑用 16-bit TIFF 导出，分享用写入整卷 EXIF 的 JPEG。</p>
+        </article>
       </div>
     </div>
   </section>
@@ -955,13 +1050,25 @@
       <img src="../assets/icon-256.webp" width="20" height="20" alt="">
       <span>negaflow</span>
     </div>
+
+    <nav class="foot-nav" aria-label="Pages">
+      <a href="../zh/chroma-engine/" data-path="chroma-engine/">Chroma Engine</a>
+      <a href="../zh/grainmend/" data-path="grainmend/">GrainMend</a>
+      <a href="../zh/print-layouts/" data-path="print-layouts/" data-i18n="nav.print">印相与导出</a>
+      <a href="../zh/film-profiles/" data-path="film-profiles/" data-i18n="nav.profiles">数据集</a>
+      <a href="../zh/comparison/" data-path="comparison/" data-i18n="cmp.kicker">功能对比</a>
+      <a href="../zh/camera-scanning/" data-path="camera-scanning/" data-i18n="cam.nav">相机翻拍</a>
+      <a href="../zh/how-to-invert-film-negatives/" data-path="how-to-invert-film-negatives/" data-i18n="inv.nav">负片反转</a>
+      <a href="../zh/faq/" data-path="faq/" data-i18n="nav.faq">常见问题</a>
+      <a href="../zh/download/" data-path="download/" data-i18n="nav.download">下载</a>
+    </nav>
     <p class="fine">
       <span data-i18n="ft.lic1">negaflow 以 Apache License 2.0 发布。</span>
       <a href="https://github.com/habinsong/negaflow/blob/main/LICENSE">Apache-2.0</a>
       · <span data-i18n="ft.lic2">negaflow-scanner-sane 插件以 GPL-2.0-or-later 发布。</span>
       <a href="https://github.com/habinsong/negaflow-scanner-sane/blob/main/LICENSE">GPL-2.0-or-later</a>
     </p>
-    <p class="fine" data-i18n="ft.tm">negaflow 与 Kodak、Fujifilm、Noritsu、LaserSoft Imaging 或其他商标权利人不存在合作或认可关系。产品名称仅用于标识处理目标或测量来源。</p>
+    <p class="fine" data-i18n="ft.tm">negaflow 与 Kodak、Fujifilm、Noritsu、Adobe、LaserSoft Imaging、Hamrick Software、Negative Lab Pro、FilmLab、Negbase 等商标持有者没有关联，也未获其背书。产品名称仅用于标识显影目标、测量来源或比较对象。</p>
     <p class="fine">© 2026 habin song</p>
   </div>
 </footer>
