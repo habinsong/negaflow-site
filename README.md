@@ -12,11 +12,23 @@
 그래서 `tools/build.mjs`가 언어별 페이지를 미리 렌더링해 둔다.
 
 ```
-/            영어 (템플릿 겸 x-default)
+/                      영어 개요 (템플릿 겸 x-default)
 /ko/  /ja/  /zh/  /fr/  /de/
-sitemap.xml
+
+/chroma-engine/        섹션별 페이지. 언어마다 같은 구조로 하나씩
+/grainmend/            예) /ko/grainmend/, /ja/comparison/
+/print-layouts/
+/film-profiles/
+/comparison/
+
+sitemap.xml            36개 URL 전체
 robots.txt
 ```
+
+섹션별 페이지는 `tools/build.mjs`의 `TOPICS`가 정한다. `index.html`에서 해당
+`<section>`을 그대로 들어내고 첫 `<h2>`를 `<h1>`으로 올린 것이라 문구는 전부
+`i18n.js`에서 나온다. 개요 페이지의 각 섹션에는 `data-topic` 링크가 붙어 있고
+빌드가 언어에 맞는 주소를 채운다.
 
 `/<lang>/` 페이지는 `data-lang-locked="1"`이 붙어 URL의 언어를 그대로 유지하고,
 `data-base="../"`로 자산 경로를 보정한다. 루트는 잠기지 않아서 기존처럼 브라우저
@@ -30,7 +42,7 @@ node tools/build.mjs --check  # 생성 파일이 최신인지 검사 (CI에서 �
 ```
 
 **`index.html`의 `<!-- nf:head:start -->` ~ `<!-- nf:head:end -->` 구간과
-`ko/` `ja/` `zh/` `fr/` `de/` 디렉터리, `sitemap.xml`, `robots.txt`는 생성물이다.**
+언어 디렉터리, 섹션별 페이지 디렉터리, `sitemap.xml`, `robots.txt`는 생성물이다.**
 직접 고치지 말고 템플릿이나 `i18n.js`를 고친 뒤 빌드를 다시 돌린다.
 
 `assets/js/*.js`나 `assets/css/style.css`를 고치면 `index.html`의 `?v=` 값을

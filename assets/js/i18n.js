@@ -1943,3 +1943,11 @@ Object.assign(window.NF_I18N.de, {
   'faq.q10': 'Kann ich eigene Presets speichern oder Einstellungen auf ganze Rollen übertragen?',
   'faq.a10': 'Ja. Sie können eigene Presets speichern oder selektiv Korrekturen auf ganze 36er-Rollen übertragen.',
 });
+
+/* Link from a section on the overview page to its own page. */
+Object.assign(window.NF_I18N.ko, { 'topic.more': '자세히 보기' });
+Object.assign(window.NF_I18N.en, { 'topic.more': 'Read more' });
+Object.assign(window.NF_I18N.ja, { 'topic.more': '詳しく見る' });
+Object.assign(window.NF_I18N.zh, { 'topic.more': '了解更多' });
+Object.assign(window.NF_I18N.fr, { 'topic.more': 'En savoir plus' });
+Object.assign(window.NF_I18N.de, { 'topic.more': 'Mehr erfahren' });

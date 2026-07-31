@@ -29,9 +29,13 @@
       if (v != null) el.innerHTML = v;
     });
 
-    document.title = dict['doc.title'];
-    var meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.content = dict['doc.desc'];
+    /* A prerendered page already carries the title and description that belong
+     * to it — a topic page has its own — so only the root page rewrites them. */
+    if (!doc.dataset.langLocked) {
+      document.title = dict['doc.title'];
+      var meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.content = dict['doc.desc'];
+    }
 
     var now = document.getElementById('langNow');
     if (now) now.textContent = 'Language';
