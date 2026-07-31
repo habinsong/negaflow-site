@@ -62,6 +62,8 @@
     if (syncTarget) syncTarget();
     if (syncLayout) syncLayout();
     refreshShots();
+    /* translated labels are not the same width, so the bar is measured again */
+    fitNav();
   }
 
   /* ── appearance ─────────────────────────────────────── */
@@ -457,6 +459,186 @@
   }
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  /* ── compact bar and its menu ───────────────────────── */
+
+  /*
+   * The capsule shows the whole section row or none of it. Label widths change
+   * with the language and the window, so the fit is measured rather than
+   * guessed: the moment one item would be clipped the row gives way to a menu
+   * button, and the links move into a full-screen sheet.
+   */
+
+  var navInner = nav.querySelector('.nav-inner');
+  var navLinks = nav.querySelector('.nav-links');
+  var navBrand = nav.querySelector('.brand');
+  var navTools = nav.querySelector('.nav-tools');
+  var burger = document.getElementById('navBurger');
+
+  /* the capsule gives up 2px of padding once the page scrolls — ignoring that
+   * much leaves one answer for both states, so scrolling never reopens the row */
+  var FIT_SLACK = 2;
+
+  function navFits() {
+    var links = navLinks.children;
+    if (!links.length) return true;
+
+    var linkGap = parseFloat(getComputedStyle(navLinks).columnGap) || 0;
+    var need = (links.length - 1) * linkGap;
+    for (var i = 0; i < links.length; i++) {
+      need += links[i].getBoundingClientRect().width;
+    }
+
+    var box = getComputedStyle(navInner);
+    var room = navInner.clientWidth
+      - parseFloat(box.paddingLeft) - parseFloat(box.paddingRight)
+      - navBrand.getBoundingClientRect().width
+      - navTools.getBoundingClientRect().width
+      - (parseFloat(box.columnGap) || 0) * 2
+      - FIT_SLACK;
+
+    return need <= room;
+  }
+
+  function fitNav() {
+    if (!navLinks || !burger) return;
+    /* measured with the row shown, then hidden again before anything paints */
+    nav.classList.remove('is-compact');
+
+    var fits = navFits();
+    nav.classList.toggle('is-compact', !fits);
+    /* the button carries `hidden` in the markup and only this measurement takes
+     * it off, so a stylesheet that never arrived cannot leave it on screen */
+    burger.hidden = fits;
+    if (fits) closeSheet();
+  }
+
+  function phrase(key, fallback) {
+    var dict = I18N[doc.dataset.lang];
+    return (dict && dict[key]) || fallback;
+  }
+
+  var sheet = null;
+  var sheetClose = null;
+  var sheetLinks = [];
+
+  function buildSheet() {
+    if (sheet) return;
+
+    sheet = document.createElement('div');
+    sheet.className = 'nav-sheet';
+    sheet.id = 'navSheet';
+    sheet.hidden = true;
+    sheet.setAttribute('role', 'dialog');
+    sheet.setAttribute('aria-modal', 'true');
+    sheet.tabIndex = -1;
+
+    var bar = document.createElement('div');
+    bar.className = 'nav-sheet-bar';
+
+    sheetClose = document.createElement('button');
+    sheetClose.type = 'button';
+    sheetClose.className = 'nav-sheet-close';
+    sheetClose.innerHTML =
+      '<svg width="19" height="19" viewBox="0 0 19 19" aria-hidden="true" fill="none" ' +
+      'stroke="currentColor" stroke-width="1.4" stroke-linecap="round">' +
+      '<path d="M4.4 4.4l10.2 10.2M14.6 4.4L4.4 14.6"/></svg>';
+
+    var closeLabel = document.createElement('span');
+    closeLabel.className = 'vh';
+    closeLabel.setAttribute('data-i18n', 'nav.close');
+    closeLabel.textContent = phrase('nav.close', 'Close');
+    sheetClose.appendChild(closeLabel);
+    sheetClose.addEventListener('click', function () { closeSheet(); });
+    bar.appendChild(sheetClose);
+
+    var list = document.createElement('nav');
+    list.className = 'nav-sheet-nav';
+    list.setAttribute('aria-label', navLinks.getAttribute('aria-label') || 'Sections');
+
+    /* the links the capsule already holds, so the hrefs, the translations and
+     * the mark on the current page all keep coming from one place */
+    Array.prototype.forEach.call(navLinks.children, function (a) {
+      list.appendChild(a.cloneNode(true));
+    });
+
+    sheet.appendChild(bar);
+    sheet.appendChild(list);
+    document.body.appendChild(sheet);
+
+    sheetLinks = Array.prototype.slice.call(list.children);
+    sheetLinks.forEach(function (a) {
+      /* a link to another page unloads this one anyway; an in-page anchor
+       * needs the sheet out of the way to reach what it points at */
+      a.addEventListener('click', function () { closeSheet(); });
+    });
+  }
+
+  function openSheet() {
+    buildSheet();
+    if (!sheet.hidden) return;
+
+    sheet.setAttribute('aria-label', phrase('nav.menu', 'Menu'));
+    sheet.hidden = false;
+    document.body.classList.add('menu-open');
+    burger.setAttribute('aria-expanded', 'true');
+    sheetLinks.forEach(function (a, i) {
+      a.style.transitionDelay = reduce.matches ? '0ms' : 40 + i * 32 + 'ms';
+    });
+
+    requestAnimationFrame(function () {
+      sheet.classList.add('is-open');
+      /* the panel itself takes focus: a reader lands inside the dialog and no
+       * control wears a focus ring it did not earn from the keyboard */
+      sheet.focus({ preventScroll: true });
+    });
+  }
+
+  function closeSheet() {
+    if (!sheet || sheet.hidden) return;
+
+    var wasInside = sheet.contains(document.activeElement);
+    sheet.classList.remove('is-open');
+    document.body.classList.remove('menu-open');
+    burger.setAttribute('aria-expanded', 'false');
+    /* the stagger belongs to the way in only */
+    sheetLinks.forEach(function (a) { a.style.transitionDelay = '0ms'; });
+
+    var settle = function () {
+      if (!sheet.classList.contains('is-open')) sheet.hidden = true;
+    };
+    if (reduce.matches) settle();
+    else setTimeout(settle, 340);
+
+    /* the button is gone whenever the row fits again, so focus goes back to it
+     * only while it is still there to take it */
+    if (wasInside && burger.offsetParent) burger.focus({ preventScroll: true });
+  }
+
+  if (burger) {
+    burger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (sheet && !sheet.hidden) closeSheet();
+      else openSheet();
+    });
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (!sheet || sheet.hidden) return;
+    if (e.key === 'Escape') { closeSheet(); return; }
+    if (e.key !== 'Tab') return;
+
+    /* the sheet covers the page, so the tab ring stays inside it */
+    var stops = [sheetClose].concat(sheetLinks);
+    var at = stops.indexOf(document.activeElement);
+    var next = e.shiftKey ? at - 1 : at + 1;
+    if (at < 0 || next < 0 || next >= stops.length) {
+      e.preventDefault();
+      stops[e.shiftKey ? stops.length - 1 : 0].focus();
+    }
+  });
+
+  fitNav();
 
   /* ── hero tilt ──────────────────────────────────────── */
 
@@ -944,6 +1126,7 @@
   applyScheme(doc.dataset.scheme);
 
   var relayout = function () {
+    fitNav();
     layoutPill(schemeSeg);
     layoutPill(gmSeg);
     fitTargetRow();

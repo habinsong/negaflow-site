@@ -1951,3 +1951,12 @@ Object.assign(window.NF_I18N.ja, { 'topic.more': '詳しく見る' });
 Object.assign(window.NF_I18N.zh, { 'topic.more': '了解更多' });
 Object.assign(window.NF_I18N.fr, { 'topic.more': 'En savoir plus' });
 Object.assign(window.NF_I18N.de, { 'topic.more': 'Mehr erfahren' });
+
+/* The bar's menu button and the sheet it opens. Names only a screen reader
+ * reads out — both controls are drawn as icons. */
+Object.assign(window.NF_I18N.ko, { 'nav.menu': '메뉴', 'nav.close': '닫기' });
+Object.assign(window.NF_I18N.en, { 'nav.menu': 'Menu', 'nav.close': 'Close' });
+Object.assign(window.NF_I18N.ja, { 'nav.menu': 'メニュー', 'nav.close': '閉じる' });
+Object.assign(window.NF_I18N.zh, { 'nav.menu': '菜单', 'nav.close': '关闭' });
+Object.assign(window.NF_I18N.fr, { 'nav.menu': 'Menu', 'nav.close': 'Fermer' });
+Object.assign(window.NF_I18N.de, { 'nav.menu': 'Menü', 'nav.close': 'Schließen' });
