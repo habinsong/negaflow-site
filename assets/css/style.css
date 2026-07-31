@@ -648,6 +648,12 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
   user-select: none;
 }
 
+/* drag or swipe the picture sideways to move between the stills */
+.tg-frame, .pl-frame { cursor: grab; touch-action: pan-y; }
+.tg-frame.is-swiping, .pl-frame.is-swiping { cursor: grabbing; }
+/* while a finger is down the stills track it instead of easing */
+.is-swiping .tg-img, .is-swiping .pl-img { transition: opacity .34s var(--ease); }
+
 .cmp-img {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
@@ -739,7 +745,8 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
 
 .tg-img {
   opacity: 0;
-  transition: opacity .34s var(--ease);
+  transform: translateX(var(--slide, 0px));
+  transition: opacity .34s var(--ease), transform .4s var(--ease-spring);
 }
 .tg-img.is-on { opacity: 1; }
 
@@ -776,7 +783,8 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
 
 .pl-img {
   opacity: 0;
-  transition: opacity .34s var(--ease);
+  transform: translateX(var(--slide, 0px));
+  transition: opacity .34s var(--ease), transform .4s var(--ease-spring);
 }
 .pl-img.is-on { opacity: 1; }
 

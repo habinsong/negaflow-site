@@ -271,6 +271,85 @@
     else seg.scrollLeft = left;
   }
 
+  /* ── swipe between the stills of a card ─────────────── */
+
+  /*
+   * Drag or swipe the picture sideways to move through `order`, which wraps
+   * at both ends. The gesture only takes over once it is clearly horizontal,
+   * so a vertical swipe still scrolls the page. The stills follow the pointer
+   * through --slide and spring back when the finger lifts.
+   */
+  function enableSwipe(frame, order, currentId, select) {
+    if (!frame || order.length < 2) return;
+
+    var pointerId = null;
+    var startX = 0;
+    var startY = 0;
+    var moved = 0;
+    var axis = '';
+
+    function slide(px) {
+      frame.style.setProperty('--slide', (reduce.matches ? 0 : px) + 'px');
+    }
+
+    function release() {
+      pointerId = null;
+      axis = '';
+      frame.classList.remove('is-swiping');
+      slide(0);
+    }
+
+    frame.addEventListener('pointerdown', function (e) {
+      if (pointerId !== null || (e.button != null && e.button !== 0)) return;
+      pointerId = e.pointerId;
+      startX = e.clientX;
+      startY = e.clientY;
+      moved = 0;
+      axis = '';
+    });
+
+    frame.addEventListener('pointermove', function (e) {
+      if (pointerId !== e.pointerId) return;
+
+      var dx = e.clientX - startX;
+      var dy = e.clientY - startY;
+
+      if (!axis) {
+        if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+        axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+        if (axis !== 'x') { pointerId = null; return; }
+        frame.classList.add('is-swiping');
+        if (frame.setPointerCapture) frame.setPointerCapture(e.pointerId);
+      }
+
+      moved = dx;
+      /* damped, so the card feels held rather than thrown */
+      slide(dx * 0.42);
+      e.preventDefault();
+    });
+
+    frame.addEventListener('pointerup', function (e) {
+      if (pointerId !== e.pointerId) return;
+      var travelled = axis === 'x' ? moved : 0;
+      release();
+
+      var far = Math.max(30, frame.clientWidth * 0.07);
+      if (Math.abs(travelled) < far) return;
+
+      var i = order.indexOf(currentId());
+      if (i < 0) return;
+      /* dragging left moves forward; past either end it comes round again */
+      select(order[(i + (travelled < 0 ? 1 : order.length - 1)) % order.length]);
+    });
+
+    frame.addEventListener('pointercancel', function (e) {
+      if (pointerId === e.pointerId) release();
+    });
+
+    /* the browser would otherwise start dragging the picture itself */
+    frame.addEventListener('dragstart', function (e) { e.preventDefault(); });
+  }
+
   var schemeSeg = document.getElementById('scheme');
 
   schemeSeg.addEventListener('click', function (e) {
@@ -467,6 +546,8 @@
       e.preventDefault();
     });
 
+    enableSwipe(frame, PRINT_LAYOUTS, function () { return current; }, select);
+
     syncLayout();
   })();
 
@@ -633,6 +714,9 @@
       select(to.dataset.target);
       e.preventDefault();
     });
+
+    enableSwipe(frame, TARGETS.map(function (t) { return t.id; }),
+      function () { return current; }, select);
 
     syncTarget();
   })();
