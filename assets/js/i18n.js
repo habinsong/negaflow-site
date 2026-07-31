@@ -571,8 +571,8 @@ de: {
 /* README_ko.md is the source of truth for the product copy below. */
 
 Object.assign(window.NF_I18N.ko, {
-  'doc.title': 'negaflow — 아날로그 필름을 위한 macOS 앱',
-  'doc.desc': '아날로그 필름을 위한 카메라/스캐너 스캔과 현상·출력까지 전과정을 지원하는 macOS 앱.',
+  'doc.title': 'negaflow — 필름 네거티브 반전·현상 macOS 앱',
+  'doc.desc': '컬러·흑백 필름 네거티브를 반전하고 현상하며, 먼지와 스크래치를 복원하고 인화까지 하는 무료 오픈소스 macOS 앱. 카메라 스캔과 필름 스캐너를 모두 지원합니다.',
   'nav.profiles': '데이터셋',
   'nav.download': '다운로드',
   'hero.kicker': '아날로그 필름을 위한 카메라/스캐너 스캔과 현상·출력까지 전과정을 지원하는 macOS 앱',
@@ -800,8 +800,8 @@ Object.assign(window.NF_I18N.ko, {
 });
 
 Object.assign(window.NF_I18N.en, {
-  'doc.title': 'negaflow — a macOS app for analog film',
-  'doc.desc': 'A macOS app for the complete analog-film workflow, from camera or scanner capture through development and print.',
+  'doc.title': 'negaflow — film negative inversion and development for macOS',
+  'doc.desc': 'Free open-source macOS app that inverts colour and black-and-white film negatives, develops them, repairs dust and scratches, and prints. Camera scans and film scanners.',
   'nav.profiles': 'Dataset',
   'nav.download': 'Download',
   'hero.kicker': 'A macOS app for the complete analog film workflow—<br class="hero-break">from camera capture or scanning through development and print',
@@ -1029,8 +1029,8 @@ Object.assign(window.NF_I18N.en, {
 });
 
 Object.assign(window.NF_I18N.ja, {
-  'doc.title': 'negaflow — アナログフィルムのためのmacOSアプリ',
-  'doc.desc': 'カメラまたはスキャナーでの取り込みから現像、プリントまで、アナログフィルムの全工程を支えるmacOSアプリ。',
+  'doc.title': 'negaflow — フィルムネガ反転・現像のmacOSアプリ',
+  'doc.desc': 'カラー・白黒フィルムネガの反転と現像、ホコリや傷の修復、プリントまで行う無料・オープンソースのmacOSアプリ。カメラスキャンとフィルムスキャナーに対応。',
   'nav.profiles': 'データセット',
   'nav.download': 'ダウンロード',
   'hero.kicker': 'カメラでの複写やスキャンから現像、プリントまで、<br class="hero-break">アナログフィルムの全工程に対応するmacOSアプリ',
@@ -1258,8 +1258,8 @@ Object.assign(window.NF_I18N.ja, {
 });
 
 Object.assign(window.NF_I18N.zh, {
-  'doc.title': 'negaflow — 面向模拟胶片的 macOS 应用',
-  'doc.desc': '从相机或扫描仪采集，到反相、调整与打印，覆盖模拟胶片完整流程的 macOS 应用。',
+  'doc.title': 'negaflow — 胶片负片反转与显影的 macOS 应用',
+  'doc.desc': '免费开源的 macOS 应用：反转彩色与黑白胶片负片、显影调色、修复灰尘与划痕并输出打印，支持相机翻拍与胶片扫描仪。',
   'nav.profiles': '数据集',
   'nav.download': '下载',
   'hero.kicker': '支持数码相机翻拍或扫描仪扫描，<br class="hero-break">以及反相、调整和打印全流程的 macOS App',
@@ -1487,8 +1487,8 @@ Object.assign(window.NF_I18N.zh, {
 });
 
 Object.assign(window.NF_I18N.fr, {
-  'doc.title': 'negaflow — une app macOS pour le film argentique',
-  'doc.desc': 'Une app macOS pour tout le flux argentique, de la prise de vue ou de la numérisation au développement et au tirage.',
+  'doc.title': 'negaflow — inversion et développement de négatifs sur macOS',
+  'doc.desc': 'Application macOS libre et open source pour inverser les négatifs couleur et noir et blanc, les développer, réparer poussières et rayures, puis tirer. Appareil photo ou scanner.',
   'nav.profiles': 'Données',
   'nav.download': 'Télécharger',
   'hero.kicker': 'Une app macOS pour tout le flux argentique,<br class="hero-break"> de la prise de vue ou de la numérisation au développement et au tirage',
@@ -1716,8 +1716,8 @@ Object.assign(window.NF_I18N.fr, {
 });
 
 Object.assign(window.NF_I18N.de, {
-  'doc.title': 'negaflow — eine macOS-App für Analogfilm',
-  'doc.desc': 'Eine macOS-App für den gesamten Analogfilm-Workflow: von Kamera oder Scanner über die Entwicklung bis zum Druck.',
+  'doc.title': 'negaflow — Negativ-Umkehrung und Entwicklung für macOS',
+  'doc.desc': 'Freie Open-Source-App für macOS: Farb- und Schwarzweiß-Negative umkehren, entwickeln, Staub und Kratzer reparieren und drucken. Für Kamera-Digitalisierung und Filmscanner.',
   'nav.profiles': 'Datensatz',
   'nav.download': 'Download',
   'hero.kicker': 'Eine macOS-App für den gesamten Analogfilm-Workflow –<br class="hero-break"> von Kameraaufnahme oder Scan bis zu Entwicklung und Druck',

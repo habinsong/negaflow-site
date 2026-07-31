@@ -9,6 +9,12 @@
   var reduce = matchMedia('(prefers-reduced-motion: reduce)');
   var coarse = matchMedia('(pointer: coarse)');
 
+  /* Prerendered pages live under /<lang>/ and carry data-base, so any path
+   * built in JS needs that prefix; the root page leaves it empty. */
+  function asset(path) {
+    return (doc.dataset.base || '') + path;
+  }
+
   /* ── language ───────────────────────────────────────── */
 
   function applyLang(lang) {
@@ -68,7 +74,7 @@
   /* ── screenshots ────────────────────────────────────── */
 
   function shotPath(view) {
-    return 'assets/shots/ui/' + view + '/' + doc.dataset.lang + '-' + doc.dataset.theme + '.webp';
+    return asset('assets/shots/ui/' + view + '/' + doc.dataset.lang + '-' + doc.dataset.theme + '.webp');
   }
 
   function setShot(img, view) {
@@ -282,6 +288,11 @@
     var b = e.target.closest('button');
     if (!b) return;
     localStorage.setItem('nf-lang', b.dataset.lang);
+    /* every language has its own crawlable URL, so switching navigates there */
+    if (b.dataset.href && b.dataset.lang !== doc.dataset.lang) {
+      location.assign(b.dataset.href);
+      return;
+    }
     applyLang(b.dataset.lang);
     closeMenu();
   });
@@ -624,18 +635,18 @@
 
   var GM_MODES = {
     'auto': {
-      before: 'assets/shots/grainmend/auto-before.webp',
-      after: 'assets/shots/grainmend/auto-after.webp',
+      before: asset('assets/shots/grainmend/auto-before.webp'),
+      after: asset('assets/shots/grainmend/auto-after.webp'),
       crop: false
     },
     'guided-crop': {
-      before: 'assets/shots/grainmend/crop-before.webp',
-      after: 'assets/shots/grainmend/crop-after.webp',
+      before: asset('assets/shots/grainmend/crop-before.webp'),
+      after: asset('assets/shots/grainmend/crop-after.webp'),
       crop: true
     },
     'brush': {
-      before: 'assets/shots/grainmend/brush-before.webp',
-      after: 'assets/shots/grainmend/brush-after.webp',
+      before: asset('assets/shots/grainmend/brush-before.webp'),
+      after: asset('assets/shots/grainmend/brush-after.webp'),
       crop: true
     }
   };
@@ -807,6 +818,9 @@
   /* ── boot ───────────────────────────────────────────── */
 
   function detectLanguage() {
+    /* a prerendered page serves one language; the URL wins over the browser */
+    if (doc.dataset.langLocked) return doc.dataset.lang;
+
     var saved = localStorage.getItem('nf-lang');
     if (saved && I18N[saved]) return saved;
 
