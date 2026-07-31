@@ -31,7 +31,7 @@ const LANGS = ['en', 'ko', 'ja', 'zh', 'fr', 'de'];
  *   naver   네이버 서치어드바이저    https://searchadvisor.naver.com
  */
 const VERIFICATION = {
-  google: '',
+  google: 'hLa4SvWRmd_iTnd1qb9w3E9SyO-LMpD-45kQEbdAcVU',
   bing: '',
   naver: ''
 };
