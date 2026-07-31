@@ -39,6 +39,9 @@
       if (img && h) img.alt = h.textContent.trim();
     });
 
+    layoutPill(gmSeg);
+    if (syncTarget) syncTarget();
+    if (syncLayout) syncLayout();
     refreshShots();
   }
 
@@ -239,6 +242,16 @@
     pill.style.transform = 'translateX(' + active.offsetLeft + 'px)';
   }
 
+  /* a .cmp-seg can scroll sideways, so keep the active tab in view */
+  function keepVisible(button) {
+    if (!button) return;
+    var seg = button.parentNode;
+    if (seg.scrollWidth <= seg.clientWidth) return;
+    var left = button.offsetLeft - (seg.clientWidth - button.offsetWidth) / 2;
+    if (seg.scrollTo) seg.scrollTo({ left: left, behavior: reduce.matches ? 'auto' : 'smooth' });
+    else seg.scrollLeft = left;
+  }
+
   var schemeSeg = document.getElementById('scheme');
 
   schemeSeg.addEventListener('click', function (e) {
@@ -373,81 +386,334 @@
     });
   }
 
-  /* ── GrainMend Interactive Compare Viewport (Single Frame) ──── */
+  /* ── print: layout picker ───────────────────────────── */
 
-  (function initGrainMendSlider() {
-    var viewport = doc.getElementById('gm-viewport');
-    if (!viewport) return;
+  var PRINT_LAYOUTS = ['contact', 'single', 'cyanotype', 'glass', 'gelatin'];
 
-    var rangeInput = doc.getElementById('gm-split-input');
-    var imgBefore = doc.getElementById('gm-img-before');
-    var imgAfter = doc.getElementById('gm-img-after');
-    var badgeLeft = doc.getElementById('gm-badge-left');
-    var badgeRight = doc.getElementById('gm-badge-right');
-    var pills = viewport.querySelectorAll('.gm-mode-pill');
+  var plSeg = document.getElementById('plLayouts');
+  var syncLayout = null;
 
-    var MODES = {
-      'auto': {
-        before: 'assets/shots/GrainMend/자동/원본.webp',
-        after: 'assets/shots/GrainMend/자동/검출.webp',
-        keyLeft: 'gm.badge.auto_left',
-        keyRight: 'gm.badge.auto_right',
-        aspect: '2974 / 1992'
-      },
-      'guided-full': {
-        before: 'assets/shots/GrainMend/가이드/가이드_전체_ROI.webp',
-        after: 'assets/shots/GrainMend/가이드/가이드_전체_탐지.webp',
-        keyLeft: 'gm.badge.gfull_left',
-        keyRight: 'gm.badge.gfull_right',
-        aspect: '2974 / 1992'
-      },
-      'guided-crop': {
-        before: 'assets/shots/GrainMend/가이드/가이드_크롭_ROI.webp',
-        after: 'assets/shots/GrainMend/가이드/가이드_크롭_탐지.webp',
-        keyLeft: 'gm.badge.gcrop_left',
-        keyRight: 'gm.badge.gcrop_right',
-        aspect: '650 / 396'
-      },
-      'brush': {
-        before: 'assets/shots/GrainMend/브러시/브러시_크롭_검출영역.webp',
-        after: 'assets/shots/GrainMend/브러시/브러시_크롭_제거완료.webp',
-        keyLeft: 'gm.badge.brush_left',
-        keyRight: 'gm.badge.brush_right',
-        aspect: '650 / 396'
-      }
+  (function initLayouts() {
+    var frame = document.getElementById('plFrame');
+    var hint = document.getElementById('plHint');
+    if (!frame || !plSeg) return;
+
+    var stills = {};
+    frame.querySelectorAll('.pl-img').forEach(function (img) {
+      stills[img.dataset.layout] = img;
+    });
+
+    var current = 'contact';
+
+    syncLayout = function () {
+      var dict = I18N[doc.dataset.lang] || I18N.en;
+      var copy = dict && dict['print.hint.' + current];
+      if (hint && copy != null) hint.innerHTML = copy;
+      layoutPill(plSeg);
     };
 
-    if (rangeInput && viewport) {
-      var syncSlider = function () {
-        viewport.style.setProperty('--slider-pos', rangeInput.value + '%');
-      };
-      rangeInput.addEventListener('input', syncSlider);
-      rangeInput.addEventListener('change', syncSlider);
-      syncSlider();
+    function select(id) {
+      if (!stills[id]) return;
+
+      plSeg.querySelectorAll('button').forEach(function (b) {
+        b.setAttribute('aria-selected', String(b.dataset.layout === id));
+      });
+
+      Object.keys(stills).forEach(function (key) {
+        stills[key].classList.toggle('is-on', key === id);
+      });
+
+      current = id;
+      syncLayout();
+      keepVisible(plSeg.querySelector('[data-layout="' + id + '"]'));
     }
 
-    pills.forEach(function (pill) {
-      pill.addEventListener('click', function () {
-        var modeKey = pill.getAttribute('data-mode');
-        var data = MODES[modeKey];
-        if (!data) return;
+    plSeg.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (b && b.dataset.layout) select(b.dataset.layout);
+    });
 
-        pills.forEach(function (p) { p.classList.remove('active'); });
-        pill.classList.add('active');
+    plSeg.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      var i = PRINT_LAYOUTS.indexOf(current);
+      var to = PRINT_LAYOUTS[(i + (e.key === 'ArrowRight' ? 1 : PRINT_LAYOUTS.length - 1)) % PRINT_LAYOUTS.length];
+      var button = plSeg.querySelector('[data-layout="' + to + '"]');
+      if (button) button.focus();
+      select(to);
+      e.preventDefault();
+    });
 
-        if (imgBefore) imgBefore.src = data.before;
-        if (imgAfter) imgAfter.src = data.after;
+    syncLayout();
+  })();
 
-        if (badgeLeft) badgeLeft.setAttribute('data-i18n', data.keyLeft);
-        if (badgeRight) badgeRight.setAttribute('data-i18n', data.keyRight);
+  /* ── chroma engine: development target picker ───────── */
 
-        if (viewport) viewport.style.aspectRatio = data.aspect;
+  /*
+   * Five renders of one frame. Only the development target differs, so the
+   * stills cross-fade in place instead of sliding or zooming.
+   */
+  var TARGETS = [
+    { id: 'main', i18n: 'target.main' },
+    { id: 'hs',   text: 'Noritsu HS-1800' },
+    { id: 'sp',   text: 'Fujifilm Frontier SP-3000' },
+    { id: 'f135', text: 'Pakon F-135 Plus' },
+    { id: 'hr',   text: 'Kodak Professional HR 500 Plus' }
+  ];
 
-        if (typeof applyLang === 'function') {
-          applyLang(doc.dataset.lang || 'ko');
-        }
+  var tgSeg = document.getElementById('tgTargets');
+  var syncTarget = null;
+
+  (function initTargets() {
+    var frame = document.getElementById('tgFrame');
+    var code = document.getElementById('tgCode');
+    var hint = document.getElementById('tgHint');
+    if (!frame || !tgSeg) return;
+
+    var stills = {};
+    frame.querySelectorAll('.tg-img').forEach(function (img) {
+      stills[img.dataset.target] = img;
+    });
+
+    var current = 'main';
+
+    function label(id) {
+      var t = TARGETS.filter(function (x) { return x.id === id; })[0];
+      if (!t) return '';
+      if (!t.i18n) return t.text;
+      var dict = I18N[doc.dataset.lang] || I18N.en;
+      return (dict && dict[t.i18n]) || t.text || '';
+    }
+
+    syncTarget = function () {
+      if (code) code.textContent = current.toUpperCase();
+      if (hint) hint.innerHTML = label(current);
+      layoutPill(tgSeg);
+    };
+
+    function select(id) {
+      if (!stills[id]) return;
+
+      tgSeg.querySelectorAll('button').forEach(function (b) {
+        b.setAttribute('aria-selected', String(b.dataset.target === id));
+      });
+
+      Object.keys(stills).forEach(function (key) {
+        stills[key].classList.toggle('is-on', key === id);
+      });
+
+      current = id;
+      syncTarget();
+      keepVisible(tgSeg.querySelector('[data-target="' + id + '"]'));
+    }
+
+    tgSeg.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (b && b.dataset.target) select(b.dataset.target);
+    });
+
+    tgSeg.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      var buttons = Array.prototype.slice.call(tgSeg.querySelectorAll('button'));
+      var i = buttons.indexOf(document.activeElement);
+      if (i < 0) return;
+      var to = buttons[(i + (e.key === 'ArrowRight' ? 1 : buttons.length - 1)) % buttons.length];
+      to.focus();
+      select(to.dataset.target);
+      e.preventDefault();
+    });
+
+    syncTarget();
+  })();
+
+  /* ── grainmend before / after compare ───────────────── */
+
+  /*
+   * All three stills come from the same 2000x1339 frame: the crop and brush
+   * shots are the 436x266 region at (1449, 954). Switching in or out of them
+   * therefore zooms that region up to full width instead of hard-cutting.
+   */
+  var GM_ZOOM = 'scale(5.042) translate(-33.35%, -31.18%)';
+
+  var GM_MODES = {
+    'auto': {
+      before: 'assets/shots/grainmend/auto-before.webp',
+      after: 'assets/shots/grainmend/auto-after.webp',
+      crop: false
+    },
+    'guided-crop': {
+      before: 'assets/shots/grainmend/crop-before.webp',
+      after: 'assets/shots/grainmend/crop-after.webp',
+      crop: true
+    },
+    'brush': {
+      before: 'assets/shots/grainmend/brush-before.webp',
+      after: 'assets/shots/grainmend/brush-after.webp',
+      crop: true
+    }
+  };
+
+  var gmSeg = document.getElementById('gmModes');
+
+  (function initCompare() {
+    var compare = document.getElementById('gmCompare');
+    var frame = document.getElementById('gmFrame');
+    var zoom = document.getElementById('gmZoom');
+    var handle = document.getElementById('gmHandle');
+    var before = document.getElementById('gmBefore');
+    var after = document.getElementById('gmAfter');
+    var hint = document.getElementById('gmHint');
+    if (!compare || !frame || !zoom || !handle || !gmSeg) return;
+
+    var pos = 50;
+    var mode = 'auto';
+
+    function render() {
+      compare.style.setProperty('--gm-pos', pos + '%');
+      handle.setAttribute('aria-valuenow', String(Math.round(pos)));
+    }
+
+    function setPos(next) {
+      pos = Math.max(0, Math.min(100, next));
+      render();
+    }
+
+    function posFromEvent(e) {
+      var box = frame.getBoundingClientRect();
+      if (!box.width) return pos;
+      return ((e.clientX - box.left) / box.width) * 100;
+    }
+
+    /* ── drag: press anywhere on the frame, then drag ── */
+
+    var pointerId = null;
+
+    frame.addEventListener('pointerdown', function (e) {
+      if (e.button != null && e.button !== 0) return;
+      pointerId = e.pointerId;
+      compare.classList.add('is-dragging');
+      setPos(posFromEvent(e));
+      handle.focus({ preventScroll: true });
+      if (frame.setPointerCapture) frame.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    });
+
+    frame.addEventListener('pointermove', function (e) {
+      if (pointerId !== e.pointerId) return;
+      setPos(posFromEvent(e));
+      e.preventDefault();
+    });
+
+    function endDrag(e) {
+      if (pointerId !== e.pointerId) return;
+      pointerId = null;
+      compare.classList.remove('is-dragging');
+      if (frame.releasePointerCapture && frame.hasPointerCapture && frame.hasPointerCapture(e.pointerId)) {
+        frame.releasePointerCapture(e.pointerId);
+      }
+    }
+
+    frame.addEventListener('pointerup', endDrag);
+    frame.addEventListener('pointercancel', endDrag);
+
+    handle.addEventListener('keydown', function (e) {
+      var step = e.shiftKey ? 10 : 2;
+      if (e.key === 'ArrowLeft') setPos(pos - step);
+      else if (e.key === 'ArrowRight') setPos(pos + step);
+      else if (e.key === 'Home') setPos(0);
+      else if (e.key === 'End') setPos(100);
+      else return;
+      e.preventDefault();
+    });
+
+    /* ── mode tabs ── */
+
+    function applyStills(next) {
+      before.src = GM_MODES[next].before;
+      after.src = GM_MODES[next].after;
+      if (hint) hint.hidden = next !== 'auto';
+      mode = next;
+      setPos(50);
+    }
+
+    var swapToken = 0;
+
+    function swap(next) {
+      var wasCrop = GM_MODES[mode].crop;
+      var nowCrop = GM_MODES[next].crop;
+      var token = ++swapToken;
+      var spring = 'cubic-bezier(.32, .72, 0, 1)';
+      var out, into, outMs, intoMs;
+
+      if (!wasCrop && nowCrop) {              /* zoom in */
+        out = [{ transform: 'none', opacity: 1 }, { transform: GM_ZOOM, opacity: 0 }];
+        into = [{ opacity: 0 }, { opacity: 1 }];
+        outMs = 460; intoMs = 240;
+      } else if (wasCrop && !nowCrop) {       /* zoom out */
+        out = [{ opacity: 1 }, { opacity: 0 }];
+        into = [{ transform: GM_ZOOM, opacity: 0 }, { transform: 'none', opacity: 1 }];
+        outMs = 190; intoMs = 500;
+      } else {                                /* crop to crop */
+        out = [{ opacity: 1 }, { opacity: 0 }];
+        into = [{ opacity: 0 }, { opacity: 1 }];
+        outMs = 150; intoMs = 220;
+      }
+
+      compare.classList.add('is-zooming');
+      var leaving = zoom.animate(out, { duration: outMs, easing: spring, fill: 'forwards' });
+
+      leaving.finished.then(function () {
+        if (token !== swapToken) return null;
+        applyStills(next);
+        leaving.cancel();
+        return zoom.animate(into, { duration: intoMs, easing: spring }).finished;
+      }).then(function () {
+        if (token === swapToken) compare.classList.remove('is-zooming');
+      }).catch(function () {
+        if (token === swapToken) compare.classList.remove('is-zooming');
+      });
+    }
+
+    function selectMode(next, animate) {
+      if (!GM_MODES[next]) return;
+
+      gmSeg.querySelectorAll('button').forEach(function (b) {
+        b.setAttribute('aria-selected', String(b.dataset.mode === next));
+      });
+      layoutPill(gmSeg);
+      keepVisible(gmSeg.querySelector('[data-mode="' + next + '"]'));
+
+      if (next === mode) return;
+      if (animate && !reduce.matches && zoom.animate) swap(next);
+      else applyStills(next);
+    }
+
+    gmSeg.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b || !b.dataset.mode) return;
+      selectMode(b.dataset.mode, true);
+    });
+
+    gmSeg.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      var buttons = Array.prototype.slice.call(gmSeg.querySelectorAll('button'));
+      var i = buttons.indexOf(document.activeElement);
+      if (i < 0) return;
+      var to = buttons[(i + (e.key === 'ArrowRight' ? 1 : buttons.length - 1)) % buttons.length];
+      to.focus();
+      selectMode(to.dataset.mode, true);
+      e.preventDefault();
+    });
+
+    /* warm the other modes so a switch never shows a gap */
+    Object.keys(GM_MODES).forEach(function (key) {
+      [GM_MODES[key].before, GM_MODES[key].after].forEach(function (src) {
+        var img = new Image();
+        img.src = src;
       });
     });
+
+    render();
+    layoutPill(gmSeg);
   })();
 
   /* ── boot ───────────────────────────────────────────── */
@@ -478,7 +744,12 @@
   applyLang(detectLanguage());
   applyScheme(doc.dataset.scheme);
 
-  var relayout = function () { layoutPill(schemeSeg); };
+  var relayout = function () {
+    layoutPill(schemeSeg);
+    layoutPill(gmSeg);
+    layoutPill(tgSeg);
+    layoutPill(plSeg);
+  };
   addEventListener('resize', relayout);
   addEventListener('load', relayout);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);

@@ -1,3 +1,5 @@
 .DS_Store
 .playwright-cli/
 output/
+assets/shots/C-41:ECN-2_target/
+assets/shots/print/

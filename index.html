@@ -27,7 +27,7 @@
 <link rel="icon" href="assets/favicon-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="assets/icon-180.png">
 <link rel="preload" as="image" href="assets/icon-512.webp">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=118">
 <script>
 /* set appearance + language before first paint */
 (function () {
@@ -62,6 +62,7 @@
     <nav class="nav-links" aria-label="Sections">
       <a href="#chroma">Chroma Engine</a>
       <a href="#grainmend">GrainMend</a>
+      <a href="#print" data-i18n="nav.print">Print &amp; Export</a>
       <a href="#color-science" data-i18n="nav.math">Color Science</a>
       <a href="#profiles" data-i18n="nav.profiles">Dataset</a>
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
@@ -163,6 +164,33 @@
       <h2 class="reveal">Chroma&nbsp;Engine</h2>
       <p class="lede reveal" data-i18n="chroma.lede">Chroma Engine is the film inversion and development engine in the Chromabase module.</p>
 
+      <!-- ── one frame, five development targets ────────── -->
+      <div class="cmp-stage reveal">
+        <div class="cmp" id="tgCompare">
+          <div class="cmp-frame tg-frame" id="tgFrame">
+            <img class="cmp-img tg-img is-on" data-target="main" src="assets/shots/targets/main.webp" alt="" decoding="async">
+            <img class="cmp-img tg-img" data-target="hs"   src="assets/shots/targets/hs.webp"   alt="" loading="lazy" decoding="async">
+            <img class="cmp-img tg-img" data-target="sp"   src="assets/shots/targets/sp.webp"   alt="" loading="lazy" decoding="async">
+            <img class="cmp-img tg-img" data-target="f135" src="assets/shots/targets/f135.webp" alt="" loading="lazy" decoding="async">
+            <img class="cmp-img tg-img" data-target="hr"   src="assets/shots/targets/hr.webp"   alt="" loading="lazy" decoding="async">
+
+            <span class="cmp-tag cmp-tag-l tg-code" id="tgCode">MAIN</span>
+          </div>
+
+          <div class="cmp-bar">
+            <div class="seg cmp-seg" id="tgTargets" role="tablist" aria-label="Development target">
+              <span class="seg-pill" aria-hidden="true"></span>
+              <button type="button" role="tab" data-target="main" aria-selected="true">MAIN</button>
+              <button type="button" role="tab" data-target="hs"   aria-selected="false">HS</button>
+              <button type="button" role="tab" data-target="sp"   aria-selected="false">SP</button>
+              <button type="button" role="tab" data-target="f135" aria-selected="false">F135</button>
+              <button type="button" role="tab" data-target="hr"   aria-selected="false">HR</button>
+            </div>
+            <p class="cmp-hint" id="tgHint">Standard development</p>
+          </div>
+        </div>
+      </div>
+
       <div class="base-measure reveal">
         <div>
           <span class="eyebrow">FILM BASE</span>
@@ -210,42 +238,36 @@
         <p data-i18n="gm.rgb.speed"><b>Guided and Brush: about 1 second · Auto: 5–10 seconds</b> Compared with the 30–90 seconds typically required for a hardware IR pass, GrainMend RGB is about 3–90× faster.</p>
       </div>
 
-      <!-- ── GrainMend Single Frame Viewport & Bottom Floating Pill Bar ── -->
-      <div class="gm-stage reveal" id="gm-stage">
-        <div class="gm-viewport" id="gm-viewport" style="--slider-pos: 50%;">
-          <!-- Background After Layer (Restored / Mask) -->
-          <div class="gm-view-layer gm-view-after">
-            <img id="gm-img-after" src="assets/shots/GrainMend/자동/검출.webp" alt="GrainMend Result" loading="lazy" decoding="async">
-          </div>
-
-          <!-- Foreground Before Layer (Original / ROI) -->
-          <div class="gm-view-layer gm-view-before">
-            <img id="gm-img-before" src="assets/shots/GrainMend/자동/원본.webp" alt="GrainMend Original" loading="lazy" decoding="async">
-          </div>
-
-          <!-- Overlay Floating Badges (Top Left & Top Right) -->
-          <div class="gm-overlay-badge gm-badge-left" id="gm-badge-left" data-i18n="gm.badge.auto_left">원본</div>
-          <div class="gm-overlay-badge gm-badge-right" id="gm-badge-right" data-i18n="gm.badge.auto_right">1:1 결함 검출 마스크</div>
-
-          <!-- Vertical Split Divider Line & Knob -->
-          <div class="gm-split-line" id="gm-split-line">
-            <div class="gm-split-thumb"></div>
-          </div>
-
-          <!-- Range Input Control -->
-          <input type="range" min="0" max="100" value="50" class="gm-split-input" id="gm-split-input" aria-label="GrainMend Compare Slider">
-
-          <!-- Bottom Floating Pill Bar (Segmented Button Group) -->
-          <div class="gm-floating-pills">
-            <div class="gm-pill-segmented" role="tablist" aria-label="GrainMend Mode Select">
-              <button type="button" class="gm-mode-pill active" data-mode="auto" data-i18n="gm.tab.auto">자동</button>
-              <span class="gm-pill-divider"></span>
-              <button type="button" class="gm-mode-pill" data-mode="guided-full" data-i18n="gm.tab.guided_full">가이드(전체)</button>
-              <span class="gm-pill-divider"></span>
-              <button type="button" class="gm-mode-pill" data-mode="guided-crop" data-i18n="gm.tab.guided_crop">가이드(크롭)</button>
-              <span class="gm-pill-divider"></span>
-              <button type="button" class="gm-mode-pill" data-mode="brush" data-i18n="gm.tab.brush">브러시</button>
+      <!-- ── before / after compare ─────────────────────── -->
+      <div class="cmp-stage reveal">
+        <div class="cmp" id="gmCompare" style="--gm-pos: 50%;">
+          <div class="cmp-frame gm-frame" id="gmFrame">
+            <div class="gm-zoom" id="gmZoom">
+              <img class="cmp-img gm-after" id="gmAfter" src="assets/shots/grainmend/auto-after.webp" alt="" decoding="async">
+              <img class="cmp-img gm-before" id="gmBefore" src="assets/shots/grainmend/auto-before.webp" alt="" decoding="async">
             </div>
+
+            <span class="cmp-tag cmp-tag-l">Before</span>
+            <span class="cmp-tag cmp-tag-r">After</span>
+
+            <div class="gm-divider" id="gmHandle" role="slider" tabindex="0"
+                 aria-label="Before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <span class="gm-knob" aria-hidden="true">
+                <svg width="17" height="10" viewBox="0 0 17 10">
+                  <path d="M4.6 1 1 5l3.6 4M12.4 1 16 5l-3.6 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="cmp-bar">
+            <div class="seg cmp-seg" id="gmModes" role="tablist" aria-label="GrainMend mode">
+              <span class="seg-pill" aria-hidden="true"></span>
+              <button type="button" role="tab" data-mode="auto" aria-selected="true" data-i18n="gm.tab.auto">Auto</button>
+              <button type="button" role="tab" data-mode="guided-crop" aria-selected="false" data-i18n="gm.tab.guided_crop">Guided(Crop)</button>
+              <button type="button" role="tab" data-mode="brush" aria-selected="false" data-i18n="gm.tab.brush">Brush</button>
+            </div>
+            <p class="cmp-hint" id="gmHint" data-i18n="gm.hint.auto">negaflow warns you when false detections become likely.</p>
           </div>
         </div>
       </div>
@@ -284,6 +306,52 @@
     </div>
   </section>
 
+  <!-- ── print ─────────────────────────────────────────── -->
+  <section id="print" class="block">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="print.kicker">Print &amp; Export</p>
+      <h2 class="reveal" data-i18n="print.title">Print layouts and output</h2>
+      <p class="lede reveal" data-i18n="print.lede">What used to happen on paper in a darkroom happens on screen here. Set the paper, the margins and the layout, and the print file comes out looking like that.</p>
+
+      <!-- ── print layouts ──────────────────────────────── -->
+      <div class="cmp-stage pl-stage reveal">
+        <div class="cmp" id="plCompare">
+          <div class="cmp-frame pl-frame" id="plFrame">
+            <img class="cmp-img pl-img is-on" data-layout="contact" src="assets/shots/layouts/contact-sheet.webp" alt="" loading="lazy" decoding="async">
+            <img class="cmp-img pl-img" data-layout="single" src="assets/shots/layouts/single.webp" alt="" loading="lazy" decoding="async">
+            <img class="cmp-img pl-img" data-layout="cyanotype" src="assets/shots/layouts/cyanotype.webp" alt="" loading="lazy" decoding="async">
+            <img class="cmp-img pl-img" data-layout="glass" src="assets/shots/layouts/glass-plate.webp" alt="" loading="lazy" decoding="async">
+            <img class="cmp-img pl-img" data-layout="gelatin" src="assets/shots/layouts/gelatin.webp" alt="" loading="lazy" decoding="async">
+          </div>
+
+          <div class="cmp-bar">
+            <div class="seg cmp-seg" id="plLayouts" role="tablist" aria-label="Print layout">
+              <span class="seg-pill" aria-hidden="true"></span>
+              <button type="button" role="tab" data-layout="contact" aria-selected="true" data-i18n="print.layout.contact">Contact sheet</button>
+              <button type="button" role="tab" data-layout="single" aria-selected="false" data-i18n="print.layout.single">Single image</button>
+              <button type="button" role="tab" data-layout="cyanotype" aria-selected="false" data-i18n="print.layout.cyanotype">Cyanotype</button>
+              <button type="button" role="tab" data-layout="glass" aria-selected="false" data-i18n="print.layout.glass">Glass plate</button>
+              <button type="button" role="tab" data-layout="gelatin" aria-selected="false" data-i18n="print.layout.gelatin">Gelatin silver</button>
+            </div>
+            <p class="cmp-hint" id="plHint">Starts as a black sheet, 6 columns × 7 rows, 2 mm gaps.</p>
+          </div>
+        </div>
+      </div>
+      <p class="fine pl-note reveal" data-i18n="print.layouts.note">Cyanotype, glass plate and gelatin silver are made to look the part. They are not measured from real chemistry, plates or paper.</p>
+
+      <div class="gm-grid">
+        <article class="gm-card reveal">
+          <h3 data-i18n="print.f1.t">Printer ICC Profile Matching</h3>
+          <p data-i18n="print.f1.d">Supports sRGB, Display P3, Adobe RGB, and custom RGB printer ICC profiles.</p>
+        </article>
+        <article class="gm-card reveal">
+          <h3 data-i18n="print.f2.t">Non-destructive Print Layouts</h3>
+          <p data-i18n="print.f2.d">Borders are set the way you would set them in a darkroom, and the page renders to high-resolution 16-bit TIFF.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- ── color science ──────────────────────────────────── -->
   <section id="color-science" class="block">
     <div class="wrap">
@@ -310,11 +378,11 @@
         </article>
         <article class="tool reveal">
           <h3 data-i18n="cs.card5.t">48-bit RGB (16-bit per Channel) Precision</h3>
-          <p data-i18n="cs.card5.d">Supports full 48-bit RGB (16-bit R/G/B, 281 Trillion Colors) input and output, preventing posterization and banding during extreme tonal adjustments.</p>
+          <p data-i18n="cs.card5.d">Supports full 48-bit RGB (16-bit R/G/B, 281 trillion colors) input and output, which keeps posterization and banding down through heavy tonal adjustment.</p>
         </article>
         <article class="tool reveal">
           <h3 data-i18n="cs.card6.t">Lossless Archival Output</h3>
-          <p data-i18n="cs.card6.d">Pairs 48-bit I/O with 32-bit float linear processing, guaranteeing maximum archival quality for high-resolution print production.</p>
+          <p data-i18n="cs.card6.d">Pairs 48-bit I/O with 32-bit float linear processing, leaving headroom for film archiving and large prints.</p>
         </article>
       </div>
     </div>
@@ -332,8 +400,8 @@
           <p data-i18n="cap.cam.d">Imports RAW/TIFF files. Decouples backlight color temperature from unexposed base for even inversion.</p>
         </article>
         <article class="gm-card reveal">
-          <h3 data-i18n="cap.scn.t">Scanner Capture</h3>
-          <p data-i18n="cap.scn.d">Direct SANE scanner integration and 16-bit rendering via the out-of-process negaflow-scanner-sane plugin.</p>
+          <h3 data-i18n="cap.scn.t">Scanner</h3>
+          <p data-i18n="cap.scn.d">Connects to SANE scanners directly and renders at 16-bit through the out-of-process negaflow-scanner-sane plugin.</p>
         </article>
       </div>
     </div>
@@ -436,7 +504,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="pro.f4.t">Roll-Level Neutral Balance</h3>
-          <p data-i18n="pro.f4.d">Evaluates unexposed base and neutral axis statistics across an entire roll, ensuring uniform color and tone consistency for all frames.</p>
+          <p data-i18n="pro.f4.d">Evaluates unexposed base and neutral axis statistics across an entire roll to keep color and tone even across all frames.</p>
         </article>
       </div>
     </div>
@@ -455,7 +523,7 @@
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f11.t">SQLite FTS Fast Metadata Search</h3>
+          <h3 data-i18n="adv.f11.t">SQLite FTS Metadata Search</h3>
           <p data-i18n="adv.f11.d">Instantly search thousands of film frames by camera, lens, film stock, date, and user tags.</p>
         </article>
 
@@ -465,7 +533,7 @@
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f13.t">Atmospheric Haze Recovery</h3>
+          <h3 data-i18n="adv.f13.t">Atmospheric Haze Removal</h3>
           <p data-i18n="adv.f13.d">Selectively suppresses fog and haze on aged film negatives without destroying original sharpness or grain structure.</p>
         </article>
 
@@ -486,7 +554,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="adv.f20.t">Native macOS Theme Sync</h3>
-          <p data-i18n="adv.f20.d">Fully synchronizes with macOS Light and Dark modes while adhering strictly to native system accessibility standards.</p>
+          <p data-i18n="adv.f20.d">Follows the macOS Light and Dark modes and observes native system accessibility standards.</p>
         </article>
       </div>
     </div>
@@ -554,32 +622,12 @@
       <p class="kicker reveal" data-i18n="wf.kicker">Basic workflow</p>
       <ol class="steps">
         <li class="reveal" data-i18n="wf.1">Import image files or scan with an installed plugin.</li>
-        <li class="reveal" data-i18n="wf.2">Choose the film type and measure the film base.</li>
+        <li class="reveal" data-i18n="wf.2">Choose the development process and target.</li>
         <li class="reveal" data-i18n="wf.3">Adjust colour and tone in Chroma Engine.</li>
         <li class="reveal" data-i18n="wf.4">Apply GrainMend to photographs that need it.</li>
         <li class="reveal" data-i18n="wf.5">Check the result with Compare and the histogram, then print or export.</li>
         <li class="reveal" data-i18n="wf.note">Shortcuts, folder paths, presets, and adjustments can all be customised.</li>
       </ol>
-    </div>
-  </section>
-
-  <!-- ── print proofing ────────────────────────────────── -->
-  <section id="print-proofing" class="block">
-    <div class="wrap">
-      <p class="kicker reveal" data-i18n="print.kicker">Print & Export</p>
-      <h2 class="reveal" data-i18n="print.title">Master Rendering & Color Management</h2>
-      <p class="lede reveal" data-i18n="print.lede">Decouples preview rendering from final output for accurate color management.</p>
-
-      <div class="gm-grid">
-        <article class="gm-card reveal">
-          <h3 data-i18n="print.f1.t">Printer ICC Profile Matching</h3>
-          <p data-i18n="print.f1.d">Supports sRGB, Display P3, Adobe RGB, and custom RGB Printer ICC profiles.</p>
-        </article>
-        <article class="gm-card reveal">
-          <h3 data-i18n="print.f2.t">Non-destructive Print Layouts</h3>
-          <p data-i18n="print.f2.d">Darkroom-style border configurations and high-resolution 16-bit TIFF print rendering.</p>
-        </article>
-      </div>
     </div>
   </section>
 
@@ -678,7 +726,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="faq.q4">Are original image files modified during editing?</h3>
-          <p data-i18n="faq.a4">No. negaflow is 100% non-destructive. Original files and third-party sidecars are never modified; all edits are stored in an independent SQLite catalog.</p>
+          <p data-i18n="faq.a4">No. negaflow is non-destructive. Original files and third-party sidecars are never modified; all edits are stored in an independent SQLite catalog.</p>
         </article>
 
         <article class="faq-card reveal">
@@ -698,7 +746,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="faq.q8">Is negaflow a subscription or open-source software?</h3>
-          <p data-i18n="faq.a8">negaflow is open-source software under the Apache License 2.0. It is completely free to download and use with no monthly subscription fees.</p>
+          <p data-i18n="faq.a8">negaflow is open-source software under the Apache License 2.0. It is completely free to download and use with no monthly subscription fees. It is free. Free as in it costs nothing, and free as in you can read the source, change it and pass it on — just keep the licence and the notices, and say what you changed. The name is a separate matter — Apache 2.0 does not grant trademark rights.</p>
         </article>
 
         <article class="faq-card reveal">
@@ -736,7 +784,7 @@
   <img class="shot-lightbox-image" alt="">
 </div>
 
-<script src="assets/js/i18n.js"></script>
-<script src="assets/js/app.js"></script>
+<script src="assets/js/i18n.js?v=118"></script>
+<script src="assets/js/app.js?v=118"></script>
 </body>
 </html>

@@ -31,6 +31,7 @@
   --row-y:     clamp(18px, 1.6vw, 22px);
   --col-gap:   clamp(24px, 3.4vw, 44px);
 
+  --measure:     1;
   --ease:        cubic-bezier(.22, .61, .36, 1);
   --ease-spring: cubic-bezier(.32, .72, 0, 1);
 
@@ -39,6 +40,10 @@
           "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
   --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
 }
+
+html[data-lang="ko"],
+html[data-lang="ja"],
+html[data-lang="zh"] { --measure: 1.8; }
 
 [data-theme="dark"] {
   --ink:            #f4f4f6;
@@ -148,7 +153,13 @@ section { padding-block: var(--section-y); }
   margin-bottom: 16px;
 }
 
-.lede { font-size: clamp(16px, .7vw + 14.5px, 19px); color: var(--ink-2); max-width: 60ch; }
+/*
+ * Reading measures are written in `ch`, the width of "0". A CJK glyph is close
+ * to twice that, so a measure tuned for Latin cuts Korean, Japanese and Chinese
+ * lines roughly in half and wraps paragraphs that had room to spare.
+ * --measure widens those measures for CJK; Latin keeps its own value.
+ */
+.lede { font-size: clamp(16px, .7vw + 14.5px, 19px); color: var(--ink-2); max-width: calc(60ch * var(--measure)); }
 h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
 .fine { font-size: clamp(12.5px, .25vw + 12px, 13.5px); line-height: 1.62; color: var(--ink-3); }
 .sub  { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
@@ -396,7 +407,7 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
 
 .product-core { padding-bottom: var(--section-y); }
 .core-intro {
-  max-width: 72ch;
+  max-width: calc(72ch * var(--measure));
   margin-inline: auto;
   font-size: clamp(17px, .75vw + 14px, 20px);
   line-height: 1.7;
@@ -593,168 +604,228 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
   font-weight: 620;
 }
 
-/* ── GrainMend Interactive Compare Viewport (Single Frame) ──── */
-.gm-stage {
-  margin-top: clamp(28px, 4vw, 48px);
+/* ── image compare shell ────────────────────────────────── */
+/* shared by the Chroma Engine target picker and the GrainMend slider */
+
+.cmp-stage { margin-top: clamp(28px, 4vw, 48px); }
+
+.cmp {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: var(--shot-drop);
 }
 
-.gm-viewport {
+.cmp-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 2974 / 1992;
-  border-radius: 16px;
   overflow: hidden;
-  border: .5px solid var(--hairline);
-  background: #000;
+  -webkit-user-select: none;
   user-select: none;
-  touch-action: none;
-  box-shadow: var(--shot-drop);
-  transition: aspect-ratio .3s var(--ease);
 }
 
-.gm-view-layer {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.gm-view-layer img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.cmp-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
   display: block;
-}
-
-.gm-view-before {
-  z-index: 2;
-  clip-path: polygon(0 0, var(--slider-pos, 50%) 0, var(--slider-pos, 50%) 100%, 0 100%);
-  transition: clip-path 0.04s ease-out;
-}
-
-.gm-view-after {
-  z-index: 1;
-}
-
-/* Floating Overlay Badges (Top Left & Top Right) */
-.gm-overlay-badge {
-  position: absolute;
-  top: 16px;
-  z-index: 5;
+  object-fit: cover;
+  -webkit-user-drag: none;
   pointer-events: none;
-  padding: 6px 14px;
-  border-radius: 8px;
-  background: rgba(11, 11, 14, 0.70);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  backdrop-filter: blur(16px) saturate(180%);
-  border: .5px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: -.01em;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
-.gm-badge-left {
-  left: 16px;
-}
-
-.gm-badge-right {
-  right: 16px;
-}
-
-/* Center Vertical Divider Line & Handle Knob */
-.gm-split-line {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: var(--slider-pos, 50%);
-  z-index: 4;
-  width: 1px;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-  transform: translateX(-50%);
+/* corner label */
+.cmp-tag {
+  position: absolute; top: 13px; z-index: 4;
   pointer-events: none;
-  transition: left 0.04s ease-out;
-}
-
-.gm-split-thumb {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 4px;
-  height: 36px;
+  padding: 3px 9px;
   border-radius: 999px;
-  background: #ffffff;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
-}
-
-/* Range Input overlay for seamless dragging */
-.gm-split-input {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  z-index: 6;
-  cursor: ew-resize;
-  margin: 0;
-}
-
-/* Bottom Floating Pill Bar */
-.gm-floating-pills {
-  position: absolute;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 7;
-  pointer-events: auto;
-}
-
-.gm-pill-segmented {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px;
-  border-radius: 999px;
-  background: rgba(11, 11, 14, 0.76);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-}
-
-.gm-mode-pill {
-  padding: 7px 16px;
-  border: none;
-  border-radius: 999px;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.65);
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 550;
-  cursor: pointer;
+  background: rgba(12, 12, 14, .55);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  backdrop-filter: blur(18px) saturate(170%);
+  box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .2);
+  color: rgba(255, 255, 255, .92);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
   white-space: nowrap;
-  transition: all .25s var(--ease);
+  transition: opacity .3s var(--ease);
+}
+.cmp-tag-l { left: 13px; }
+.cmp-tag-r { right: 13px; }
+
+/* floating bar: segmented control over the image, caption underneath */
+.cmp-bar {
+  position: absolute; z-index: 6;
+  left: 50%; bottom: 16px;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 9px;
+  max-width: calc(100% - 24px);
 }
 
-.gm-mode-pill:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.12);
+.cmp-seg {
+  padding: 4px;
+  background: rgba(12, 12, 14, .58);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .18), 0 10px 30px rgba(0, 0, 0, .45);
+  max-width: 100%;
+  /* long localised labels scroll rather than overflow the frame */
+  overflow: auto hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+.cmp-seg::-webkit-scrollbar { display: none; }
+.cmp-seg button {
+  height: 30px;
+  padding: 0 14px;
+  color: rgba(255, 255, 255, .68);
+  font-size: 13px; font-weight: 550;
+}
+.cmp-seg button:hover { color: #fff; }
+.cmp-seg button[aria-selected="true"] { color: #14141a; }
+.cmp-seg .seg-pill {
+  top: 4px;
+  height: calc(100% - 8px);
+  background: rgba(255, 255, 255, .94);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
 }
 
-.gm-mode-pill.active {
-  background: rgba(255, 255, 255, 0.24);
-  color: #ffffff;
-  box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, 0.4);
+.cmp-hint {
+  margin: 0;
+  max-width: calc(46ch * var(--measure));
+  text-align: center;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, .74);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, .8);
+  transition: opacity .25s var(--ease);
+}
+.cmp-hint[hidden] { display: none; }
+
+@media (max-width: 640px) {
+  .cmp-seg button { padding: 0 10px; font-size: 12px; }
+  .cmp-hint { font-size: 10.5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cmp-seg .seg-pill { transition: none; }
 }
 
-.gm-pill-divider {
-  display: inline-block;
+/* ── chroma engine: development target picker ───────────── */
+/* five renders of one frame; only the colour treatment differs */
+
+.tg-frame { aspect-ratio: 2000 / 1336; }
+
+.tg-img {
+  opacity: 0;
+  transition: opacity .34s var(--ease);
+}
+.tg-img.is-on { opacity: 1; }
+
+.tg-code {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .04em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tg-img { transition: none; }
+}
+
+/* ── print: layout picker ───────────────────────────────── */
+/*
+ * The stills are Print-workspace captures, sheet plus rulers, all on the same
+ * #121212 backdrop. `contain` on that exact colour lets the contact sheet and
+ * the single-page layouts share one frame with no visible letterbox.
+ */
+
+.pl-frame {
+  aspect-ratio: 13 / 10;
+  background: #121212;
+}
+.pl-frame .cmp-img { object-fit: contain; }
+
+.pl-img {
+  opacity: 0;
+  transition: opacity .34s var(--ease);
+}
+.pl-img.is-on { opacity: 1; }
+
+.pl-note { margin-top: 14px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pl-img { transition: none; }
+}
+
+/* ── grainmend before / after slider ────────────────────── */
+/*
+ * Every mode shares one 2000x1339 viewport. The crop / brush stills are a
+ * 436x266 region of that frame, so switching modes zooms into (or out of)
+ * that region rather than cutting to an unrelated picture. The zoom itself
+ * runs from app.js (GM_ZOOM).
+ */
+
+.gm-frame {
+  aspect-ratio: 2000 / 1339;
+  cursor: ew-resize;
+  touch-action: pan-y;
+}
+
+.gm-zoom {
+  position: absolute; inset: 0;
+  transform-origin: 50% 50%;
+}
+
+.gm-after  { z-index: 1; }
+.gm-before {
+  z-index: 2;
+  clip-path: inset(0 calc(100% - var(--gm-pos, 50%)) 0 0);
+}
+
+/* vertical split line + drag knob */
+.gm-divider {
+  position: absolute; top: 0; bottom: 0;
+  left: var(--gm-pos, 50%);
+  z-index: 5;
   width: 1px;
-  height: 12px;
-  background: rgba(255, 255, 255, 0.18);
-  margin-inline: 2px;
+  margin-left: -.5px;
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 0 0 .5px rgba(0, 0, 0, .22), 0 0 14px rgba(0, 0, 0, .35);
+  cursor: ew-resize;
+  outline: none;
+  transition: opacity .3s var(--ease);
+}
+.gm-divider::before {
+  content: ""; position: absolute; top: 0; bottom: 0;
+  left: -14px; right: -14px;
+}
+
+.gm-knob {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .94);
+  color: #14141a;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .35), inset 0 0 0 .5px rgba(0, 0, 0, .08);
+  transition: transform .35s var(--ease-spring), background .25s var(--ease);
+}
+.gm-frame:hover .gm-knob { transform: translate(-50%, -50%) scale(1.06); }
+.cmp.is-dragging .gm-knob { transform: translate(-50%, -50%) scale(.94); }
+.gm-divider:focus-visible .gm-knob { box-shadow: 0 0 0 3px rgba(255, 255, 255, .55), 0 2px 10px rgba(0, 0, 0, .35); }
+
+.cmp.is-dragging { cursor: ew-resize; }
+
+/* the divider and labels are meaningless mid-gesture */
+.cmp.is-dragging .cmp-tag,
+.cmp.is-zooming .cmp-tag,
+.cmp.is-zooming .gm-divider { opacity: 0; }
+
+@media (max-width: 640px) {
+  .gm-knob { width: 32px; height: 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gm-knob { transition: none; }
 }
 
 .tools { margin-top: clamp(18px, 2.4vw, 26px); }
@@ -802,7 +873,7 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
   display: flex;
   align-items: baseline;
   gap: 12px;
-  max-width: 72ch;
+  max-width: calc(72ch * var(--measure));
   margin-top: 14px;
   color: var(--ink-3);
   font-size: 13px;
@@ -857,7 +928,7 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
 .view h3 { font-size: clamp(21px, 1.4vw + 16px, 28px); letter-spacing: -.026em; }
 .view-desc {
   margin-top: 10px;
-  max-width: 56ch;
+  max-width: calc(56ch * var(--measure));
   font-size: clamp(14.5px, .4vw + 13.5px, 16px);
   color: var(--ink-2);
 }
@@ -939,7 +1010,7 @@ body.lightbox-open {
 
 /* ── notes ──────────────────────────────────────────────── */
 
-.notes { margin-top: clamp(32px, 4vw, 46px); display: grid; gap: 13px; max-width: 60ch; }
+.notes { margin-top: clamp(32px, 4vw, 46px); display: grid; gap: 13px; max-width: calc(60ch * var(--measure)); }
 .notes p { font-size: clamp(14.5px, .4vw + 13.5px, 15.5px); color: var(--ink-2); }
 .notes b { font-weight: 600; color: var(--ink); }
 
@@ -955,7 +1026,7 @@ body.lightbox-open {
   border-top: .5px solid var(--hairline);
 }
 .ir h3 { margin-bottom: 10px; }
-.ir p { font-size: clamp(14.5px, .4vw + 13.5px, 15.5px); color: var(--ink-2); max-width: 60ch; }
+.ir p { font-size: clamp(14.5px, .4vw + 13.5px, 15.5px); color: var(--ink-2); max-width: calc(60ch * var(--measure)); }
 .ir .fine { margin-top: 12px; }
 
 /* ── scanner plugin ─────────────────────────────────────── */
@@ -986,7 +1057,7 @@ body.lightbox-open {
   gap: clamp(16px, 2vw, 22px);
 }
 .scanner-plugin-copy p {
-  max-width: 44ch;
+  max-width: calc(44ch * var(--measure));
   color: var(--ink-2);
   font-size: clamp(15px, .45vw + 14px, 17px);
 }
@@ -1075,7 +1146,7 @@ body.lightbox-open {
 /* ── scanner plugin ─────────────────────────────────────── */
 
 .plugin { padding-top: 0; }
-.plugin .wrap > * { max-width: 60ch; }
+.plugin .wrap > * { max-width: calc(60ch * var(--measure)); }
 .plugin-body {
   padding-top: clamp(22px, 2.6vw, 28px);
   border-top: .5px solid var(--hairline);
