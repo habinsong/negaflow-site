@@ -37,8 +37,6 @@
       if (meta) meta.content = dict['doc.desc'];
     }
 
-    var now = document.getElementById('langNow');
-    if (now) now.textContent = 'Language';
     document.querySelectorAll('#langMenu button').forEach(function (b) {
       b.setAttribute('aria-selected', String(b.dataset.lang === lang));
     });

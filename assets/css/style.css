@@ -306,7 +306,9 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
 }
 .lang-btn:hover { color: var(--ink); }
 .lang-btn svg { opacity: .55; transition: transform .35s var(--ease); }
-.lang-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+.lang-btn:hover svg { opacity: .8; }
+.lang-btn[aria-expanded="true"] .lang-caret { transform: rotate(180deg); }
+.lang-globe { stroke-linecap: round; stroke-linejoin: round; }
 
 .lang-menu {
   position: absolute; top: calc(100% + 8px); right: 0; z-index: 20;
@@ -1286,8 +1288,6 @@ body.lightbox-open {
     scrollbar-width: none;
     overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
-    /* fade the edge the items run past, so the scroll reads as a scroll */
-    mask-image: linear-gradient(90deg, #000 calc(100% - 22px), transparent);
   }
   .nav-links::-webkit-scrollbar { display: none; }
   .nav-links a { flex: 0 0 auto; }
@@ -1312,8 +1312,6 @@ body.lightbox-open {
 @media (max-width: 560px) {
   html { scroll-padding-top: 84px; }
   .brand span { display: none; }
-  .lang-btn { max-width: 108px; }
-  .lang-btn span { overflow: hidden; text-overflow: ellipsis; }
   .cta .btn { flex: 1 1 auto; min-width: 150px; }
   .hero-tagline { max-width: 29ch; }
   .steps li, .feature-grid li { grid-template-columns: 24px 1fr; }
