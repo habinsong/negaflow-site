@@ -273,13 +273,79 @@
     else seg.scrollLeft = left;
   }
 
+  /* ── the stills of a card, laid out as a strip ──────── */
+
+  /*
+   * The stills of a card sit side by side rather than stacked: --rel is how
+   * many frames a still is from the one on show, so moving on slides the whole
+   * strip and the next picture arrives joined to the last one.
+   *
+   * The strip is a loop, so on every move the stills at the far end have to
+   * come round to the other side. The strip slid `step` frames, so a still
+   * that did not simply shift by that much is one that came round: it is put
+   * in place with its transition off, out of sight, and nothing is seen flying
+   * across the picture.
+   */
+  function layoutStrip(frame, order, at, stillsOf, animate) {
+    var n = order.length;
+    var half = Math.floor(n / 2);
+    var from = frame.dataset.at === undefined || frame.dataset.at === ''
+      ? null
+      : parseFloat(frame.dataset.at);
+    var step = from === null ? null : ((at - from + half + n) % n) - half;
+    var moves = [];
+    var jumps = [];
+
+    order.forEach(function (id, i) {
+      var rel = ((i - at + half + n) % n) - half;
+      stillsOf(id).forEach(function (img) {
+        var was = img.dataset.rel === undefined || img.dataset.rel === ''
+          ? null
+          : parseFloat(img.dataset.rel);
+        moves.push([img, rel]);
+        if (!animate || step === null || was === null || rel !== was - step) jumps.push(img);
+        img.dataset.rel = rel;
+      });
+    });
+
+    frame.dataset.at = at;
+
+    jumps.forEach(function (img) { img.classList.add('is-jump'); });
+    moves.forEach(function (move) { move[0].style.setProperty('--rel', move[1]); });
+    /* one flush: the ones that jumped land here, the rest start easing here */
+    void frame.offsetWidth;
+    jumps.forEach(function (img) { img.classList.remove('is-jump'); });
+  }
+
+  /*
+   * Only the still on show sits inside the frame, so nothing would ask the
+   * browser for its neighbours until they slide in and it is too late. They
+   * are fetched once the card itself comes into view instead.
+   */
+  function warmStills(frame) {
+    var load = function () {
+      frame.querySelectorAll('.cmp-img[loading="lazy"]').forEach(function (img) {
+        img.loading = 'eager';
+      });
+    };
+
+    if (!('IntersectionObserver' in window)) { load(); return; }
+
+    var io = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      load();
+    }, { rootMargin: '300px' });
+    io.observe(frame);
+  }
+
   /* ── swipe between the stills of a card ─────────────── */
 
   /*
    * Drag or swipe the picture sideways to move through `order`, which wraps
    * at both ends. The gesture only takes over once it is clearly horizontal,
-   * so a vertical swipe still scrolls the page. The stills follow the pointer
-   * through --slide and spring back when the finger lifts.
+   * so a vertical swipe still scrolls the page. The strip follows the pointer
+   * one to one through --drag and springs back when the finger lifts.
    */
   function enableSwipe(frame, order, currentId, select) {
     if (!frame || order.length < 2) return;
@@ -291,7 +357,7 @@
     var axis = '';
 
     function slide(px) {
-      frame.style.setProperty('--slide', (reduce.matches ? 0 : px) + 'px');
+      frame.style.setProperty('--drag', (reduce.matches ? 0 : px) + 'px');
     }
 
     function release() {
@@ -325,8 +391,9 @@
       }
 
       moved = dx;
-      /* damped, so the card feels held rather than thrown */
-      slide(dx * 0.42);
+      /* the strip stays under the finger, so the next picture is already half
+       * in view before the finger lifts */
+      slide(dx);
       e.preventDefault();
     });
 
@@ -690,6 +757,11 @@
 
     var current = 'contact';
 
+    function place(animate) {
+      layoutStrip(frame, PRINT_LAYOUTS, PRINT_LAYOUTS.indexOf(current),
+        function (id) { return stills[id] ? [stills[id]] : []; }, animate);
+    }
+
     syncLayout = function () {
       var dict = I18N[doc.dataset.lang] || I18N.en;
       var copy = dict && dict['print.hint.' + current];
@@ -704,11 +776,8 @@
         b.setAttribute('aria-selected', String(b.dataset.layout === id));
       });
 
-      Object.keys(stills).forEach(function (key) {
-        stills[key].classList.toggle('is-on', key === id);
-      });
-
       current = id;
+      place(true);
       syncLayout();
       keepVisible(plSeg.querySelector('[data-layout="' + id + '"]'));
     }
@@ -730,14 +799,20 @@
 
     enableSwipe(frame, PRINT_LAYOUTS, function () { return current; }, select);
 
+    /* every still is on: the strip only shows the one the frame is over */
+    Object.keys(stills).forEach(function (key) { stills[key].classList.add('is-on'); });
+    place(false);
+    warmStills(frame);
     syncLayout();
   })();
 
   /* ── chroma engine: development target picker ───────── */
 
   /*
-   * Five renders of one frame. Only the development target differs, so the
-   * stills cross-fade in place instead of sliding or zooming.
+   * Five renders of one frame; only the development target differs. They sit
+   * in a strip and slide, so a target that is two along is seen going past.
+   * The auto-correction toggle is the one change that fades in place, since
+   * both of its stills are the same picture.
    */
   var TARGETS = [
     { id: 'main', i18n: 'target.main' },
@@ -746,6 +821,8 @@
     { id: 'f135', text: 'Pakon F-135 Plus' },
     { id: 'hr',   text: 'Kodak Professional HR 500 Plus' }
   ];
+
+  var TARGET_IDS = TARGETS.map(function (t) { return t.id; });
 
   var tgSeg = document.getElementById('tgTargets');
   var tgVarSeg = document.getElementById('tgVariants');
@@ -821,12 +898,21 @@
       layoutPill(tgVarSeg);
     };
 
+    /* the strip carries both variants of every target; the one that is not on
+       show is the one that fades, so only the chosen variant is ever lit */
     function show() {
       Object.keys(stills).forEach(function (t) {
         Object.keys(stills[t]).forEach(function (v) {
-          stills[t][v].classList.toggle('is-on', t === current && v === variant);
+          stills[t][v].classList.toggle('is-on', v === variant);
         });
       });
+    }
+
+    function place(animate) {
+      layoutStrip(frame, TARGET_IDS, TARGET_IDS.indexOf(current), function (id) {
+        var pair = stills[id];
+        return pair ? Object.keys(pair).map(function (v) { return pair[v]; }) : [];
+      }, animate);
     }
 
     function select(id) {
@@ -837,7 +923,7 @@
       });
 
       current = id;
-      show();
+      place(true);
       syncTarget();
       keepVisible(tgSeg.querySelector('[data-target="' + id + '"]'));
     }
@@ -897,9 +983,11 @@
       e.preventDefault();
     });
 
-    enableSwipe(frame, TARGETS.map(function (t) { return t.id; }),
-      function () { return current; }, select);
+    enableSwipe(frame, TARGET_IDS, function () { return current; }, select);
 
+    show();
+    place(false);
+    warmStills(frame);
     syncTarget();
   })();
 

@@ -747,10 +747,16 @@ body.menu-open { overflow: hidden; overscroll-behavior: none; }
 }
 
 /* drag or swipe the picture sideways to move between the stills */
-.tg-frame, .pl-frame { cursor: grab; touch-action: pan-y; }
+.tg-frame, .pl-frame {
+  /* the gap that shows between two stills while the strip is on the move */
+  --seam: 12px;
+  cursor: grab; touch-action: pan-y;
+}
 .tg-frame.is-swiping, .pl-frame.is-swiping { cursor: grabbing; }
 /* while a finger is down the stills track it instead of easing */
 .is-swiping .tg-img, .is-swiping .pl-img { transition: opacity .34s var(--ease); }
+/* the still that wraps round the strip is put in place, not walked there */
+.tg-img.is-jump, .pl-img.is-jump { transition: none; }
 
 .cmp-img {
   position: absolute; inset: 0;
@@ -843,8 +849,8 @@ body.menu-open { overflow: hidden; overscroll-behavior: none; }
 
 .tg-img {
   opacity: 0;
-  transform: translateX(var(--slide, 0px));
-  transition: opacity .34s var(--ease), transform .4s var(--ease-spring);
+  transform: translateX(calc(var(--rel, 0) * (100% + var(--seam)) + var(--drag, 0px)));
+  transition: opacity .34s var(--ease), transform .52s var(--ease-spring);
 }
 .tg-img.is-on { opacity: 1; }
 
@@ -881,8 +887,8 @@ body.menu-open { overflow: hidden; overscroll-behavior: none; }
 
 .pl-img {
   opacity: 0;
-  transform: translateX(var(--slide, 0px));
-  transition: opacity .34s var(--ease), transform .4s var(--ease-spring);
+  transform: translateX(calc(var(--rel, 0) * (100% + var(--seam)) + var(--drag, 0px)));
+  transition: opacity .34s var(--ease), transform .52s var(--ease-spring);
 }
 .pl-img.is-on { opacity: 1; }
 
