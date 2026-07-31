@@ -41,6 +41,17 @@
       b.setAttribute('aria-selected', String(b.dataset.lang === lang));
     });
 
+    /* The root page is one document that switches language in place, so the
+     * links that name a page have to follow it. A German visitor reading the
+     * root must land on the German page, not the English one. Generated pages
+     * are locked to their language and already point at the right place. */
+    if (!doc.dataset.langLocked) {
+      var dir = lang === 'en' ? '' : lang + '/';
+      document.querySelectorAll('a[data-path]').forEach(function (a) {
+        a.setAttribute('href', (dir + a.dataset.path) || './');
+      });
+    }
+
     document.querySelectorAll('.view').forEach(function (v) {
       var img = v.querySelector('.shot');
       var h = v.querySelector('h3');

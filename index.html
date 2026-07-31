@@ -176,7 +176,7 @@
 <link rel="icon" href="assets/favicon-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="assets/icon-180.png">
 <link rel="preload" as="image" href="assets/icon-512.webp">
-<link rel="stylesheet" href="assets/css/style.css?v=129">
+<link rel="stylesheet" href="assets/css/style.css?v=130">
 <script>
 /* set appearance + language before first paint */
 (function () {
@@ -206,19 +206,19 @@
 
 <header class="nav" id="nav">
   <div class="nav-inner glass">
-    <a class="brand" href="#top">
+    <a href="./" class="brand" data-path="">
       <img src="assets/icon-256.webp" width="24" height="24" alt="">
       <span>negaflow</span>
     </a>
 
     <nav class="nav-links" aria-label="Sections">
-      <a href="#chroma">Chroma Engine</a>
-      <a href="#grainmend">GrainMend</a>
-      <a href="#print" data-i18n="nav.print">Print & Export</a>
-      <a href="#color-science" data-i18n="nav.math">Color Science</a>
-      <a href="#profiles" data-i18n="nav.profiles">Dataset</a>
-      <a href="#faq" data-i18n="nav.faq">FAQ</a>
-      <a href="#download" data-i18n="nav.download">Download</a>
+      <a href="chroma-engine/" data-path="chroma-engine/">Chroma Engine</a>
+      <a href="grainmend/" data-path="grainmend/">GrainMend</a>
+      <a href="print-layouts/" data-path="print-layouts/" data-i18n="nav.print">Print & Export</a>
+      <a href="chroma-engine/#color-science" data-path="chroma-engine/#color-science" data-i18n="nav.math">Color Science</a>
+      <a href="film-profiles/" data-path="film-profiles/" data-i18n="nav.profiles">Dataset</a>
+      <a href="faq/" data-path="faq/" data-i18n="nav.faq">FAQ</a>
+      <a href="download/" data-path="download/" data-i18n="nav.download">Download</a>
     </nav>
 
     <div class="nav-tools">
@@ -319,7 +319,7 @@
       <p class="kicker reveal" data-i18n="chroma.kicker">Development engine</p>
       <h2 class="reveal">Chroma&nbsp;Engine</h2>
       <p class="lede reveal" data-i18n="chroma.lede"><b>Chroma Engine</b> is the film inversion and development engine in the <code>Chromabase</code> module.</p>
-      <p class="topic-more reveal"><a href="chroma-engine/" data-topic="chroma-engine" data-i18n="topic.more">Read more</a></p>
+      <p class="topic-more reveal"><a href="chroma-engine/" data-path="chroma-engine/" data-i18n="topic.more">Read more</a></p>
 
       <!-- ── one frame, five development targets ────────── -->
       <div class="cmp-stage reveal">
@@ -402,7 +402,7 @@
       <p class="kicker reveal" data-i18n="gm.kicker">Defect restoration</p>
       <h2 class="reveal">GrainMend</h2>
       <p class="lede reveal" data-i18n="gm.lede"><b>GrainMend RGB</b> is an independently developed software method that detects and restores dust, pinholes, scratches, and emulsion damage without an infrared channel.</p>
-      <p class="topic-more reveal"><a href="grainmend/" data-topic="grainmend" data-i18n="topic.more">Read more</a></p>
+      <p class="topic-more reveal"><a href="grainmend/" data-path="grainmend/" data-i18n="topic.more">Read more</a></p>
 
       <div class="gm-rgb-focus reveal">
         <div>
@@ -488,7 +488,7 @@
       <p class="kicker reveal" data-i18n="print.kicker">Print & Export</p>
       <h2 class="reveal" data-i18n="print.title">Print layouts and output</h2>
       <p class="lede reveal" data-i18n="print.lede">What used to happen on paper in a darkroom happens on screen here. Set the paper, the margins and the layout, and the print file comes out looking like that.</p>
-      <p class="topic-more reveal"><a href="print-layouts/" data-topic="print-layouts" data-i18n="topic.more">Read more</a></p>
+      <p class="topic-more reveal"><a href="print-layouts/" data-path="print-layouts/" data-i18n="topic.more">Read more</a></p>
 
       <!-- ── print layouts ──────────────────────────────── -->
       <div class="cmp-stage pl-stage reveal">
@@ -591,7 +591,7 @@
     <div class="wrap">
       <p class="kicker reveal" data-i18n="pr.kicker">Film profiles</p>
       <h2 class="reveal" data-i18n="pr.title">Film Stock Calibration Dataset</h2>
-      <p class="topic-more reveal"><a href="film-profiles/" data-topic="film-profiles" data-i18n="topic.more">Read more</a></p>
+      <p class="topic-more reveal"><a href="film-profiles/" data-path="film-profiles/" data-i18n="topic.more">Read more</a></p>
 
       <div class="stats">
         <div class="stat reveal">
@@ -618,7 +618,7 @@
     <div class="wrap">
       <p class="kicker reveal" data-i18n="cmp.kicker">Comparison</p>
       <h2 class="reveal" data-i18n="cmp.title">negaflow vs General Editors</h2>
-      <p class="topic-more reveal"><a href="comparison/" data-topic="comparison" data-i18n="topic.more">Read more</a></p>
+      <p class="topic-more reveal"><a href="comparison/" data-path="comparison/" data-i18n="topic.more">Read more</a></p>
 
       <div class="cmp-table-wrap reveal">
         <table class="cmp-table">
@@ -965,7 +965,7 @@
   <img class="shot-lightbox-image" alt="">
 </div>
 
-<script src="assets/js/i18n.js?v=129"></script>
-<script src="assets/js/app.js?v=129"></script>
+<script src="assets/js/i18n.js?v=130"></script>
+<script src="assets/js/app.js?v=130"></script>
 </body>
 </html>

@@ -469,4 +469,160 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://habinsong.github.io/negaflow-site/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://habinsong.github.io/negaflow-site/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://habinsong.github.io/negaflow-site/ko/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://habinsong.github.io/negaflow-site/ja/faq/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://habinsong.github.io/negaflow-site/zh/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://habinsong.github.io/negaflow-site/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://habinsong.github.io/negaflow-site/de/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://habinsong.github.io/negaflow-site/faq/"/>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://habinsong.github.io/negaflow-site/ko/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://habinsong.github.io/negaflow-site/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://habinsong.github.io/negaflow-site/ko/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://habinsong.github.io/negaflow-site/ja/faq/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://habinsong.github.io/negaflow-site/zh/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://habinsong.github.io/negaflow-site/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://habinsong.github.io/negaflow-site/de/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://habinsong.github.io/negaflow-site/faq/"/>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://habinsong.github.io/negaflow-site/ja/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://habinsong.github.io/negaflow-site/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://habinsong.github.io/negaflow-site/ko/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://habinsong.github.io/negaflow-site/ja/faq/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://habinsong.github.io/negaflow-site/zh/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://habinsong.github.io/negaflow-site/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://habinsong.github.io/negaflow-site/de/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://habinsong.github.io/negaflow-site/faq/"/>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://habinsong.github.io/negaflow-site/zh/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://habinsong.github.io/negaflow-site/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://habinsong.github.io/negaflow-site/ko/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://habinsong.github.io/negaflow-site/ja/faq/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://habinsong.github.io/negaflow-site/zh/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://habinsong.github.io/negaflow-site/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://habinsong.github.io/negaflow-site/de/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://habinsong.github.io/negaflow-site/faq/"/>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://habinsong.github.io/negaflow-site/fr/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://habinsong.github.io/negaflow-site/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://habinsong.github.io/negaflow-site/ko/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://habinsong.github.io/negaflow-site/ja/faq/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://habinsong.github.io/negaflow-site/zh/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://habinsong.github.io/negaflow-site/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://habinsong.github.io/negaflow-site/de/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://habinsong.github.io/negaflow-site/faq/"/>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://habinsong.github.io/negaflow-site/de/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://habinsong.github.io/negaflow-site/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://habinsong.github.io/negaflow-site/ko/faq/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://habinsong.github.io/negaflow-site/ja/faq/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://habinsong.github.io/negaflow-site/zh/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://habinsong.github.io/negaflow-site/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://habinsong.github.io/negaflow-site/de/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://habinsong.github.io/negaflow-site/faq/"/>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://habinsong.github.io/negaflow-site/download/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://habinsong.github.io/negaflow-site/download/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://habinsong.github.io/negaflow-site/ko/download/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://habinsong.github.io/negaflow-site/ja/download/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://habinsong.github.io/negaflow-site/zh/download/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://habinsong.github.io/negaflow-site/fr/download/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://habinsong.github.io/negaflow-site/de/download/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://habinsong.github.io/negaflow-site/download/"/>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://habinsong.github.io/negaflow-site/ko/download/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://habinsong.github.io/negaflow-site/download/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://habinsong.github.io/negaflow-site/ko/download/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://habinsong.github.io/negaflow-site/ja/download/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://habinsong.github.io/negaflow-site/zh/download/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://habinsong.github.io/negaflow-site/fr/download/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://habinsong.github.io/negaflow-site/de/download/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://habinsong.github.io/negaflow-site/download/"/>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://habinsong.github.io/negaflow-site/ja/download/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://habinsong.github.io/negaflow-site/download/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://habinsong.github.io/negaflow-site/ko/download/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://habinsong.github.io/negaflow-site/ja/download/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://habinsong.github.io/negaflow-site/zh/download/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://habinsong.github.io/negaflow-site/fr/download/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://habinsong.github.io/negaflow-site/de/download/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://habinsong.github.io/negaflow-site/download/"/>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://habinsong.github.io/negaflow-site/zh/download/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://habinsong.github.io/negaflow-site/download/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://habinsong.github.io/negaflow-site/ko/download/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://habinsong.github.io/negaflow-site/ja/download/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://habinsong.github.io/negaflow-site/zh/download/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://habinsong.github.io/negaflow-site/fr/download/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://habinsong.github.io/negaflow-site/de/download/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://habinsong.github.io/negaflow-site/download/"/>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://habinsong.github.io/negaflow-site/fr/download/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://habinsong.github.io/negaflow-site/download/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://habinsong.github.io/negaflow-site/ko/download/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://habinsong.github.io/negaflow-site/ja/download/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://habinsong.github.io/negaflow-site/zh/download/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://habinsong.github.io/negaflow-site/fr/download/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://habinsong.github.io/negaflow-site/de/download/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://habinsong.github.io/negaflow-site/download/"/>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://habinsong.github.io/negaflow-site/de/download/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://habinsong.github.io/negaflow-site/download/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://habinsong.github.io/negaflow-site/ko/download/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://habinsong.github.io/negaflow-site/ja/download/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://habinsong.github.io/negaflow-site/zh/download/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://habinsong.github.io/negaflow-site/fr/download/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://habinsong.github.io/negaflow-site/de/download/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://habinsong.github.io/negaflow-site/download/"/>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

@@ -76,6 +76,18 @@ const TOPICS = [
     heading: { key: 'cmp.title' },
     desc: { key: 'doc.desc' },
     sections: ['comparison', 'capture-methods']
+  },
+  {
+    slug: 'faq',
+    heading: { key: 'faq.title' },
+    desc: { key: 'faq.a1' },
+    sections: ['faq']
+  },
+  {
+    slug: 'download',
+    heading: { key: 'dl.title' },
+    desc: { key: 'dl.body' },
+    sections: ['download']
   }
 ];
 
@@ -387,12 +399,15 @@ function buildPage(lang, template, dict, version, topic) {
       return `${open} data-href="${prefix + path || './'}"`;
     });
 
-  /* a section on the overview page links to the page of its own */
-  html = html.replace(/<a([^>]*\bdata-topic="[a-z-]+"[^>]*)>/g, (_, attrs) => {
-    const clean = attrs.replace(/\s+href="[^"]*"/g, '');
-    const target = /data-topic="([a-z-]+)"/.exec(clean)[1];
-    const dir = lang === DEFAULT_LANG ? '' : lang + '/';
-    return `<a href="${prefix}${dir}${target}/"${clean}>`;
+  /* Every link that names a page carries data-path, written relative to the
+   * site root. That one attribute resolves here for the generated pages and
+   * again in app.js when the root page switches language. */
+  const dir = lang === DEFAULT_LANG ? '' : lang + '/';
+  html = html.replace(/<a([^>]*\bdata-path="([^"]*)"[^>]*)>/g, (_, attrs, path) => {
+    const clean = attrs.replace(/\s+href="[^"]*"/g, '').replace(/\s+aria-current="[^"]*"/g, '');
+    const href = prefix + dir + path || './';
+    const here = slug && path === `${slug}/` ? ' aria-current="page"' : '';
+    return `<a href="${href}"${clean}${here}>`;
   });
 
   /* The root page keeps detecting the browser language, so a first-time
@@ -414,21 +429,7 @@ function buildPage(lang, template, dict, version, topic) {
   }
 
   if (topic) {
-    /* The overview scrolls, so its bar keeps plain anchors. A topic page has
-     * no sections to scroll to, so there the same bar navigates between the
-     * topic pages and marks the one you are already reading. */
-    html = html.replace(/<nav class="nav-links"[\s\S]*?<\/nav>/, (bar) =>
-      bar.replace(/<a href="#([\w-]+)"/g, (whole, id) => {
-        const owner = TOPICS.find((t) => t.sections.includes(id));
-        if (!owner) return `<a href="${home || './'}#${id}"`;
-        const dir = lang === DEFAULT_LANG ? '' : lang + '/';
-        const hash = id === owner.sections[0] ? '' : `#${id}`;
-        /* only the item that names the page, not a section further down it */
-        const current = owner.slug === topic.slug && !hash ? ' aria-current="page"' : '';
-        return `<a href="${prefix}${dir}${owner.slug}/${hash}"${current}`;
-      }));
-
-    /* every other in-page anchor still belongs to the overview */
+    /* any in-page anchor left over belongs to the overview */
     html = html.replace(/href="#(?!main\b)([\w-]+)"/g, `href="${home || './'}#$1"`);
     /* and a section does not link to the page it is already on */
     html = html.replace(/[ \t]*<p class="topic-more[^>]*>[\s\S]*?<\/p>\n?/g, '');
