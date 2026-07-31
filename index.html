@@ -681,39 +681,39 @@
   <section id="camera-scanning" class="block">
     <div class="wrap">
       <p class="kicker reveal" data-i18n="cam.kicker">Guide</p>
-      <h2 class="reveal" data-i18n="cam.title">How to scan film with a digital camera</h2>
-      <p class="lede reveal" data-i18n="cam.lede">Copying a negative with a digital camera is faster than a flatbed scanner and, with a decent macro lens, it resolves more. What the camera gives you is a raw file of an orange negative — this is how to shoot it so that it develops cleanly.</p>
+      <h2 class="reveal" data-i18n="cam.title">Scanning film with a digital camera</h2>
+      <p class="lede reveal" data-i18n="cam.lede">Faster than a flatbed and, with a decent macro lens, sharper. The rig, the alignment, the capture settings, and where the raw files go next.</p>
       <p class="topic-more reveal"><a href="camera-scanning/" data-path="camera-scanning/" data-i18n="topic.more">Read more</a></p>
 
       <div class="faq-grid">
         <article class="faq-card reveal">
-          <h3 data-i18n="cam.s1.t">What you need</h3>
-          <p data-i18n="cam.s1.d">A camera that shoots raw, a macro lens at 1:1, a copy stand or tripod that holds the sensor parallel to the film, a film holder, and a light source with a high CRI.</p>
+          <h3 data-i18n="cam.s1.t">The rig</h3>
+          <p data-i18n="cam.s1.d">A camera that shoots raw, a macro lens that reaches 1:1, a film holder, a light pad, and a copy stand or tripod to hold the camera above it. Getting to 1:1 with extension tubes or bellows costs you flat field, and the corners go soft.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="cam.s2.t">Light the film evenly</h3>
-          <p data-i18n="cam.s2.d">Use one light with a CRI of 95 or higher and nothing else in the room. Mixed light sources put a colour cast across the frame that no inversion can undo cleanly.</p>
+          <h3 data-i18n="cam.s2.t">Light</h3>
+          <p data-i18n="cam.s2.d">Diffused, CRI 95 or higher, 5000–5500K. Below that the colour will not come back after inversion, and no amount of grading fixes it. Lift the film a few millimetres off the pad so surface dust and the LED grid fall out of the focal plane. If the pad flickers, stay slower than 1/60s.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="cam.s3.t">Get the film flat and square</h3>
-          <p data-i18n="cam.s3.d">A holder keeps the negative flat; a levelled copy stand keeps it parallel to the sensor. Curl and tilt show up as soft corners that sharpening cannot recover.</p>
+          <h3 data-i18n="cam.s3.t">Alignment</h3>
+          <p data-i18n="cam.s3.d">The sensor plane has to be parallel to the film, or only part of the frame is in focus. The reliable way: put a small mirror on the light pad and adjust the camera until the reflection of the lens sits dead centre in live view. A spirit level only tells you anything if the tripod column is truly vertical.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="cam.s4.t">Expose to keep the highlights</h3>
-          <p data-i18n="cam.s4.d">Shoot raw at base ISO and expose so the brightest part of the negative — the film base — stays below clipping. The base is the measurement everything else is built on.</p>
+          <h3 data-i18n="cam.s4.t">Flatness</h3>
+          <p data-i18n="cam.s4.d">Curled film loses the edges. Hold it in a film holder, or between anti-Newton glass. Plain glass gives you Newton rings.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="cam.s5.t">Include the unexposed rebate</h3>
-          <p data-i18n="cam.s5.d">Leave a sliver of unexposed film in the frame, or shoot one frame of bare film per roll. negaflow measures the orange mask from it and applies the same base across the roll.</p>
+          <h3 data-i18n="cam.s5.t">Capture settings</h3>
+          <p data-i18n="cam.s5.d">Base ISO, f/5.6–f/8, manual focus with live view magnified. Stopping down further costs sharpness to diffraction. Use a remote release or the 2-second timer, and the electronic shutter on mirrorless. Shoot raw and keep the right end of the histogram off the wall — that end is the film base.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="cam.s6.t">Develop the raw files</h3>
-          <p data-i18n="cam.s6.d">Import the raw files into negaflow. The film base is measured automatically, the negative is inverted in 32-bit float linear, and a development target gives it the look of a lab scanner.</p>
+          <h3 data-i18n="cam.s6.t">Developing</h3>
+          <p data-i18n="cam.s6.d">Open the raw files in negaflow and the film base is found for you: it groups connected regions in the brightness distribution and drops sprocket holes, the holder and bare backlight. If the result is off, sample unexposed film with the eyedropper or type the RGB in.</p>
         </article>
       </div>
     </div>
@@ -724,38 +724,38 @@
     <div class="wrap">
       <p class="kicker reveal" data-i18n="inv.kicker">Guide</p>
       <h2 class="reveal" data-i18n="inv.title">How to invert a film negative</h2>
-      <p class="lede reveal" data-i18n="inv.lede">Inverting a colour negative is not one step. The orange mask has to be measured and divided out, the result has to be inverted in linear light, and only then does a tone curve turn density into a picture. Doing it with a curves layer is where the muddy colour comes from.</p>
+      <p class="lede reveal" data-i18n="inv.lede">There is a reason the colour goes muddy when you flip a curve. Three separate things have to happen: the orange mask is divided out, the inversion runs in linear light, and a print curve goes on top.</p>
       <p class="topic-more reveal"><a href="how-to-invert-film-negatives/" data-path="how-to-invert-film-negatives/" data-i18n="topic.more">Read more</a></p>
 
       <div class="faq-grid">
         <article class="faq-card reveal">
-          <h3 data-i18n="inv.s1.t">1. Measure the film base</h3>
-          <p data-i18n="inv.s1.d">The orange mask is a filter over the whole frame. Measure it on unexposed film, not on a corner of the picture, or the mask carries the picture's own colour into every frame.</p>
+          <h3 data-i18n="inv.s1.t">1. Measure the film base (Dmin)</h3>
+          <p data-i18n="inv.s1.d">The orange mask is a filter over the whole frame. Measure it on unexposed film rather than inside the picture, or that frame's own colour ends up in the mask. negaflow finds it by grouping connected regions in the brightness distribution; the eyedropper and direct RGB entry are there too.</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="inv.s2.t">2. Divide, do not subtract</h3>
-          <p data-i18n="inv.s2.d">The mask is a transmission, so it comes out by division in linear light — <code>D = log₁₀(Dmin/T)</code>. Subtracting it in a gamma-encoded space is what leaves the colour crossed.</p>
+          <p data-i18n="inv.s2.d">The mask is a transmission, so it divides out in linear light. <code>D = log₁₀(Dmin/T)</code>. Subtract it from a gamma-encoded 8-bit image instead and the channels come apart — that is the crossed colour everyone knows.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="inv.s3.t">3. Invert in 32-bit float linear</h3>
-          <p data-i18n="inv.s3.d">Inversion at 8-bit, after gamma, throws away the shadow detail film holds best. negaflow does the whole calculation in 32-bit floating point before any gamma is applied.</p>
+          <h3 data-i18n="inv.s3.t">3. Invert in linear</h3>
+          <p data-i18n="inv.s3.d">Invert after gamma and the shadows are the first thing to block up. negaflow finishes the inversion and the tone work in 32-bit float linear, then hands off to the output colour space.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="inv.s4.t">4. Apply a print response curve</h3>
-          <p data-i18n="inv.s4.d">A negative has no black point of its own — photographic paper gave it one. A print curve anchored on black, 18% grey and white is what makes the result read as a photograph.</p>
+          <h3 data-i18n="inv.s4.t">4. Print response curve</h3>
+          <p data-i18n="inv.s4.d">A negative has no black and no white of its own. Photographic paper decided those. A curve anchored on black, 18% grey and white is what makes the result read as a photograph.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="inv.s5.t">5. Keep the roll consistent</h3>
-          <p data-i18n="inv.s5.d">One base measurement belongs to one roll under one light. Carry it across every frame instead of balancing each picture on its own, and the roll stays even.</p>
+          <h3 data-i18n="inv.s5.t">5. Keep the roll together</h3>
+          <p data-i18n="inv.s5.d">One base measurement covers a roll shot under one light. Set it per frame and the tone wanders across the roll. Carry one value through all of them and correct exposure frame by frame.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="inv.s6.t">6. Choose a look, then export</h3>
-          <p data-i18n="inv.s6.d">Seven development targets stand in for lab scanners such as the Frontier and the Noritsu. Export to 16-bit TIFF for editing, or JPEG with the roll's EXIF written in.</p>
+          <h3 data-i18n="inv.s6.t">6. Pick a look, then export</h3>
+          <p data-i18n="inv.s6.d">The development targets stand in for lab scans from a Frontier or a Noritsu. 16-bit TIFF if you are carrying on editing, JPEG with the roll's EXIF written in if you are not.</p>
         </article>
       </div>
     </div>
