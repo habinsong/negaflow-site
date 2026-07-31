@@ -68,7 +68,7 @@
   /* ── screenshots ────────────────────────────────────── */
 
   function shotPath(view) {
-    return 'assets/shots/' + view + '-' + doc.dataset.lang + '-' + doc.dataset.theme + '.webp';
+    return 'assets/shots/ui/' + view + '/' + doc.dataset.lang + '-' + doc.dataset.theme + '.webp';
   }
 
   function setShot(img, view) {
@@ -461,34 +461,86 @@
   ];
 
   var tgSeg = document.getElementById('tgTargets');
+  var tgVarSeg = document.getElementById('tgVariants');
+  var tgRow = tgVarSeg && tgVarSeg.parentNode;
   var syncTarget = null;
+
+  /*
+   * The target picker and the auto-correction control share one line. Label
+   * widths change with the language, so the fit is measured rather than
+   * guessed: when the pair overflows, the row collapses the second control to
+   * its "Auto" button alone and that button becomes a plain on/off toggle.
+   */
+  function fitTargetRow() {
+    if (!tgRow || !tgSeg || !tgVarSeg) return;
+
+    tgRow.classList.remove('is-compact');
+    var gap = parseFloat(getComputedStyle(tgRow).columnGap) || 0;
+    /* the row is shrink-to-fit, so the space it has to live in is the bar's */
+    var room = tgRow.parentNode.clientWidth;
+    if (tgSeg.scrollWidth + tgVarSeg.scrollWidth + gap > room) {
+      tgRow.classList.add('is-compact');
+    }
+  }
+
+  function tgCompact() {
+    return !!tgRow && tgRow.classList.contains('is-compact');
+  }
 
   (function initTargets() {
     var frame = document.getElementById('tgFrame');
     var code = document.getElementById('tgCode');
     var hint = document.getElementById('tgHint');
+    var variantTag = document.getElementById('tgVariantTag');
     if (!frame || !tgSeg) return;
 
+    /* two renders per target: the untouched inversion and the same frame with
+       auto colour, levels and tone applied. stills[target][variant] */
     var stills = {};
     frame.querySelectorAll('.tg-img').forEach(function (img) {
-      stills[img.dataset.target] = img;
+      var t = img.dataset.target;
+      (stills[t] || (stills[t] = {}))[img.dataset.variant] = img;
     });
 
     var current = 'main';
+    var variant = 'auto';
+
+    function dict() {
+      return I18N[doc.dataset.lang] || I18N.en || {};
+    }
 
     function label(id) {
       var t = TARGETS.filter(function (x) { return x.id === id; })[0];
       if (!t) return '';
       if (!t.i18n) return t.text;
-      var dict = I18N[doc.dataset.lang] || I18N.en;
-      return (dict && dict[t.i18n]) || t.text || '';
+      return dict()[t.i18n] || t.text || '';
     }
 
     syncTarget = function () {
+      var d = dict();
+      var key = variant === 'auto' ? 'chroma.variant.auto' : 'chroma.variant.original';
+
       if (code) code.textContent = current.toUpperCase();
-      if (hint) hint.innerHTML = label(current);
+      if (variantTag) {
+        variantTag.dataset.i18n = key;
+        variantTag.textContent = d[key] || (variant === 'auto' ? 'Auto-corrected' : 'Original');
+      }
+      if (hint) {
+        var note = variant === 'auto' ? d['chroma.variant.note'] : '';
+        hint.innerHTML = label(current) + (note ? ' · ' + note : '');
+      }
+      fitTargetRow();
       layoutPill(tgSeg);
+      layoutPill(tgVarSeg);
     };
+
+    function show() {
+      Object.keys(stills).forEach(function (t) {
+        Object.keys(stills[t]).forEach(function (v) {
+          stills[t][v].classList.toggle('is-on', t === current && v === variant);
+        });
+      });
+    }
 
     function select(id) {
       if (!stills[id]) return;
@@ -497,13 +549,49 @@
         b.setAttribute('aria-selected', String(b.dataset.target === id));
       });
 
-      Object.keys(stills).forEach(function (key) {
-        stills[key].classList.toggle('is-on', key === id);
-      });
-
       current = id;
+      show();
       syncTarget();
       keepVisible(tgSeg.querySelector('[data-target="' + id + '"]'));
+    }
+
+    function selectVariant(v) {
+      if (!tgVarSeg || (v !== 'orig' && v !== 'auto')) return;
+
+      tgVarSeg.querySelectorAll('button').forEach(function (b) {
+        b.setAttribute('aria-selected', String(b.dataset.variant === v));
+      });
+
+      variant = v;
+      show();
+      syncTarget();
+    }
+
+    if (tgVarSeg) {
+      tgVarSeg.addEventListener('click', function (e) {
+        var b = e.target.closest('button');
+        if (!b || !b.dataset.variant) return;
+
+        /* collapsed to a single button: pressing it flips the state */
+        if (tgCompact() && b.dataset.variant === variant) {
+          selectVariant(variant === 'auto' ? 'orig' : 'auto');
+          return;
+        }
+        selectVariant(b.dataset.variant);
+      });
+
+      tgVarSeg.addEventListener('keydown', function (e) {
+        if (tgCompact() && (e.key === ' ' || e.key === 'Enter')) return; /* the click handler toggles */
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+        var buttons = Array.prototype.slice.call(tgVarSeg.querySelectorAll('button'))
+          .filter(function (b) { return b.offsetParent !== null; });
+        var i = buttons.indexOf(document.activeElement);
+        if (i < 0) return;
+        var to = buttons[(i + (e.key === 'ArrowRight' ? 1 : buttons.length - 1)) % buttons.length];
+        to.focus();
+        selectVariant(to.dataset.variant);
+        e.preventDefault();
+      });
     }
 
     tgSeg.addEventListener('click', function (e) {
@@ -747,7 +835,9 @@
   var relayout = function () {
     layoutPill(schemeSeg);
     layoutPill(gmSeg);
+    fitTargetRow();
     layoutPill(tgSeg);
+    layoutPill(tgVarSeg);
     layoutPill(plSeg);
   };
   addEventListener('resize', relayout);

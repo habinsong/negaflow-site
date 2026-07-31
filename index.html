@@ -27,7 +27,7 @@
 <link rel="icon" href="assets/favicon-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="assets/icon-180.png">
 <link rel="preload" as="image" href="assets/icon-512.webp">
-<link rel="stylesheet" href="assets/css/style.css?v=120">
+<link rel="stylesheet" href="assets/css/style.css?v=122">
 <script>
 /* set appearance + language before first paint */
 (function () {
@@ -124,7 +124,7 @@
   <script>
     (function () {
       var d = document.documentElement.dataset;
-      document.getElementById('heroShot').src = 'assets/shots/develop-' + d.lang + '-' + d.theme + '.webp';
+      document.getElementById('heroShot').src = 'assets/shots/ui/develop/' + d.lang + '-' + d.theme + '.webp';
     })();
   </script>
 
@@ -169,24 +169,38 @@
         <div class="cmp-card glass">
           <div class="cmp" id="tgCompare">
             <div class="cmp-frame tg-frame" id="tgFrame">
-              <img class="cmp-img tg-img is-on" data-target="main" src="assets/shots/targets/main.webp" alt="" decoding="async">
-              <img class="cmp-img tg-img" data-target="hs"   src="assets/shots/targets/hs.webp"   alt="" loading="lazy" decoding="async">
-              <img class="cmp-img tg-img" data-target="sp"   src="assets/shots/targets/sp.webp"   alt="" loading="lazy" decoding="async">
-              <img class="cmp-img tg-img" data-target="f135" src="assets/shots/targets/f135.webp" alt="" loading="lazy" decoding="async">
-              <img class="cmp-img tg-img" data-target="hr"   src="assets/shots/targets/hr.webp"   alt="" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img is-on" data-target="main" data-variant="auto" src="assets/shots/targets/auto/main.webp" alt="" decoding="async">
+              <img class="cmp-img tg-img" data-target="hs"   data-variant="auto" src="assets/shots/targets/auto/hs.webp"   alt="" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img" data-target="sp"   data-variant="auto" src="assets/shots/targets/auto/sp.webp"   alt="" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img" data-target="f135" data-variant="auto" src="assets/shots/targets/auto/f135.webp" alt="" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img" data-target="hr"   data-variant="auto" src="assets/shots/targets/auto/hr.webp"   alt="" loading="lazy" decoding="async">
+
+              <img class="cmp-img tg-img" data-target="main" data-variant="orig" src="assets/shots/targets/main.webp" alt="" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img" data-target="hs"   data-variant="orig" src="assets/shots/targets/hs.webp"   alt="" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img" data-target="sp"   data-variant="orig" src="assets/shots/targets/sp.webp"   alt="" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img" data-target="f135" data-variant="orig" src="assets/shots/targets/f135.webp" alt="" loading="lazy" decoding="async">
+              <img class="cmp-img tg-img" data-target="hr"   data-variant="orig" src="assets/shots/targets/hr.webp"   alt="" loading="lazy" decoding="async">
 
               <span class="cmp-tag cmp-tag-l tg-code" id="tgCode">MAIN</span>
+              <span class="cmp-tag cmp-tag-r tg-variant" id="tgVariantTag" data-i18n="chroma.variant.auto">Auto-corrected</span>
             </div>
           </div>
 
           <div class="cmp-bar">
-            <div class="seg cmp-seg" id="tgTargets" role="tablist" aria-label="Development target">
-              <span class="seg-pill" aria-hidden="true"></span>
-              <button type="button" role="tab" data-target="main" aria-selected="true">MAIN</button>
-              <button type="button" role="tab" data-target="hs"   aria-selected="false">HS</button>
-              <button type="button" role="tab" data-target="sp"   aria-selected="false">SP</button>
-              <button type="button" role="tab" data-target="f135" aria-selected="false">F135</button>
-              <button type="button" role="tab" data-target="hr"   aria-selected="false">HR</button>
+            <div class="cmp-bar-row">
+              <div class="seg cmp-seg" id="tgTargets" role="tablist" aria-label="Development target">
+                <span class="seg-pill" aria-hidden="true"></span>
+                <button type="button" role="tab" data-target="main" aria-selected="true">MAIN</button>
+                <button type="button" role="tab" data-target="hs"   aria-selected="false">HS</button>
+                <button type="button" role="tab" data-target="sp"   aria-selected="false">SP</button>
+                <button type="button" role="tab" data-target="f135" aria-selected="false">F135</button>
+                <button type="button" role="tab" data-target="hr"   aria-selected="false">HR</button>
+              </div>
+              <div class="seg cmp-seg tg-variant-seg" id="tgVariants" role="tablist" aria-label="Auto correction">
+                <span class="seg-pill" aria-hidden="true"></span>
+                <button type="button" role="tab" data-variant="orig" aria-selected="false" data-i18n="chroma.variant.original">Original</button>
+                <button type="button" role="tab" data-variant="auto" aria-selected="true" data-i18n="chroma.variant.auto">Auto-corrected</button>
+              </div>
             </div>
             <p class="cmp-hint" id="tgHint">Standard development</p>
           </div>
@@ -790,7 +804,7 @@
   <img class="shot-lightbox-image" alt="">
 </div>
 
-<script src="assets/js/i18n.js?v=120"></script>
-<script src="assets/js/app.js?v=120"></script>
+<script src="assets/js/i18n.js?v=122"></script>
+<script src="assets/js/app.js?v=122"></script>
 </body>
 </html>

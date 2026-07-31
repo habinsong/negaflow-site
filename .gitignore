@@ -19,6 +19,9 @@
 # Add a line here whenever a new source folder shows up.
 assets/shots/C-41:ECN-2_target/
 assets/shots/print/
+# assets/shots/targets/auto/ holds both: the PNG exports of the auto-corrected
+# targets stay out, the WebP converted from them ship.
+assets/shots/targets/auto/*.png
 *.psd
 *.tif
 *.tiff

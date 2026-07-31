@@ -679,6 +679,16 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
   margin-top: clamp(14px, 1.6vw, 18px);
 }
 
+/* Two segmented controls, always on one line. When the pair no longer fits,
+   .is-compact drops the "Original" tab and the remaining one reads as a
+   pressed / unpressed toggle. Narrower still, the left control scrolls. */
+.cmp-bar-row {
+  display: flex; flex-wrap: nowrap; align-items: center; justify-content: center;
+  gap: 10px;
+  max-width: 100%;
+}
+.cmp-bar-row > .cmp-seg { min-width: 0; }
+
 .cmp-seg {
   padding: 4px;
   max-width: 100%;
@@ -690,6 +700,7 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
 }
 .cmp-seg::-webkit-scrollbar { display: none; }
 .cmp-seg button {
+  flex: none; /* a squeezed control scrolls; it never compresses its labels */
   height: 30px;
   padding: 0 14px;
   font-size: 13px; font-weight: 550;
@@ -732,6 +743,15 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
   font-variant-numeric: tabular-nums;
   letter-spacing: .04em;
 }
+
+/* the auto-correction toggle is secondary to the target picker */
+.tg-variant-seg { flex: none; }
+.tg-variant { text-transform: none; letter-spacing: .02em; }
+
+/* collapsed to one button: the pill is the "on" state, so it has to reach the
+   button's own edges rather than the 4px inset the multi-tab controls use */
+.is-compact .tg-variant-seg [data-variant="orig"] { display: none; }
+.is-compact .tg-variant-seg .seg-pill { transition: transform .35s var(--ease), width .35s var(--ease); }
 
 @media (prefers-reduced-motion: reduce) {
   .tg-img { transition: none; }
