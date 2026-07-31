@@ -373,6 +373,84 @@
     });
   }
 
+  /* ── GrainMend Interactive Compare Slider ─────────────── */
+
+  (function initGrainMendSlider() {
+    var section = doc.getElementById('gm-slider-section');
+    if (!section) return;
+
+    var frame = doc.getElementById('gm-compare-frame');
+    var rangeInput = doc.getElementById('gm-range-control');
+    var imgBefore = doc.getElementById('gm-img-before');
+    var imgAfter = doc.getElementById('gm-img-after');
+    var labelBefore = doc.getElementById('gm-label-before');
+    var labelAfter = doc.getElementById('gm-label-after');
+    var pills = section.querySelectorAll('.gm-pill');
+
+    var MODES = {
+      'auto': {
+        before: 'assets/shots/GrainMend/자동/원본.webp',
+        after: 'assets/shots/GrainMend/자동/검출.webp',
+        keyBefore: 'gm.label.auto_before',
+        keyAfter: 'gm.label.auto_after',
+        aspect: '2974 / 1992'
+      },
+      'guided-full': {
+        before: 'assets/shots/GrainMend/가이드/가이드_전체_ROI.webp',
+        after: 'assets/shots/GrainMend/가이드/가이드_전체_탐지.webp',
+        keyBefore: 'gm.label.gfull_before',
+        keyAfter: 'gm.label.gfull_after',
+        aspect: '2974 / 1992'
+      },
+      'guided-crop': {
+        before: 'assets/shots/GrainMend/가이드/가이드_크롭_ROI.webp',
+        after: 'assets/shots/GrainMend/가이드/가이드_크롭_탐지.webp',
+        keyBefore: 'gm.label.gcrop_before',
+        keyAfter: 'gm.label.gcrop_after',
+        aspect: '650 / 396'
+      },
+      'brush': {
+        before: 'assets/shots/GrainMend/브러시/브러시_크롭_검출영역.webp',
+        after: 'assets/shots/GrainMend/브러시/브러시_크롭_제거완료.webp',
+        keyBefore: 'gm.label.brush_before',
+        keyAfter: 'gm.label.brush_after',
+        aspect: '650 / 396'
+      }
+    };
+
+    if (rangeInput && frame) {
+      var syncSlider = function () {
+        frame.style.setProperty('--slider-pos', rangeInput.value + '%');
+      };
+      rangeInput.addEventListener('input', syncSlider);
+      rangeInput.addEventListener('change', syncSlider);
+      syncSlider();
+    }
+
+    pills.forEach(function (pill) {
+      pill.addEventListener('click', function () {
+        var modeKey = pill.getAttribute('data-mode');
+        var data = MODES[modeKey];
+        if (!data) return;
+
+        pills.forEach(function (p) { p.classList.remove('active'); });
+        pill.classList.add('active');
+
+        if (imgBefore) imgBefore.src = data.before;
+        if (imgAfter) imgAfter.src = data.after;
+
+        if (labelBefore) labelBefore.setAttribute('data-i18n', data.keyBefore);
+        if (labelAfter) labelAfter.setAttribute('data-i18n', data.keyAfter);
+
+        if (frame) frame.style.aspectRatio = data.aspect;
+
+        if (typeof applyLang === 'function') {
+          applyLang(doc.dataset.lang || 'ko');
+        }
+      });
+    });
+  })();
+
   /* ── boot ───────────────────────────────────────────── */
 
   function detectLanguage() {

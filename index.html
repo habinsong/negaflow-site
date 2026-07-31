@@ -209,6 +209,41 @@
         </div>
         <p data-i18n="gm.rgb.speed"><b>Guided and Brush: about 1 second · Auto: 5–10 seconds</b> Compared with the 30–90 seconds typically required for a hardware IR pass, GrainMend RGB is about 3–90× faster.</p>
       </div>
+
+      <!-- ── GrainMend Interactive Compare Slider ── -->
+      <div class="gm-slider-wrap reveal" id="gm-slider-section">
+        <div class="gm-slider-header">
+          <div class="gm-pill-bar" role="tablist" aria-label="GrainMend Mode Select">
+            <button type="button" class="gm-pill active" data-mode="auto" data-i18n="gm.tab.auto">Auto</button>
+            <button type="button" class="gm-pill" data-mode="guided-full" data-i18n="gm.tab.guided_full">Guided · Full</button>
+            <button type="button" class="gm-pill" data-mode="guided-crop" data-i18n="gm.tab.guided_crop">Guided · Crop</button>
+            <button type="button" class="gm-pill" data-mode="brush" data-i18n="gm.tab.brush">Brush</button>
+          </div>
+          <div class="gm-slider-status">
+            <span class="badge badge-before" id="gm-label-before" data-i18n="gm.label.auto_before">Original Image</span>
+            <span class="badge badge-vs">VS</span>
+            <span class="badge badge-after" id="gm-label-after" data-i18n="gm.label.auto_after">Auto 1:1 Defect Detection</span>
+          </div>
+        </div>
+
+        <div class="gm-compare-frame" id="gm-compare-frame" style="--slider-pos: 50%;">
+          <div class="gm-layer gm-layer-after">
+            <img id="gm-img-after" src="assets/shots/GrainMend/자동/검출.webp" alt="GrainMend Detection / Restored" loading="lazy" decoding="async">
+          </div>
+          <div class="gm-layer gm-layer-before">
+            <img id="gm-img-before" src="assets/shots/GrainMend/자동/원본.webp" alt="GrainMend Original / Target" loading="lazy" decoding="async">
+          </div>
+          <div class="gm-slider-handle" id="gm-slider-handle">
+            <div class="gm-handle-knob">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          </div>
+          <input type="range" min="0" max="100" value="50" class="gm-range-control" id="gm-range-control" aria-label="Compare Slider">
+        </div>
+      </div>
       <div class="rows tools">
         <article class="tool reveal">
           <h3 data-i18n="tool.auto.t">Auto</h3>
