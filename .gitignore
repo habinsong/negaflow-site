@@ -1,5 +1,36 @@
+# ── macOS ───────────────────────────────────────────────
 .DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# ── editors and local tooling ───────────────────────────
+# .claude/launch.json only points a local http.server at this folder.
+.claude/
+.vscode/
+.idea/
+*.swp
+*~
 .playwright-cli/
-output/
+
+# ── image sources ───────────────────────────────────────
+# Only the WebP in assets/shots is served. The captures they were
+# converted from are tens of megabytes each and stay on disk.
+# Add a line here whenever a new source folder shows up.
 assets/shots/C-41:ECN-2_target/
 assets/shots/print/
+*.psd
+*.tif
+*.tiff
+
+# ── scratch ─────────────────────────────────────────────
+output/
+node_modules/
+*.log
+
+# ── never ───────────────────────────────────────────────
+.env
+.env.local
+*.pem
+*.p12
+*.mobileprovision
