@@ -83,6 +83,12 @@ const TOPICS = [
     card: 'comparison.jpg'
   },
   {
+    slug: 'supported-scanners',
+    heading: { key: 'support.title' },
+    desc: { key: 'support.lede' },
+    sections: ['scanner-support']
+  },
+  {
     slug: 'camera-scanning',
     heading: { key: 'cam.title' },
     desc: { key: 'cam.lede' },

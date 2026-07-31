@@ -177,7 +177,7 @@
 <link rel="icon" href="../assets/favicon-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="../assets/icon-180.png">
 <link rel="preload" as="image" href="../assets/icon-512.webp">
-<link rel="stylesheet" href="../assets/css/style.css?v=132">
+<link rel="stylesheet" href="../assets/css/style.css?v=133">
 <script>
 /* set appearance + language before first paint */
 (function () {
@@ -923,9 +923,129 @@
         </div>
         <div class="scanner-plugin-copy">
           <p data-i18n="scanner.body"><b>negaflow-scanner-sane</b> est le module utilisé par <b>Importer depuis un scanner</b> dans negaflow.</p>
-          <a class="scanner-plugin-link" href="https://github.com/habinsong/negaflow-scanner-sane" data-i18n="scanner.link">Voir sur GitHub ↗</a>
+          <div class="scanner-plugin-links">
+            <a href="../fr/supported-scanners/" class="scanner-plugin-link" data-path="supported-scanners/" data-i18n="support.title">Scanners pris en charge</a>
+            <a class="scanner-plugin-link" href="https://github.com/habinsong/negaflow-scanner-sane" data-i18n="scanner.link">Voir sur GitHub ↗</a>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── scanner support ──────────────────────────────── -->
+  <section id="scanner-support" class="block">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="support.kicker">Prise en charge des scanners</p>
+      <h2 class="reveal" data-i18n="support.title">Scanners pris en charge</h2>
+      <p class="lede reveal" data-i18n="support.lede">Cibles SANE 1.4 connues et chemins gérés par negaflow-scanner-sane.</p>
+
+      <div class="cmp-table-wrap scanner-table-wrap reveal">
+        <table class="cmp-table scanner-table">
+          <caption class="vh" data-i18n="support.title">Scanners pris en charge</caption>
+          <thead>
+            <tr>
+              <th scope="col" data-i18n="support.h.family">Famille de scanners</th>
+              <th scope="col" data-i18n="support.h.backend">Backend SANE</th>
+              <th scope="col" data-i18n="support.h.status">État SANE 1.4</th>
+              <th scope="col" data-i18n="support.h.path">Chemin du module</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Plustek OpticFilm 7200, 7200 v2, 7200i, 7300, 7400 v2, 7500i, 7600i</td>
+              <td><code>genesys</code></td>
+              <td data-i18n="support.status.complete">Complete</td>
+              <td data-i18n="support.path.dedicated">Scanner de film dédié</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 7400 v1</td>
+              <td><code>genesys</code></td>
+              <td data-i18n="support.status.after140">Indiqué Complete, mais les corrections propres au modèle sont postérieures à SANE 1.4.0</td>
+              <td data-i18n="support.path.capabilityUnverified">Chemin piloté par les capacités ; résultat matériel stock 1.4.0 non vérifié</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 8100, USB <code>07b3:130c</code></td>
+              <td><code>genesys</code></td>
+              <td data-i18n="support.status.complete">Complete</td>
+              <td data-i18n="support.path.dedicated">Scanner de film dédié</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 8100, USB <code>07b3:1824</code></td>
+              <td data-i18n="support.none">Aucun</td>
+              <td data-i18n="support.status.unsupported">Unsupported</td>
+              <td data-i18n="support.path.unusable">Non considéré comme utilisable</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 8200i, USB <code>07b3:130d</code></td>
+              <td><code>genesys</code></td>
+              <td data-i18n="support.status.complete">Complete</td>
+              <td data-i18n="support.path.dedicated">Scanner de film dédié</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 8200i, USB <code>07b3:1825</code> (GL128)</td>
+              <td data-i18n="support.none">Aucun</td>
+              <td data-i18n="support.status.unsupported">Unsupported</td>
+              <td data-i18n="support.path.unusable">Non considéré comme utilisable</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 120, 120 Pro, 135, 135i, 9000i Ai</td>
+              <td data-i18n="support.none">Aucun</td>
+              <td data-i18n="support.status.unsupported">Unsupported</td>
+              <td data-i18n="support.path.unusable">Non considéré comme utilisable</td>
+            </tr>
+            <tr>
+              <td>Epson Perfection V700/V750 (GT-X900), V800/V850 (GT-X980)</td>
+              <td><code>epson2</code></td>
+              <td data-i18n="support.status.good">Good</td>
+              <td data-i18n="support.path.epson">Source transparente et zone positionnée lorsqu’elles sont signalées</td>
+            </tr>
+            <tr>
+              <td>Nikon Coolscan LS-2000, LS-40 ED, LS-50 ED, LS-4000 ED, LS-8000 ED</td>
+              <td><code>coolscan3</code></td>
+              <td data-i18n="support.status.range">Complete à Minimal selon le modèle</td>
+              <td data-i18n="support.path.dedicated">Scanner de film dédié</td>
+            </tr>
+            <tr>
+              <td>Nikon Coolscan LS-5000 ED</td>
+              <td><code>coolscan3</code></td>
+              <td data-i18n="support.status.untested">Non testé dans SANE 1.4 ; peut fonctionner comme le LS-50</td>
+              <td data-i18n="support.path.dedicated">Scanner de film dédié</td>
+            </tr>
+            <tr>
+              <td>Nikon Coolscan LS-20, LS-30, LS-1000</td>
+              <td><code>coolscan</code></td>
+              <td data-i18n="support.status.varies">Variable selon le modèle</td>
+              <td data-i18n="support.path.scsi">SCSI uniquement</td>
+            </tr>
+            <tr>
+              <td>Nikon Coolscan LS-9000 ED</td>
+              <td data-i18n="support.none">Aucun</td>
+              <td data-i18n="support.status.unsupported">Unsupported</td>
+              <td data-i18n="support.path.unusable">Non considéré comme utilisable</td>
+            </tr>
+            <tr>
+              <td>Reflecta ProScan/CrystalScan/DigitDia and PIE PowerSlide</td>
+              <td data-i18n="support.backend.oldSCSI"><code>pieusb</code> ; anciens modèles SCSI avec <code>pie</code></td>
+              <td data-i18n="support.status.modelNumber">Variable selon le modèle et son numéro</td>
+              <td data-i18n="support.path.reported">Uniquement les options signalées</td>
+            </tr>
+            <tr>
+              <td>Pacific Image PrimeFilm XA, XAs, XA Plus</td>
+              <td data-i18n="support.none">Aucun</td>
+              <td data-i18n="support.status.unsupported">Unsupported</td>
+              <td data-i18n="support.path.unusable">Non considéré comme utilisable</td>
+            </tr>
+            <tr>
+              <td data-i18n="support.family.other">Autres scanners de film ou à plat avec transparents</td>
+              <td data-i18n="support.backend.varies">Variable</td>
+              <td data-i18n="support.status.varies">Variable selon le modèle</td>
+              <td data-i18n="support.path.capability">Piloté par les capacités, sans repli fondé sur le nom</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="fine scanner-support-note reveal" data-i18n="support.note">Ce tableau ne garantit pas que tous les appareils portant le même nom fonctionneront. Consultez la <a href="https://www.sane-project.org/sane-supported-devices.html">liste SANE actuelle</a>, puis contrôlez l’appareil connecté avec <code>scanimage -L</code> et <code>scanimage -A</code>.</p>
     </div>
   </section>
 
@@ -1058,6 +1178,7 @@
       <a href="../fr/print-layouts/" data-path="print-layouts/" data-i18n="nav.print">Tirage et export</a>
       <a href="../fr/film-profiles/" data-path="film-profiles/" data-i18n="nav.profiles">Données</a>
       <a href="../fr/comparison/" data-path="comparison/" data-i18n="cmp.kicker">Comparaison</a>
+      <a href="../fr/supported-scanners/" data-path="supported-scanners/" data-i18n="support.title">Scanners pris en charge</a>
       <a href="../fr/camera-scanning/" data-path="camera-scanning/" data-i18n="cam.nav">Numérisation à l'appareil</a>
       <a href="../fr/how-to-invert-film-negatives/" data-path="how-to-invert-film-negatives/" data-i18n="inv.nav">Inverser un négatif</a>
       <a href="../fr/faq/" data-path="faq/" data-i18n="nav.faq">FAQ</a>
@@ -1078,7 +1199,7 @@
   <img class="shot-lightbox-image" alt="">
 </div>
 
-<script src="../assets/js/i18n.js?v=132"></script>
-<script src="../assets/js/app.js?v=132"></script>
+<script src="../assets/js/i18n.js?v=133"></script>
+<script src="../assets/js/app.js?v=133"></script>
 </body>
 </html>

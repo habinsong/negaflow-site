@@ -177,7 +177,7 @@
 <link rel="icon" href="../assets/favicon-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="../assets/icon-180.png">
 <link rel="preload" as="image" href="../assets/icon-512.webp">
-<link rel="stylesheet" href="../assets/css/style.css?v=132">
+<link rel="stylesheet" href="../assets/css/style.css?v=133">
 <script>
 /* set appearance + language before first paint */
 (function () {
@@ -923,9 +923,129 @@
         </div>
         <div class="scanner-plugin-copy">
           <p data-i18n="scanner.body"><b>negaflow-scanner-sane</b> 是 negaflow <b>扫描仪导入</b>功能使用的插件。</p>
-          <a class="scanner-plugin-link" href="https://github.com/habinsong/negaflow-scanner-sane" data-i18n="scanner.link">在 GitHub 上查看 ↗</a>
+          <div class="scanner-plugin-links">
+            <a href="../zh/supported-scanners/" class="scanner-plugin-link" data-path="supported-scanners/" data-i18n="support.title">支持的扫描仪</a>
+            <a class="scanner-plugin-link" href="https://github.com/habinsong/negaflow-scanner-sane" data-i18n="scanner.link">在 GitHub 上查看 ↗</a>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── scanner support ──────────────────────────────── -->
+  <section id="scanner-support" class="block">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="support.kicker">扫描仪支持</p>
+      <h2 class="reveal" data-i18n="support.title">支持的扫描仪</h2>
+      <p class="lede reveal" data-i18n="support.lede">negaflow-scanner-sane 对已知 SANE 1.4 目标采用的处理路径。</p>
+
+      <div class="cmp-table-wrap scanner-table-wrap reveal">
+        <table class="cmp-table scanner-table">
+          <caption class="vh" data-i18n="support.title">支持的扫描仪</caption>
+          <thead>
+            <tr>
+              <th scope="col" data-i18n="support.h.family">扫描仪系列</th>
+              <th scope="col" data-i18n="support.h.backend">SANE 后端</th>
+              <th scope="col" data-i18n="support.h.status">SANE 1.4 状态</th>
+              <th scope="col" data-i18n="support.h.path">插件处理路径</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Plustek OpticFilm 7200, 7200 v2, 7200i, 7300, 7400 v2, 7500i, 7600i</td>
+              <td><code>genesys</code></td>
+              <td data-i18n="support.status.complete">Complete</td>
+              <td data-i18n="support.path.dedicated">专用胶片扫描仪路径</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 7400 v1</td>
+              <td><code>genesys</code></td>
+              <td data-i18n="support.status.after140">支持表标为 Complete，但机型专用修正在 SANE 1.4.0 之后才合入</td>
+              <td data-i18n="support.path.capabilityUnverified">capability 驱动路径；stock 1.4.0 实机结果未验证</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 8100, USB <code>07b3:130c</code></td>
+              <td><code>genesys</code></td>
+              <td data-i18n="support.status.complete">Complete</td>
+              <td data-i18n="support.path.dedicated">专用胶片扫描仪路径</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 8100, USB <code>07b3:1824</code></td>
+              <td data-i18n="support.none">无</td>
+              <td data-i18n="support.status.unsupported">Unsupported</td>
+              <td data-i18n="support.path.unusable">不作为可用设备处理</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 8200i, USB <code>07b3:130d</code></td>
+              <td><code>genesys</code></td>
+              <td data-i18n="support.status.complete">Complete</td>
+              <td data-i18n="support.path.dedicated">专用胶片扫描仪路径</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 8200i, USB <code>07b3:1825</code> (GL128)</td>
+              <td data-i18n="support.none">无</td>
+              <td data-i18n="support.status.unsupported">Unsupported</td>
+              <td data-i18n="support.path.unusable">不作为可用设备处理</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 120, 120 Pro, 135, 135i, 9000i Ai</td>
+              <td data-i18n="support.none">无</td>
+              <td data-i18n="support.status.unsupported">Unsupported</td>
+              <td data-i18n="support.path.unusable">不作为可用设备处理</td>
+            </tr>
+            <tr>
+              <td>Epson Perfection V700/V750 (GT-X900), V800/V850 (GT-X980)</td>
+              <td><code>epson2</code></td>
+              <td data-i18n="support.status.good">Good</td>
+              <td data-i18n="support.path.epson">在设备报告时使用透射源和定位式平板区域</td>
+            </tr>
+            <tr>
+              <td>Nikon Coolscan LS-2000, LS-40 ED, LS-50 ED, LS-4000 ED, LS-8000 ED</td>
+              <td><code>coolscan3</code></td>
+              <td data-i18n="support.status.range">视型号为 Complete 至 Minimal</td>
+              <td data-i18n="support.path.dedicated">专用胶片扫描仪路径</td>
+            </tr>
+            <tr>
+              <td>Nikon Coolscan LS-5000 ED</td>
+              <td><code>coolscan3</code></td>
+              <td data-i18n="support.status.untested">SANE 1.4 中未经测试，可能与 LS-50 类似</td>
+              <td data-i18n="support.path.dedicated">专用胶片扫描仪路径</td>
+            </tr>
+            <tr>
+              <td>Nikon Coolscan LS-20, LS-30, LS-1000</td>
+              <td><code>coolscan</code></td>
+              <td data-i18n="support.status.varies">视型号而定</td>
+              <td data-i18n="support.path.scsi">仅 SCSI</td>
+            </tr>
+            <tr>
+              <td>Nikon Coolscan LS-9000 ED</td>
+              <td data-i18n="support.none">无</td>
+              <td data-i18n="support.status.unsupported">Unsupported</td>
+              <td data-i18n="support.path.unusable">不作为可用设备处理</td>
+            </tr>
+            <tr>
+              <td>Reflecta ProScan/CrystalScan/DigitDia and PIE PowerSlide</td>
+              <td data-i18n="support.backend.oldSCSI"><code>pieusb</code>，旧 SCSI 型号使用 <code>pie</code></td>
+              <td data-i18n="support.status.modelNumber">视型号与型号编号而定</td>
+              <td data-i18n="support.path.reported">仅使用设备报告的选项</td>
+            </tr>
+            <tr>
+              <td>Pacific Image PrimeFilm XA, XAs, XA Plus</td>
+              <td data-i18n="support.none">无</td>
+              <td data-i18n="support.status.unsupported">Unsupported</td>
+              <td data-i18n="support.path.unusable">不作为可用设备处理</td>
+            </tr>
+            <tr>
+              <td data-i18n="support.family.other">其他支持透射稿的平板或胶片扫描仪</td>
+              <td data-i18n="support.backend.varies">视后端而定</td>
+              <td data-i18n="support.status.varies">视型号而定</td>
+              <td data-i18n="support.path.capability">按功能报告处理，不按型号名回退</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="fine scanner-support-note reveal" data-i18n="support.note">本表不代表所有同名设备都一定可用。请先查看 <a href="https://www.sane-project.org/sane-supported-devices.html">SANE 最新设备列表</a>，再用 <code>scanimage -L</code> 和 <code>scanimage -A</code> 检查实际连接的设备。</p>
     </div>
   </section>
 
@@ -1058,6 +1178,7 @@
       <a href="../zh/print-layouts/" data-path="print-layouts/" data-i18n="nav.print">印相与导出</a>
       <a href="../zh/film-profiles/" data-path="film-profiles/" data-i18n="nav.profiles">数据集</a>
       <a href="../zh/comparison/" data-path="comparison/" data-i18n="cmp.kicker">功能对比</a>
+      <a href="../zh/supported-scanners/" data-path="supported-scanners/" data-i18n="support.title">支持的扫描仪</a>
       <a href="../zh/camera-scanning/" data-path="camera-scanning/" data-i18n="cam.nav">相机翻拍</a>
       <a href="../zh/how-to-invert-film-negatives/" data-path="how-to-invert-film-negatives/" data-i18n="inv.nav">负片反转</a>
       <a href="../zh/faq/" data-path="faq/" data-i18n="nav.faq">常见问题</a>
@@ -1078,7 +1199,7 @@
   <img class="shot-lightbox-image" alt="">
 </div>
 
-<script src="../assets/js/i18n.js?v=132"></script>
-<script src="../assets/js/app.js?v=132"></script>
+<script src="../assets/js/i18n.js?v=133"></script>
+<script src="../assets/js/app.js?v=133"></script>
 </body>
 </html>

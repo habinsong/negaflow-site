@@ -12,6 +12,7 @@
   "de/how-to-invert-film-negatives/index.html": "2026-07-31",
   "de/index.html": "2026-07-31",
   "de/print-layouts/index.html": "2026-07-31",
+  "de/supported-scanners/index.html": "2026-07-31",
   "download/index.html": "2026-07-31",
   "faq/index.html": "2026-07-31",
   "film-profiles/index.html": "2026-07-31",
@@ -25,6 +26,7 @@
   "fr/how-to-invert-film-negatives/index.html": "2026-07-31",
   "fr/index.html": "2026-07-31",
   "fr/print-layouts/index.html": "2026-07-31",
+  "fr/supported-scanners/index.html": "2026-07-31",
   "grainmend/index.html": "2026-07-31",
   "how-to-invert-film-negatives/index.html": "2026-07-31",
   "index.html": "2026-07-31",
@@ -38,6 +40,7 @@
   "ja/how-to-invert-film-negatives/index.html": "2026-07-31",
   "ja/index.html": "2026-07-31",
   "ja/print-layouts/index.html": "2026-07-31",
+  "ja/supported-scanners/index.html": "2026-07-31",
   "ko/camera-scanning/index.html": "2026-07-31",
   "ko/chroma-engine/index.html": "2026-07-31",
   "ko/comparison/index.html": "2026-07-31",
@@ -48,7 +51,9 @@
   "ko/how-to-invert-film-negatives/index.html": "2026-07-31",
   "ko/index.html": "2026-07-31",
   "ko/print-layouts/index.html": "2026-07-31",
+  "ko/supported-scanners/index.html": "2026-07-31",
   "print-layouts/index.html": "2026-07-31",
+  "supported-scanners/index.html": "2026-07-31",
   "zh/camera-scanning/index.html": "2026-07-31",
   "zh/chroma-engine/index.html": "2026-07-31",
   "zh/comparison/index.html": "2026-07-31",
@@ -58,5 +63,6 @@
   "zh/grainmend/index.html": "2026-07-31",
   "zh/how-to-invert-film-negatives/index.html": "2026-07-31",
   "zh/index.html": "2026-07-31",
-  "zh/print-layouts/index.html": "2026-07-31"
+  "zh/print-layouts/index.html": "2026-07-31",
+  "zh/supported-scanners/index.html": "2026-07-31"
 }

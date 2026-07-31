@@ -177,7 +177,7 @@
 <link rel="icon" href="../assets/favicon-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="../assets/icon-180.png">
 <link rel="preload" as="image" href="../assets/icon-512.webp">
-<link rel="stylesheet" href="../assets/css/style.css?v=132">
+<link rel="stylesheet" href="../assets/css/style.css?v=133">
 <script>
 /* set appearance + language before first paint */
 (function () {
@@ -923,9 +923,129 @@
         </div>
         <div class="scanner-plugin-copy">
           <p data-i18n="scanner.body"><b>negaflow-scanner-sane</b>은 negaflow의 <b>스캐너 불러오기</b>에 사용하는 플러그인입니다.</p>
-          <a class="scanner-plugin-link" href="https://github.com/habinsong/negaflow-scanner-sane" data-i18n="scanner.link">GitHub에서 보기 ↗</a>
+          <div class="scanner-plugin-links">
+            <a href="../ko/supported-scanners/" class="scanner-plugin-link" data-path="supported-scanners/" data-i18n="support.title">지원 스캐너</a>
+            <a class="scanner-plugin-link" href="https://github.com/habinsong/negaflow-scanner-sane" data-i18n="scanner.link">GitHub에서 보기 ↗</a>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── scanner support ──────────────────────────────── -->
+  <section id="scanner-support" class="block">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="support.kicker">스캐너 지원</p>
+      <h2 class="reveal" data-i18n="support.title">지원 스캐너</h2>
+      <p class="lede reveal" data-i18n="support.lede">알려진 SANE 1.4 대상과 negaflow-scanner-sane이 처리하는 경로입니다.</p>
+
+      <div class="cmp-table-wrap scanner-table-wrap reveal">
+        <table class="cmp-table scanner-table">
+          <caption class="vh" data-i18n="support.title">지원 스캐너</caption>
+          <thead>
+            <tr>
+              <th scope="col" data-i18n="support.h.family">스캐너 계열</th>
+              <th scope="col" data-i18n="support.h.backend">SANE 백엔드</th>
+              <th scope="col" data-i18n="support.h.status">SANE 1.4 상태</th>
+              <th scope="col" data-i18n="support.h.path">플러그인 처리</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Plustek OpticFilm 7200, 7200 v2, 7200i, 7300, 7400 v2, 7500i, 7600i</td>
+              <td><code>genesys</code></td>
+              <td data-i18n="support.status.complete">Complete</td>
+              <td data-i18n="support.path.dedicated">필름 전용 스캐너 경로</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 7400 v1</td>
+              <td><code>genesys</code></td>
+              <td data-i18n="support.status.after140">지원표에는 Complete지만 기종별 보정은 SANE 1.4.0 이후 반영됨</td>
+              <td data-i18n="support.path.capabilityUnverified">capability 기반 경로, stock 1.4.0 실기 결과 미검증</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 8100, USB <code>07b3:130c</code></td>
+              <td><code>genesys</code></td>
+              <td data-i18n="support.status.complete">Complete</td>
+              <td data-i18n="support.path.dedicated">필름 전용 스캐너 경로</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 8100, USB <code>07b3:1824</code></td>
+              <td data-i18n="support.none">없음</td>
+              <td data-i18n="support.status.unsupported">Unsupported</td>
+              <td data-i18n="support.path.unusable">사용 가능한 장치로 처리하지 않음</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 8200i, USB <code>07b3:130d</code></td>
+              <td><code>genesys</code></td>
+              <td data-i18n="support.status.complete">Complete</td>
+              <td data-i18n="support.path.dedicated">필름 전용 스캐너 경로</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 8200i, USB <code>07b3:1825</code> (GL128)</td>
+              <td data-i18n="support.none">없음</td>
+              <td data-i18n="support.status.unsupported">Unsupported</td>
+              <td data-i18n="support.path.unusable">사용 가능한 장치로 처리하지 않음</td>
+            </tr>
+            <tr>
+              <td>Plustek OpticFilm 120, 120 Pro, 135, 135i, 9000i Ai</td>
+              <td data-i18n="support.none">없음</td>
+              <td data-i18n="support.status.unsupported">Unsupported</td>
+              <td data-i18n="support.path.unusable">사용 가능한 장치로 처리하지 않음</td>
+            </tr>
+            <tr>
+              <td>Epson Perfection V700/V750 (GT-X900), V800/V850 (GT-X980)</td>
+              <td><code>epson2</code></td>
+              <td data-i18n="support.status.good">Good</td>
+              <td data-i18n="support.path.epson">보고된 경우 투과 소스와 위치 지정 플랫베드 영역 사용</td>
+            </tr>
+            <tr>
+              <td>Nikon Coolscan LS-2000, LS-40 ED, LS-50 ED, LS-4000 ED, LS-8000 ED</td>
+              <td><code>coolscan3</code></td>
+              <td data-i18n="support.status.range">기종에 따라 Complete~Minimal</td>
+              <td data-i18n="support.path.dedicated">필름 전용 스캐너 경로</td>
+            </tr>
+            <tr>
+              <td>Nikon Coolscan LS-5000 ED</td>
+              <td><code>coolscan3</code></td>
+              <td data-i18n="support.status.untested">SANE 1.4 기준 미검증, LS-50과 비슷하게 동작할 수 있음</td>
+              <td data-i18n="support.path.dedicated">필름 전용 스캐너 경로</td>
+            </tr>
+            <tr>
+              <td>Nikon Coolscan LS-20, LS-30, LS-1000</td>
+              <td><code>coolscan</code></td>
+              <td data-i18n="support.status.varies">기종별로 다름</td>
+              <td data-i18n="support.path.scsi">SCSI 전용</td>
+            </tr>
+            <tr>
+              <td>Nikon Coolscan LS-9000 ED</td>
+              <td data-i18n="support.none">없음</td>
+              <td data-i18n="support.status.unsupported">Unsupported</td>
+              <td data-i18n="support.path.unusable">사용 가능한 장치로 처리하지 않음</td>
+            </tr>
+            <tr>
+              <td>Reflecta ProScan/CrystalScan/DigitDia and PIE PowerSlide</td>
+              <td data-i18n="support.backend.oldSCSI"><code>pieusb</code>, 구형 SCSI는 <code>pie</code></td>
+              <td data-i18n="support.status.modelNumber">기종과 모델 번호에 따라 다름</td>
+              <td data-i18n="support.path.reported">보고된 옵션만 사용</td>
+            </tr>
+            <tr>
+              <td>Pacific Image PrimeFilm XA, XAs, XA Plus</td>
+              <td data-i18n="support.none">없음</td>
+              <td data-i18n="support.status.unsupported">Unsupported</td>
+              <td data-i18n="support.path.unusable">사용 가능한 장치로 처리하지 않음</td>
+            </tr>
+            <tr>
+              <td data-i18n="support.family.other">그 밖의 투과 원고용 플랫베드·필름 스캐너</td>
+              <td data-i18n="support.backend.varies">백엔드별로 다름</td>
+              <td data-i18n="support.status.varies">기종별로 다름</td>
+              <td data-i18n="support.path.capability">기능 보고 기준, 모델명 fallback 없음</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="fine scanner-support-note reveal" data-i18n="support.note">같은 제품명을 가진 모든 장치의 작동을 보장하지 않습니다. <a href="https://www.sane-project.org/sane-supported-devices.html">SANE 최신 지원 목록</a>을 확인한 뒤 실제 연결 장치를 <code>scanimage -L</code>과 <code>scanimage -A</code>로 다시 확인해야 합니다.</p>
     </div>
   </section>
 
@@ -1058,6 +1178,7 @@
       <a href="../ko/print-layouts/" data-path="print-layouts/" data-i18n="nav.print">인화·출력</a>
       <a href="../ko/film-profiles/" data-path="film-profiles/" data-i18n="nav.profiles">데이터셋</a>
       <a href="../ko/comparison/" data-path="comparison/" data-i18n="cmp.kicker">기능 비교</a>
+      <a href="../ko/supported-scanners/" data-path="supported-scanners/" data-i18n="support.title">지원 스캐너</a>
       <a href="../ko/camera-scanning/" data-path="camera-scanning/" data-i18n="cam.nav">카메라 스캔</a>
       <a href="../ko/how-to-invert-film-negatives/" data-path="how-to-invert-film-negatives/" data-i18n="inv.nav">네거티브 반전</a>
       <a href="../ko/faq/" data-path="faq/" data-i18n="nav.faq">FAQ</a>
@@ -1078,7 +1199,7 @@
   <img class="shot-lightbox-image" alt="">
 </div>
 
-<script src="../assets/js/i18n.js?v=132"></script>
-<script src="../assets/js/app.js?v=132"></script>
+<script src="../assets/js/i18n.js?v=133"></script>
+<script src="../assets/js/app.js?v=133"></script>
 </body>
 </html>
