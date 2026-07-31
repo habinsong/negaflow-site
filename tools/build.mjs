@@ -414,7 +414,21 @@ function buildPage(lang, template, dict, version, topic) {
   }
 
   if (topic) {
-    /* on a topic page the in-page anchors belong to the overview */
+    /* The overview scrolls, so its bar keeps plain anchors. A topic page has
+     * no sections to scroll to, so there the same bar navigates between the
+     * topic pages and marks the one you are already reading. */
+    html = html.replace(/<nav class="nav-links"[\s\S]*?<\/nav>/, (bar) =>
+      bar.replace(/<a href="#([\w-]+)"/g, (whole, id) => {
+        const owner = TOPICS.find((t) => t.sections.includes(id));
+        if (!owner) return `<a href="${home || './'}#${id}"`;
+        const dir = lang === DEFAULT_LANG ? '' : lang + '/';
+        const hash = id === owner.sections[0] ? '' : `#${id}`;
+        /* only the item that names the page, not a section further down it */
+        const current = owner.slug === topic.slug && !hash ? ' aria-current="page"' : '';
+        return `<a href="${prefix}${dir}${owner.slug}/${hash}"${current}`;
+      }));
+
+    /* every other in-page anchor still belongs to the overview */
     html = html.replace(/href="#(?!main\b)([\w-]+)"/g, `href="${home || './'}#$1"`);
     /* and a section does not link to the page it is already on */
     html = html.replace(/[ \t]*<p class="topic-more[^>]*>[\s\S]*?<\/p>\n?/g, '');

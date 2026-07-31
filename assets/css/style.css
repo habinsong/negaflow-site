@@ -251,6 +251,8 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
   transition: background .3s var(--ease), color .3s var(--ease);
 }
 .nav-links a:hover { background: var(--hairline-soft); color: var(--ink); }
+/* on a topic page the bar navigates, so it marks where you already are */
+.nav-links a[aria-current="page"] { background: var(--fill); color: var(--ink); }
 
 .nav-tools { display: flex; align-items: center; gap: 7px; }
 
