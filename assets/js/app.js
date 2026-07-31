@@ -373,54 +373,53 @@
     });
   }
 
-  /* ── GrainMend Interactive Compare Slider ─────────────── */
+  /* ── GrainMend Interactive Compare Viewport (Single Frame) ──── */
 
   (function initGrainMendSlider() {
-    var section = doc.getElementById('gm-slider-section');
-    if (!section) return;
+    var viewport = doc.getElementById('gm-viewport');
+    if (!viewport) return;
 
-    var frame = doc.getElementById('gm-compare-frame');
-    var rangeInput = doc.getElementById('gm-range-control');
+    var rangeInput = doc.getElementById('gm-split-input');
     var imgBefore = doc.getElementById('gm-img-before');
     var imgAfter = doc.getElementById('gm-img-after');
-    var labelBefore = doc.getElementById('gm-label-before');
-    var labelAfter = doc.getElementById('gm-label-after');
-    var pills = section.querySelectorAll('.gm-pill');
+    var badgeLeft = doc.getElementById('gm-badge-left');
+    var badgeRight = doc.getElementById('gm-badge-right');
+    var pills = viewport.querySelectorAll('.gm-mode-pill');
 
     var MODES = {
       'auto': {
         before: 'assets/shots/GrainMend/자동/원본.webp',
         after: 'assets/shots/GrainMend/자동/검출.webp',
-        keyBefore: 'gm.label.auto_before',
-        keyAfter: 'gm.label.auto_after',
+        keyLeft: 'gm.badge.auto_left',
+        keyRight: 'gm.badge.auto_right',
         aspect: '2974 / 1992'
       },
       'guided-full': {
         before: 'assets/shots/GrainMend/가이드/가이드_전체_ROI.webp',
         after: 'assets/shots/GrainMend/가이드/가이드_전체_탐지.webp',
-        keyBefore: 'gm.label.gfull_before',
-        keyAfter: 'gm.label.gfull_after',
+        keyLeft: 'gm.badge.gfull_left',
+        keyRight: 'gm.badge.gfull_right',
         aspect: '2974 / 1992'
       },
       'guided-crop': {
         before: 'assets/shots/GrainMend/가이드/가이드_크롭_ROI.webp',
         after: 'assets/shots/GrainMend/가이드/가이드_크롭_탐지.webp',
-        keyBefore: 'gm.label.gcrop_before',
-        keyAfter: 'gm.label.gcrop_after',
+        keyLeft: 'gm.badge.gcrop_left',
+        keyRight: 'gm.badge.gcrop_right',
         aspect: '650 / 396'
       },
       'brush': {
         before: 'assets/shots/GrainMend/브러시/브러시_크롭_검출영역.webp',
         after: 'assets/shots/GrainMend/브러시/브러시_크롭_제거완료.webp',
-        keyBefore: 'gm.label.brush_before',
-        keyAfter: 'gm.label.brush_after',
+        keyLeft: 'gm.badge.brush_left',
+        keyRight: 'gm.badge.brush_right',
         aspect: '650 / 396'
       }
     };
 
-    if (rangeInput && frame) {
+    if (rangeInput && viewport) {
       var syncSlider = function () {
-        frame.style.setProperty('--slider-pos', rangeInput.value + '%');
+        viewport.style.setProperty('--slider-pos', rangeInput.value + '%');
       };
       rangeInput.addEventListener('input', syncSlider);
       rangeInput.addEventListener('change', syncSlider);
@@ -439,10 +438,10 @@
         if (imgBefore) imgBefore.src = data.before;
         if (imgAfter) imgAfter.src = data.after;
 
-        if (labelBefore) labelBefore.setAttribute('data-i18n', data.keyBefore);
-        if (labelAfter) labelAfter.setAttribute('data-i18n', data.keyAfter);
+        if (badgeLeft) badgeLeft.setAttribute('data-i18n', data.keyLeft);
+        if (badgeRight) badgeRight.setAttribute('data-i18n', data.keyRight);
 
-        if (frame) frame.style.aspectRatio = data.aspect;
+        if (viewport) viewport.style.aspectRatio = data.aspect;
 
         if (typeof applyLang === 'function') {
           applyLang(doc.dataset.lang || 'ko');
