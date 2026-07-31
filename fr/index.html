@@ -32,12 +32,12 @@
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="negaflow for macOS with its film development workspace">
+<meta property="og:image:alt" content="negaflow — inversion et développement de négatifs sur macOS">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="negaflow — inversion et développement de négatifs sur macOS">
 <meta name="twitter:description" content="Application macOS libre et open source pour inverser les négatifs couleur et noir et blanc, les développer, réparer poussières et rayures, puis tirer. Appareil photo ou scanner.">
 <meta name="twitter:image" content="https://habinsong.github.io/negaflow-site/assets/og/default.jpg">
-<meta name="twitter:image:alt" content="negaflow for macOS with its film development workspace">
+<meta name="twitter:image:alt" content="negaflow — inversion et développement de négatifs sur macOS">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -154,7 +154,7 @@
           "name": "Comment negaflow gère-t-il les grandes bibliothèques de plusieurs centaines de vues ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "negaflow utilise une base SQLite en mode WAL et la libération automatique du cache, garantissant une fluidité parfaite sur des milliers de photos."
+            "text": "Le catalogue utilise SQLite en mode WAL et réduit le cache des images sous pression mémoire. La vitesse réelle dépend de la taille de la bibliothèque, du stockage et du Mac."
           }
         },
         {
@@ -413,9 +413,9 @@
       <div class="gm-rgb-focus reveal">
         <div>
           <p class="sub">GrainMend RGB</p>
-          <h3 data-i18n="gm.rgb.title">GrainMend RGB Defect Restoration</h3>
+          <h3 data-i18n="gm.rgb.title">Restauration des défauts GrainMend RGB</h3>
         </div>
-        <p data-i18n="gm.rgb.speed"><b>Guidé et Pinceau : environ 1 s · Automatique : 5 à 10 s</b> Face aux 30 à 90 s généralement nécessaires à un traitement IR matériel, GrainMend RGB est environ 3 à 90 fois plus rapide.</p>
+        <p data-i18n="gm.rgb.speed"><b>Les modes Guidé, Pinceau et Automatique s’exécutent tous localement sur le Mac.</b> Le temps de traitement dépend de la taille de l’image, de la zone choisie et du Mac.</p>
       </div>
 
       <!-- ── before / after compare ─────────────────────── -->
@@ -473,7 +473,7 @@
       </div>
 
       <div class="gm-grid">
-        <article class="gm-card reveal"><h3 data-i18n="gm.detect.t">Une détection à la hauteur de l’IR matériel</h3><p data-i18n="gm.note"><b>GrainMend RGB</b> détecte les défauts directement dans l’image RVB, puis examine la texture, la direction et les structures voisines avant de les restaurer. Les lignes et les grilles restent distinctes des rayures.</p></article>
+        <article class="gm-card reveal"><h3 data-i18n="gm.detect.t">Détection directe dans l’image RVB</h3><p data-i18n="gm.note"><b>GrainMend RGB</b> repère des défauts sans canal infrarouge. Les motifs complexes peuvent produire de faux positifs ; le masque et le résultat restauré restent donc contrôlables.</p></article>
         <article class="gm-card reveal"><h3 data-i18n="gm.review.t">Vérifiez et corrigez vous-même</h3><p data-i18n="gm.review">Affichez le masque de détection et le résultat restauré, puis corrigez directement les zones qui le nécessitent.</p></article>
         <article class="gm-card reveal"><h3 data-i18n="gm.layer.t">Calques non destructifs</h3><p data-i18n="gm.layer">Chaque calque <b>GrainMend RGB</b> permet de régler l’intensité, d’afficher le masque et d’être désactivé ou supprimé séparément.</p></article>
         <article class="gm-card reveal"><h3 data-i18n="gm.safe.t">Alerte de faux positifs</h3><p data-i18n="gm.warn">Lorsque le risque de zones faussement détectées est élevé, GrainMend en informe l’utilisateur.</p></article>
@@ -586,7 +586,7 @@
         </article>
         <article class="gm-card reveal">
           <h3 data-i18n="cap.scn.t">Scanner</h3>
-          <p data-i18n="cap.scn.d">Se connecte directement aux scanners SANE et rend en 16 bits via le module indépendant negaflow-scanner-sane.</p>
+          <p data-i18n="cap.scn.d">Connecte les scanners SANE via le module indépendant <code>negaflow-scanner-sane</code>. L’import TIFF 16 bits n’est utilisé que si l’appareil et le backend le permettent et si le module valide le résultat.</p>
         </article>
       </div>
     </div>
@@ -623,8 +623,8 @@
   <section id="comparison" class="block">
     <div class="wrap">
       <p class="kicker reveal" data-i18n="cmp.kicker">Comparaison</p>
-      <h2 class="reveal" data-i18n="cmp.title">Une alternative libre et gratuite aux logiciels d'inversion payants</h2>
-      <p class="lede reveal" data-i18n="cmp.lede">L'inversion de négatifs passe le plus souvent par un module Lightroom (Negative Lab Pro et consorts), une application payante autonome (FilmLab, Negbase) ou le logiciel fourni avec un scanner (SilverFast, VueScan). negaflow est une application macOS libre et gratuite qui fait tout elle-même : inversion, développement, réparation des poussières et rayures, tirage et export.</p>
+      <h2 class="reveal" data-i18n="cmp.title">Une application libre et gratuite d'inversion de film pour macOS</h2>
+      <p class="lede reveal" data-i18n="cmp.lede">negaflow est une application macOS autonome pour l'inversion, le développement, la réparation des défauts, le tirage et l'export. Le tableau décrit les fonctions actuelles de negaflow. Celles de Negative Lab Pro, FilmLab, Negbase, SilverFast, VueScan et d'autres produits, ainsi que leurs prix et leur gestion des fichiers, varient selon la version.</p>
       <p class="topic-more reveal"><a href="../fr/comparison/" data-path="comparison/" data-i18n="topic.more">En savoir plus</a></p>
 
       <div class="cmp-table-wrap reveal">
@@ -633,44 +633,44 @@
             <tr>
               <th data-i18n="cmp.col1">Fonctionnalité</th>
               <th data-i18n="cmp.col2">negaflow</th>
-              <th data-i18n="cmp.col3">Modules payants · applications payantes · logiciels de scanner</th>
+              <th data-i18n="cmp.col3">Autres outils pour le film · consulter leur documentation actuelle</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td data-i18n="cmp.r0.f">Prix et licence</td>
               <td data-i18n="cmp.r0.n">Gratuit, open source Apache-2.0. Ni abonnement ni version d'essai limitée, code lisible</td>
-              <td data-i18n="cmp.r0.g">Licence payante ou abonnement, code fermé</td>
+              <td data-i18n="cmp.r0.g">Gratuit, achat unique ou abonnement selon le produit</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r6.f">Mode de fonctionnement</td>
               <td data-i18n="cmp.r6.n">Application macOS autonome : import, développement, réparation, tirage et export au même endroit</td>
-              <td data-i18n="cmp.r6.g">Un module dans Lightroom ou Photoshop, ou un logiciel lié à un seul scanner</td>
+              <td data-i18n="cmp.r6.g">Module, application autonome ou application de scanner selon le produit</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r1.f">Mesure du masque de film (Masque orange)</td>
               <td data-i18n="cmp.r1.n">Analyse spatiale (FilmBaseEstimator), pipette, saisie directe RGB</td>
-              <td data-i18n="cmp.r1.g">Moyenne de masque simple ou curseurs manuels</td>
+              <td data-i18n="cmp.r1.g">La gestion de la base varie selon le produit ; consultez sa documentation actuelle</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r2.f">Restauration de rayures (GrainMend)</td>
-              <td data-i18n="cmp.r2.n">Traitement RGB en ~1 seconde (3 à 90× plus rapide que l’IR matériel)</td>
-              <td data-i18n="cmp.r2.g">Nécessite 30 à 90 s de balayage IR matériel</td>
+              <td data-i18n="cmp.r2.n">Restauration RVB avec masque contrôlable ; voie IR optionnelle si le module la fournit</td>
+              <td data-i18n="cmp.r2.g">La restauration RVB et l’IR matériel sont deux méthodes distinctes ; leur prise en charge varie</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r3.f">Intégrité des fichiers et métadonnées</td>
               <td data-i18n="cmp.r3.n">Non destructif, spécification BagIt, validation SHA-256</td>
-              <td data-i18n="cmp.r3.g">Modifie les originaux ou écrase les fichiers annexes génériques</td>
+              <td data-i18n="cmp.r3.g">Le traitement des originaux et fichiers annexes varie ; vérifiez-le avant usage</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r4.f">Métadonnées EXIF du film</td>
               <td data-i18n="cmp.r4.n">Export EXIF composite automatique (appareil, objectif, film, exposition)</td>
-              <td data-i18n="cmp.r4.g">Champs de métadonnées manuels limités</td>
+              <td data-i18n="cmp.r4.g">Les champs et l’export des métadonnées varient selon le produit</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r5.f">Accélération native macOS</td>
               <td data-i18n="cmp.r5.n">Pipeline 32 bits en virgule flottante Metal & Core Image</td>
-              <td data-i18n="cmp.r5.g">Inversion non linéaire basée sur le processeur</td>
+              <td data-i18n="cmp.r5.g">Le traitement et l’accélération matérielle varient selon la plateforme et le produit</td>
             </tr>
           </tbody>
         </table>
@@ -683,18 +683,18 @@
     <div class="wrap">
       <p class="kicker reveal" data-i18n="cam.kicker">Guide</p>
       <h2 class="reveal" data-i18n="cam.title">Numériser un film avec un appareil photo</h2>
-      <p class="lede reveal" data-i18n="cam.lede">Plus rapide qu'un scanner à plat et, avec un objectif macro correct, plus défini. Le montage, l'alignement, les réglages de prise de vue, et la suite pour les fichiers raw.</p>
+      <p class="lede reveal" data-i18n="cam.lede">Avec un objectif adapté, un bon alignement et un film bien plan, la numérisation par appareil peut être rapide et détaillée. Voici un parcours pratique du montage aux fichiers raw.</p>
       <p class="topic-more reveal"><a href="../fr/camera-scanning/" data-path="camera-scanning/" data-i18n="topic.more">En savoir plus</a></p>
 
       <div class="faq-grid">
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s1.t">Le montage</h3>
-          <p data-i18n="cam.s1.d">Un appareil qui enregistre en raw, un objectif macro qui atteint le rapport 1:1, un porte-film, une table lumineuse, et un statif ou un trépied pour tenir l'appareil au-dessus. Atteindre le 1:1 avec des bagues-allonges ou un soufflet coûte la planéité du champ : les angles deviennent mous.</p>
+          <p data-i18n="cam.s1.d">Utilisez un appareil raw, un objectif macro adapté au rapport de reproduction voulu, un porte-film, une table lumineuse et un statif ou trépied. Bagues-allonges et soufflet peuvent convenir ; vérifiez le piqué des angles et la planéité de champ au rapport réellement utilisé.</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s2.t">La lumière</h3>
-          <p data-i18n="cam.s2.d">Diffuse, IRC 95 ou plus, 5000–5500 K. En dessous, la couleur ne revient pas après inversion et aucun étalonnage ne la rattrape. Surélevez le film de quelques millimètres pour que la poussière de surface et la trame des LED sortent du plan de netteté. Si la table papillote, restez plus lent que 1/60 s.</p>
+          <p data-i18n="cam.s2.d">Utilisez une lumière diffuse et uniforme. IRC 95 ou plus et 5000–5500 K sont des points de départ courants, pas une garantie de justesse colorimétrique. Vérifiez scintillement et bandes avant la séance, puis ajustez la vitesse si nécessaire.</p>
         </article>
 
         <article class="faq-card reveal">
@@ -704,12 +704,12 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s4.t">La planéité</h3>
-          <p data-i18n="cam.s4.d">Un film tuilé perd ses bords. Tenez-le dans un porte-film, ou entre deux verres anti-Newton. Le verre ordinaire donne des anneaux de Newton.</p>
+          <p data-i18n="cam.s4.d">Un film courbé fait sortir les bords du plan de netteté. Commencez par un porte-film. Si du verre est nécessaire, vérifiez reflets et anneaux de Newton avec le film réel.</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s5.t">Réglages de prise de vue</h3>
-          <p data-i18n="cam.s5.d">Sensibilité de base, f/5,6–f/8, mise au point manuelle en visée écran agrandie. Fermer davantage coûte de la définition par diffraction. Déclencheur souple ou retardateur 2 s, obturateur électronique en hybride. Photographiez en raw et gardez l'extrémité droite de l'histogramme décollée du bord : cette extrémité, c'est la base du film.</p>
+          <p data-i18n="cam.s5.d">Commencez à la sensibilité de base et testez l'ouverture la plus nette de l'objectif ; f/5,6–f/8 est une plage de départ courante. Faites la mise au point manuelle en visée agrandie, utilisez un déclencheur ou retardateur, photographiez en raw et évitez l'écrêtage des hautes lumières.</p>
         </article>
 
         <article class="faq-card reveal">
@@ -756,7 +756,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="inv.s6.t">6. Choisir un rendu, puis exporter</h3>
-          <p data-i18n="inv.s6.d">Les cibles de développement remplacent un scan de laboratoire sur Frontier ou Noritsu. TIFF 16 bits si la retouche continue, JPEG avec l'EXIF de la pellicule sinon.</p>
+          <p data-i18n="inv.s6.d">Les cibles de développement sont des rendus sélectionnables, pas des copies du logiciel ou de la sortie d'un scanner de laboratoire. Exportez en TIFF 16 bits pour poursuivre la retouche, ou en JPEG avec les informations du film dans l'EXIF pour un fichier prêt à l'emploi.</p>
         </article>
       </div>
     </div>
@@ -771,22 +771,22 @@
       <div class="faq-grid">
         <article class="faq-card reveal">
           <h3 data-i18n="pro.f1.t">Copie groupée & portée de collage</h3>
-          <p data-i18n="pro.f1.d">Traitez des films complets de 36 vues grâce au collage sélectif, aux ajustements clavier et à la synchronisation.</p>
+          <p data-i18n="pro.f1.d">Copiez uniquement les réglages de développement choisis, puis ajustez chaque valeur au clavier.</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="pro.f2.t">Pipelines dédiés Négatif, Diapositive & N&B</h3>
-          <p data-i18n="pro.f2.d">Pipelines de rendu séparés pour Négatif Couleur, Diapositive (Dmax) et N&B, préservant le ton sans dérive de couleur.</p>
+          <p data-i18n="pro.f2.d">Négatif couleur, diapositive, négatif noir et blanc et positif noir et blanc utilisent chacun un traitement adapté au type de film.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="pro.f3.t">Découplage de la source lumineuse et de l’émulsion</h3>
-          <p data-i18n="pro.f3.d">Dissocie la température de rétroéclairage LED des mesures de base, garantissant une inversion cohérente.</p>
+          <h3 data-i18n="pro.f3.t">Base du film et source lumineuse séparées</h3>
+          <p data-i18n="pro.f3.d">La mesure de la base et le profil de source lumineuse choisi sont enregistrés séparément. La mesure automatique peut être remplacée par la pipette ou des valeurs RVB.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="pro.f4.t">Équilibre neutre à l’échelle du film</h3>
-          <p data-i18n="pro.f4.d">Évalue la base et l’axe neutre sur l’ensemble du film pour garder une tonalité et des couleurs régulières sur toutes les vues.</p>
+          <h3 data-i18n="pro.f4.t">Réglages à l’échelle du film</h3>
+          <p data-i18n="pro.f4.d">Copiez les réglages choisis d’une vue vers les autres, puis corrigez chaque vue si nécessaire.</p>
         </article>
       </div>
     </div>
@@ -805,28 +805,28 @@
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f11.t">Recherche de métadonnées SQLite FTS</h3>
-          <p data-i18n="adv.f11.d">Recherchez parmi des milliers de vues par appareil, objectif, film, date et marqueurs.</p>
+          <h3 data-i18n="adv.f11.t">Recherche et filtres de bibliothèque</h3>
+          <p data-i18n="adv.f11.d">Recherchez noms de fichiers, dossiers, films, pellicules, appareils, objectifs, mots-clés et dates, puis filtrez par note et état du travail.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f12.t">Profilage de scanner par mire IT8.7/2</h3>
-          <p data-i18n="adv.f12.d">Calibrez les distorsions de couleur du capteur et de la source lumineuse avec une mire IT8.7/2.</p>
+          <h3 data-i18n="adv.f12.t">Rapports de mesure IT8</h3>
+          <p data-i18n="adv.f12.d">Enregistrez RGB, Lab et DeltaE00 depuis une image IT8.7/1 et son fichier de référence vérifiés. La précision d’un scanner réel exige toujours la mesure de cet appareil avec sa mire physique correspondante.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f13.t">Atténuation du voile (Haze)</h3>
-          <p data-i18n="adv.f13.d">Réduit le voile des films anciens sans dégrader le piqué d’origine ni le grain.</p>
+          <h3 data-i18n="adv.f13.t">Clarté et texture</h3>
+          <p data-i18n="adv.f13.d">Réglez séparément la clarté, la netteté, la réduction du bruit et le grain.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f15.t">Virage N&B séparé et virages chimiques</h3>
-          <p data-i18n="adv.f15.d">Moteur de virage N&B dédié (Split-toning, Sépia, Sélénium et Tons froids).</p>
+          <h3 data-i18n="adv.f15.t">Virage noir et blanc</h3>
+          <p data-i18n="adv.f15.d">Réglez la teinte des ombres, celle des hautes lumières et l’intensité pour les virages sépia et sélénium.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f16.t">Suppression des lignes de poussière fixe</h3>
-          <p data-i18n="adv.f16.d">Supprime automatiquement les rayures verticales dues aux poussières fixes de la vitre du scanner.</p>
+          <h3 data-i18n="adv.f16.t">Commandes selon les capacités du scanner</h3>
+          <p data-i18n="adv.f16.d">Source, résolution, bit depth, zone, exposition et IR ne s’affichent que lorsque le module les déclare disponibles.</p>
         </article>
 
         <article class="faq-card reveal">
@@ -1033,7 +1033,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="faq.q9">Comment negaflow gère-t-il les grandes bibliothèques de plusieurs centaines de vues ?</h3>
-          <p data-i18n="faq.a9">negaflow utilise une base SQLite en mode WAL et la libération automatique du cache, garantissant une fluidité parfaite sur des milliers de photos.</p>
+          <p data-i18n="faq.a9">Le catalogue utilise SQLite en mode WAL et réduit le cache des images sous pression mémoire. La vitesse réelle dépend de la taille de la bibliothèque, du stockage et du Mac.</p>
         </article>
 
         <article class="faq-card reveal">

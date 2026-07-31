@@ -32,12 +32,12 @@
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="negaflow for macOS with its film development workspace">
+<meta property="og:image:alt" content="常见问题 — negaflow">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="常见问题 — negaflow">
 <meta name="twitter:description" content="当前的 GitHub 发布文件采用 ad-hoc 签名。若首次启动被系统拦截，请前往 系统设置 → 隐私与安全性 并点击 仍要打开。">
 <meta name="twitter:image" content="https://habinsong.github.io/negaflow-site/assets/og/default.jpg">
-<meta name="twitter:image:alt" content="negaflow for macOS with its film development workspace">
+<meta name="twitter:image:alt" content="常见问题 — negaflow">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -106,7 +106,6 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <link rel="icon" href="../../assets/favicon-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="../../assets/icon-180.png">
-<link rel="preload" as="image" href="../../assets/icon-512.webp">
 <link rel="stylesheet" href="../../assets/css/style.css?v=132">
 <script>
 /* set appearance + language before first paint */
@@ -242,7 +241,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="faq.q9">一次性导入数百张照片的大型胶卷库会卡顿吗？</h3>
-          <p data-i18n="faq.a9">negaflow 采用 WAL 模式的 SQLite 数据库与内存自动释放机制，在包含数千张照片的图库中依然保持流畅稳定。</p>
+          <p data-i18n="faq.a9">目录使用 SQLite WAL 模式保存，并在内存压力增大时缩减帧缓存。实际速度取决于图库规模、存储设备和 Mac。</p>
         </article>
 
         <article class="faq-card reveal">

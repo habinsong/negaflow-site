@@ -32,12 +32,12 @@
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="negaflow for macOS with its film development workspace">
+<meta property="og:image:alt" content="negaflow — 필름 네거티브 반전·현상 macOS 앱">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="negaflow — 필름 네거티브 반전·현상 macOS 앱">
 <meta name="twitter:description" content="컬러·흑백 필름 네거티브를 반전하고 현상하며, 먼지와 스크래치를 복원하고 인화까지 하는 무료 오픈소스 macOS 앱. 카메라 스캔과 필름 스캐너를 모두 지원합니다.">
 <meta name="twitter:image" content="https://habinsong.github.io/negaflow-site/assets/og/default.jpg">
-<meta name="twitter:image:alt" content="negaflow for macOS with its film development workspace">
+<meta name="twitter:image:alt" content="negaflow — 필름 네거티브 반전·현상 macOS 앱">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -154,7 +154,7 @@
           "name": "수백 장의 필름 롤을 한 번에 등록해도 버벅이지 않나요?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "negaflow는 WAL 모드의 SQLite 데이터베이스와 메모리 압박 자동 해제(Frame Cache Relief) 시스템을 갖추고 있어 수천 장의 필름 라이브러리에서도 버벅임 없이 안정적으로 동작합니다."
+            "text": "카탈로그는 SQLite WAL 모드로 저장하고 메모리 압박이 생기면 프레임 캐시를 줄입니다. 실제 속도는 라이브러리 크기, 저장 장치와 Mac 사양에 따라 달라집니다."
           }
         },
         {
@@ -415,7 +415,7 @@
           <p class="sub">GrainMend RGB</p>
           <h3 data-i18n="gm.rgb.title">GrainMend RGB 결함 복원</h3>
         </div>
-        <p data-i18n="gm.rgb.speed"><b>가이드·브러시 약 1초 · 자동 5–10초</b> 보통 30초–1분 30초가 걸리는 하드웨어 IR 방식보다 약 3–90배 빠릅니다.</p>
+        <p data-i18n="gm.rgb.speed"><b>가이드·브러시·자동 모드는 모두 Mac에서 로컬로 처리됩니다.</b> 처리 시간은 사진 크기, 선택 영역과 Mac에 따라 달라집니다.</p>
       </div>
 
       <!-- ── before / after compare ─────────────────────── -->
@@ -473,7 +473,7 @@
       </div>
 
       <div class="gm-grid">
-        <article class="gm-card reveal"><h3 data-i18n="gm.detect.t">IR에 견줄 검출력</h3><p data-i18n="gm.note"><b>GrainMend RGB</b>는 RGB 이미지에서 결함을 찾고 주변 질감, 방향과 구조까지 확인해 복원합니다. 사진 속 선이나 격자는 스크래치와 구분합니다.</p></article>
+        <article class="gm-card reveal"><h3 data-i18n="gm.detect.t">RGB 이미지에서 직접 검출</h3><p data-i18n="gm.note"><b>GrainMend RGB</b>는 적외선 채널 없이 RGB 이미지에서 결함 후보를 찾습니다. 복잡한 무늬에서는 오검출이 생길 수 있어 마스크와 복원 결과를 직접 확인할 수 있습니다.</p></article>
         <article class="gm-card reveal"><h3 data-i18n="gm.review.t">직접 확인하고 수정</h3><p data-i18n="gm.review">검출 마스크와 복원 결과를 사람이 직접 확인하고, 필요한 영역을 다시 고칠 수 있습니다.</p></article>
         <article class="gm-card reveal"><h3 data-i18n="gm.layer.t">비파괴 레이어</h3><p data-i18n="gm.layer">각 <b>GrainMend RGB</b> 레이어는 강도를 조절하고 마스크를 확인하거나, 따로 끄고 지울 수 있습니다.</p></article>
         <article class="gm-card reveal"><h3 data-i18n="gm.safe.t">오검출 가능성 안내</h3><p data-i18n="gm.warn">오검출이 생길 가능성이 높으면 사용자에게 알립니다.</p></article>
@@ -586,7 +586,7 @@
         </article>
         <article class="gm-card reveal">
           <h3 data-i18n="cap.scn.t">스캐너</h3>
-          <p data-i18n="cap.scn.d"><code>negaflow-scanner-sane</code> 독립 프로세스 플러그인으로 SANE 물리 스캐너를 직접 연결하고 16-bit로 렌더링합니다.</p>
+          <p data-i18n="cap.scn.d"><code>negaflow-scanner-sane</code> 독립 프로세스 플러그인으로 SANE 스캐너를 연결합니다. 장치와 백엔드가 지원하고 플러그인이 확인한 경우 16-bit TIFF로 가져옵니다.</p>
         </article>
       </div>
     </div>
@@ -623,8 +623,8 @@
   <section id="comparison" class="block">
     <div class="wrap">
       <p class="kicker reveal" data-i18n="cmp.kicker">기능 비교</p>
-      <h2 class="reveal" data-i18n="cmp.title">유료 필름 반전 소프트웨어를 대신하는 무료 오픈소스 앱</h2>
-      <p class="lede reveal" data-i18n="cmp.lede">필름 반전은 대부분 Lightroom 플러그인(Negative Lab Pro 등)이나 유료 독립 실행 앱(FilmLab, Negbase 등), 또는 스캐너에 딸려 오는 소프트웨어(SilverFast, VueScan 등)로 합니다. negaflow는 반전부터 현상, 먼지·스크래치 복원, 인화와 내보내기까지 혼자 처리하는 무료 오픈소스 macOS 앱입니다.</p>
+      <h2 class="reveal" data-i18n="cmp.title">macOS용 무료 오픈소스 필름 반전 앱</h2>
+      <p class="lede reveal" data-i18n="cmp.lede">negaflow는 필름 반전, 현상, 결함 복원, 인화와 내보내기를 한곳에서 처리하는 독립 실행 macOS 앱입니다. 아래 표는 negaflow의 현재 기능을 설명합니다. Negative Lab Pro, FilmLab, Negbase, SilverFast, VueScan 등 다른 제품의 기능과 가격, 파일 처리 방식은 버전에 따라 달라집니다.</p>
       <p class="topic-more reveal"><a href="../ko/comparison/" data-path="comparison/" data-i18n="topic.more">자세히 보기</a></p>
 
       <div class="cmp-table-wrap reveal">
@@ -633,44 +633,44 @@
             <tr>
               <th data-i18n="cmp.col1">기능</th>
               <th data-i18n="cmp.col2">negaflow</th>
-              <th data-i18n="cmp.col3">유료 플러그인 · 유료 앱 · 스캐너 번들</th>
+              <th data-i18n="cmp.col3">다른 필름 작업 도구 · 현재 제품 문서 확인</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td data-i18n="cmp.r0.f">가격과 라이선스</td>
               <td data-i18n="cmp.r0.n">무료, Apache-2.0 오픈소스. 구독도 체험판 제한도 없고 소스를 읽을 수 있음</td>
-              <td data-i18n="cmp.r0.g">유료 구매 또는 구독, 비공개 소스</td>
+              <td data-i18n="cmp.r0.g">무료, 유료 구매와 구독 방식이 제품마다 다름</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r6.f">실행 방식</td>
               <td data-i18n="cmp.r6.n">독립 실행 macOS 앱. 불러오기·현상·복원·인화·내보내기를 한곳에서</td>
-              <td data-i18n="cmp.r6.g">Lightroom·Photoshop 안에서 도는 플러그인이거나 특정 스캐너에 묶인 소프트웨어</td>
+              <td data-i18n="cmp.r6.g">플러그인, 독립 실행 앱, 스캐너 소프트웨어 등 실행 방식이 제품마다 다름</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r1.f">필름 베이스(오렌지 마스크) 측정</td>
               <td data-i18n="cmp.r1.n">공간 분석(FilmBaseEstimator) 자동 측정, 스포이드, RGB 수동 입력</td>
-              <td data-i18n="cmp.r1.g">단순 마스크 평균 또는 수동 조절</td>
+              <td data-i18n="cmp.r1.g">필름 베이스 처리 방식은 제품마다 다르므로 해당 문서를 확인해야 함</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r2.f">먼지·스크래치 복원 (GrainMend)</td>
-              <td data-i18n="cmp.r2.n">RGB 1초 내외 처리 (하드웨어 IR 스캔 대비 3~90배 빠른 속도)</td>
-              <td data-i18n="cmp.r2.g">30~90초 소요되는 하드웨어 IR 스캔 전용</td>
+              <td data-i18n="cmp.r2.n">확인 가능한 마스크를 쓰는 RGB 복원, 플러그인이 제공할 때 선택 가능한 IR 경로</td>
+              <td data-i18n="cmp.r2.g">RGB 복원과 하드웨어 IR은 서로 다른 방식이며 지원 여부도 제품마다 다름</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r3.f">원본 및 메타데이터 보존</td>
               <td data-i18n="cmp.r3.n">비파괴 편집, BagIt 아카이브 규격, SHA-256 검증</td>
-              <td data-i18n="cmp.r3.g">원본 파일을 직접 수정하거나 범용 사이드카를 덮어씀</td>
+              <td data-i18n="cmp.r3.g">원본과 사이드카 처리 방식은 제품마다 다르므로 사용 전에 확인해야 함</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r4.f">필름 롤 단위 EXIF 기록</td>
               <td data-i18n="cmp.r4.n">카메라·렌즈·필름·노출 기록을 EXIF에 자동 합성해 내보내기</td>
-              <td data-i18n="cmp.r4.g">수동 메타데이터 입력 제한</td>
+              <td data-i18n="cmp.r4.g">메타데이터 항목과 내보내기 방식은 제품마다 다름</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r5.f">macOS 네이티브 가속</td>
               <td data-i18n="cmp.r5.n">Metal & Core Image 32-bit 부동소수점 처리</td>
-              <td data-i18n="cmp.r5.g">범용 CPU 기반 비선형 반전</td>
+              <td data-i18n="cmp.r5.g">처리 방식과 하드웨어 가속 지원은 플랫폼과 제품마다 다름</td>
             </tr>
           </tbody>
         </table>
@@ -683,18 +683,18 @@
     <div class="wrap">
       <p class="kicker reveal" data-i18n="cam.kicker">가이드</p>
       <h2 class="reveal" data-i18n="cam.title">디지털 카메라로 필름 스캔하기</h2>
-      <p class="lede reveal" data-i18n="cam.lede">평판 스캐너보다 빠르고, 접사 렌즈만 괜찮으면 해상력도 더 나옵니다. 장비 구성, 정렬, 촬영 설정, 그리고 찍은 RAW를 현상으로 넘기는 순서입니다.</p>
+      <p class="lede reveal" data-i18n="cam.lede">카메라 스캔은 렌즈, 정렬과 필름 평탄도가 맞으면 빠르고 세밀하게 작업할 수 있습니다. 장비를 맞추고 RAW를 현상으로 넘기는 순서입니다.</p>
       <p class="topic-more reveal"><a href="../ko/camera-scanning/" data-path="camera-scanning/" data-i18n="topic.more">자세히 보기</a></p>
 
       <div class="faq-grid">
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s1.t">장비</h3>
-          <p data-i18n="cam.s1.d">RAW로 찍는 카메라, 1:1 배율 접사 렌즈, 필름 홀더, 라이트박스, 카메라를 위에서 잡아 줄 카피 스탠드나 삼각대. 접사링이나 벨로우즈로 배율을 만들면 화면 평탄성이 떨어져 네 모서리가 흐려집니다.</p>
+          <p data-i18n="cam.s1.d">RAW로 찍는 카메라, 필요한 배율에 맞는 접사 렌즈, 필름 홀더, 라이트박스, 카피 스탠드나 삼각대가 필요합니다. 접사링과 벨로우즈도 쓸 수 있지만 실제 촬영 배율에서 모서리 선명도와 화면 평탄도를 확인해야 합니다.</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s2.t">광원</h3>
-          <p data-i18n="cam.s2.d">CRI 95 이상, 5000~5500K 확산 광원. CRI가 낮으면 반전 뒤에 색이 안 맞고 보정으로도 안 잡힙니다. 필름을 라이트박스 표면에서 몇 mm 띄우면 표면 먼지와 LED 격자가 초점면에서 벗어납니다. 플리커가 있는 제품은 셔터를 1/60초보다 느리게 잡습니다.</p>
+          <p data-i18n="cam.s2.d">밝기가 고르고 확산된 광원을 사용합니다. CRI 95 이상과 5000~5500K는 흔한 출발점일 뿐 색 정확도를 보장하지는 않습니다. 촬영 전에 플리커와 줄무늬를 확인하고 셔터 속도를 조정합니다.</p>
         </article>
 
         <article class="faq-card reveal">
@@ -704,12 +704,12 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s4.t">필름 평탄</h3>
-          <p data-i18n="cam.s4.d">컬링된 필름은 가장자리 초점이 나갑니다. 필름 홀더로 잡거나 안티뉴턴 글라스 사이에 끼웁니다. 맨 유리를 쓰면 뉴턴링이 생깁니다.</p>
+          <p data-i18n="cam.s4.d">필름이 휘면 가장자리 초점이 어긋납니다. 먼저 필름 홀더로 평평하게 잡고, 유리를 쓸 때는 반사와 뉴턴링이 생기지 않는지 실제 필름으로 확인합니다.</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s5.t">촬영 설정</h3>
-          <p data-i18n="cam.s5.d">최저 ISO, 조리개 f/5.6~f/8, 라이브뷰 확대해서 수동 초점. 더 조이면 회절로 해상력이 떨어집니다. 릴리즈나 2초 타이머를 쓰고, 미러리스면 전자 셔터를 켭니다. RAW로 찍되 히스토그램 오른쪽 끝이 벽에 붙지 않게 노출합니다. 그 끝이 필름 베이스입니다.</p>
+          <p data-i18n="cam.s5.d">베이스 ISO에서 시작하고, 렌즈가 가장 선명한 조리개를 실제로 확인합니다. 보통 f/5.6~f/8이 출발점입니다. 라이브뷰 확대 수동 초점과 릴리즈 또는 타이머를 쓰고, RAW 히스토그램의 밝은 쪽이 잘리지 않게 노출합니다.</p>
         </article>
 
         <article class="faq-card reveal">
@@ -756,7 +756,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="inv.s6.t">6. 룩 선택과 내보내기</h3>
-          <p data-i18n="inv.s6.d">현상 타깃이 Frontier나 Noritsu 같은 미니랩 스캔 결과를 대신합니다. 편집을 이어갈 거면 16-bit TIFF, 바로 쓸 거면 롤 정보가 EXIF에 들어간 JPEG로 내보냅니다.</p>
+          <p data-i18n="inv.s6.d">현상 타깃은 서로 다른 결과를 고르는 룩이며 특정 랩 스캐너의 소프트웨어나 결과를 복제한 것이 아닙니다. 편집을 이어가려면 16-bit TIFF, 바로 사용할 파일은 롤 정보를 EXIF에 넣은 JPEG로 내보냅니다.</p>
         </article>
       </div>
     </div>
@@ -771,22 +771,22 @@
       <div class="faq-grid">
         <article class="faq-card reveal">
           <h3 data-i18n="pro.f1.t">보정값 일괄 복사 & 선택 붙여넣기</h3>
-          <p data-i18n="pro.f1.d">보정값 선택적 복사/붙여넣기(Settings Paste Scope), 키보드 넛지, 파이프라인 동기화로 36컷 롤 전체를 대량 처리합니다.</p>
+          <p data-i18n="pro.f1.d">선택한 현상 항목만 다른 사진에 복사하고, 키보드로 값을 미세 조정할 수 있습니다.</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="pro.f2.t">네거티브·슬라이드·흑백 전용 파이프라인</h3>
-          <p data-i18n="pro.f2.d">컬러 네거티브, 포지티브 슬라이드(Dmax), 흑백 필름을 위한 완전 독립 렌더링 파이프라인으로 색 왜곡 없이 톤을 보존합니다.</p>
+          <p data-i18n="pro.f2.d">컬러 네거티브, 포지티브 슬라이드, 흑백 네거티브와 포지티브를 각 필름 유형에 맞는 경로로 처리합니다.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="pro.f3.t">광원 분광 특성 & 필름 유제 물성 분리</h3>
-          <p data-i18n="pro.f3.d">카메라 스캔에 쓰는 LED 백라이트 색온도와 필름 베이스 측정을 분리해서 계산하므로 스캐너와 라이트패널이 바뀌어도 일관된 톤을 유지합니다.</p>
+          <h3 data-i18n="pro.f3.t">필름 베이스와 광원 설정 분리</h3>
+          <p data-i18n="pro.f3.d">필름 베이스 측정값과 선택한 광원 프로파일을 따로 기록합니다. 자동 측정 대신 스포이드나 RGB 값을 사용할 수도 있습니다.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="pro.f4.t">롤(Roll) 단위 일관된 색조 통합성</h3>
-          <p data-i18n="pro.f4.d">한 롤 전체의 미노광 베이스와 중립축 통계를 분석하여 36컷 전체의 톤과 색을 일정하게 유지합니다.</p>
+          <h3 data-i18n="pro.f4.t">롤 단위 보정 작업</h3>
+          <p data-i18n="pro.f4.d">한 사진의 선택한 보정값을 같은 롤의 사진에 복사한 뒤, 필요한 사진만 따로 조정할 수 있습니다.</p>
         </article>
       </div>
     </div>
@@ -805,28 +805,28 @@
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f11.t">SQLite FTS 메타데이터 검색</h3>
-          <p data-i18n="adv.f11.d">카메라, 렌즈, 필름 스톡, 촬영 날짜, 태그를 조합하여 수천 장의 필름 라이브러리를 밀리초 단위로 검색합니다.</p>
+          <h3 data-i18n="adv.f11.t">라이브러리 검색과 필터</h3>
+          <p data-i18n="adv.f11.d">파일명, 폴더, 롤, 필름, 카메라, 렌즈, 키워드와 날짜를 검색하고 평점·작업 상태로 필터링합니다.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f12.t">IT8.7/2 타깃 기반 스캐너 캘리브레이션</h3>
-          <p data-i18n="adv.f12.d">IT8.7/2 스캐너 타깃 분석을 통해 스캐너 광원과 센서 고유의 색 왜곡을 수식으로 정밀 보정합니다.</p>
+          <h3 data-i18n="adv.f12.t">IT8 측정 보고서</h3>
+          <p data-i18n="adv.f12.d">고정한 IT8.7/1 이미지와 기준 파일에서 RGB, Lab과 DeltaE00을 기록합니다. 실제 스캐너 정확도는 해당 장치와 물리 타깃을 따로 측정해야 합니다.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f13.t">유제/렌즈 안개(Haze) 제거</h3>
-          <p data-i18n="adv.f13.d">오래된 필름의 뿌연 안개(Haze) 현상을 선명도와 입자 손상 없이 선택적으로 억제합니다.</p>
+          <h3 data-i18n="adv.f13.t">선명도와 질감 조절</h3>
+          <p data-i18n="adv.f13.d">부분 대비, 선명도, 노이즈 감소와 필름 그레인을 각각 조절합니다.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f15.t">흑백 전용 분리 조색 & 화학 조색 엔진</h3>
-          <p data-i18n="adv.f15.d">흑백 필름 전용 암부/명부 분리 조색(Split-toning), 세피아, 셀레늄, 쿨톤 화학 조색 렌더링을 지원합니다.</p>
+          <h3 data-i18n="adv.f15.t">흑백 조색</h3>
+          <p data-i18n="adv.f15.d">세피아와 셀레늄 조색에서 어두운 영역과 밝은 영역의 색조, 강도를 조절합니다.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f16.t">스캐너 고정 센서 먼지 세로 줄 억제</h3>
-          <p data-i18n="adv.f16.d">스캐너 유리 면에 고정되어 롤 전체 사진에 세로 줄 형태로 나타나는 센서 먼지 패턴을 자동 억제합니다.</p>
+          <h3 data-i18n="adv.f16.t">스캐너 기능에 맞춘 제어</h3>
+          <p data-i18n="adv.f16.d">플러그인이 보고한 경우에만 광원, 해상도, bit depth, 스캔 영역, 노출과 IR 제어를 표시합니다.</p>
         </article>
 
         <article class="faq-card reveal">
@@ -1033,7 +1033,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="faq.q9">수백 장의 필름 롤을 한 번에 등록해도 버벅이지 않나요?</h3>
-          <p data-i18n="faq.a9">negaflow는 WAL 모드의 SQLite 데이터베이스와 메모리 압박 자동 해제(Frame Cache Relief) 시스템을 갖추고 있어 수천 장의 필름 라이브러리에서도 버벅임 없이 안정적으로 동작합니다.</p>
+          <p data-i18n="faq.a9">카탈로그는 SQLite WAL 모드로 저장하고 메모리 압박이 생기면 프레임 캐시를 줄입니다. 실제 속도는 라이브러리 크기, 저장 장치와 Mac 사양에 따라 달라집니다.</p>
         </article>
 
         <article class="faq-card reveal">

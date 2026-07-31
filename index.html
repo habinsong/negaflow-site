@@ -32,12 +32,12 @@
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="negaflow for macOS with its film development workspace">
+<meta property="og:image:alt" content="negaflow — film negative inversion and development for macOS">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="negaflow — film negative inversion and development for macOS">
 <meta name="twitter:description" content="Free open-source macOS app that inverts colour and black-and-white film negatives, develops them, repairs dust and scratches, and prints. Camera scans and film scanners.">
 <meta name="twitter:image" content="https://habinsong.github.io/negaflow-site/assets/og/default.jpg">
-<meta name="twitter:image:alt" content="negaflow for macOS with its film development workspace">
+<meta name="twitter:image:alt" content="negaflow — film negative inversion and development for macOS">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -154,7 +154,7 @@
           "name": "How does negaflow handle large libraries with hundreds of frames?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "negaflow uses an SQLite database with WAL mode and automatic frame cache relief, ensuring stable, fluid performance across thousands of photos."
+            "text": "The catalogue uses SQLite in WAL mode and reduces frame caches under memory pressure. Actual speed depends on library size, storage and the Mac."
           }
         },
         {
@@ -415,7 +415,7 @@
           <p class="sub">GrainMend RGB</p>
           <h3 data-i18n="gm.rgb.title">GrainMend RGB Defect Restoration</h3>
         </div>
-        <p data-i18n="gm.rgb.speed"><b>Guided and Brush: about 1 second · Auto: 5–10 seconds</b> Compared with the 30–90 seconds typically required for a hardware IR pass, GrainMend RGB is about 3–90× faster.</p>
+        <p data-i18n="gm.rgb.speed"><b>Guided, Brush and Auto all run locally on the Mac.</b> Processing time depends on image size, the selected area and the Mac.</p>
       </div>
 
       <!-- ── before / after compare ─────────────────────── -->
@@ -473,7 +473,7 @@
       </div>
 
       <div class="gm-grid">
-        <article class="gm-card reveal"><h3 data-i18n="gm.detect.t">Detection that rivals hardware IR</h3><p data-i18n="gm.note"><b>GrainMend RGB</b> detects defects directly in the RGB image and checks nearby texture, direction, and structure before restoring them. Lines and grids in the photograph are kept separate from scratches.</p></article>
+        <article class="gm-card reveal"><h3 data-i18n="gm.detect.t">Detection from the RGB image</h3><p data-i18n="gm.note"><b>GrainMend RGB</b> finds defect candidates without an infrared channel. Complex patterns can produce false detections, so the mask and restored result remain reviewable.</p></article>
         <article class="gm-card reveal"><h3 data-i18n="gm.review.t">Review and correct it yourself</h3><p data-i18n="gm.review">Inspect the detection mask and restored result yourself, then correct the affected area as needed.</p></article>
         <article class="gm-card reveal"><h3 data-i18n="gm.layer.t">Non-destructive layers</h3><p data-i18n="gm.layer">Each <b>GrainMend RGB</b> layer can be adjusted in strength, inspected as a mask, disabled, or deleted separately.</p></article>
         <article class="gm-card reveal"><h3 data-i18n="gm.safe.t">False-detection warning</h3><p data-i18n="gm.warn">GrainMend alerts the user when false-detected areas are likely to occur.</p></article>
@@ -586,7 +586,7 @@
         </article>
         <article class="gm-card reveal">
           <h3 data-i18n="cap.scn.t">Scanner</h3>
-          <p data-i18n="cap.scn.d">Connects to SANE scanners directly and renders at 16-bit through the out-of-process negaflow-scanner-sane plugin.</p>
+          <p data-i18n="cap.scn.d">Connects to SANE scanners through the out-of-process <code>negaflow-scanner-sane</code> plug-in. It imports 16-bit TIFF only when the device and backend support it and the plug-in verifies the result.</p>
         </article>
       </div>
     </div>
@@ -623,8 +623,8 @@
   <section id="comparison" class="block">
     <div class="wrap">
       <p class="kicker reveal" data-i18n="cmp.kicker">Comparison</p>
-      <h2 class="reveal" data-i18n="cmp.title">A free, open-source alternative to paid film inversion software</h2>
-      <p class="lede reveal" data-i18n="cmp.lede">Film inversion is usually done with a Lightroom plug-in (Negative Lab Pro and the like), a paid standalone app (FilmLab, Negbase and others), or the software that comes with a scanner (SilverFast, VueScan). negaflow is a free, open-source macOS app that does the whole job on its own — inversion, development, dust and scratch repair, print and export.</p>
+      <h2 class="reveal" data-i18n="cmp.title">A free, open-source film inversion app for macOS</h2>
+      <p class="lede reveal" data-i18n="cmp.lede">negaflow is a standalone macOS app for film inversion, development, defect repair, print and export. The table below describes negaflow’s current features. Features, prices and file handling in Negative Lab Pro, FilmLab, Negbase, SilverFast, VueScan and other products vary by version.</p>
       <p class="topic-more reveal"><a href="comparison/" data-path="comparison/" data-i18n="topic.more">Read more</a></p>
 
       <div class="cmp-table-wrap reveal">
@@ -633,44 +633,44 @@
             <tr>
               <th data-i18n="cmp.col1">Feature</th>
               <th data-i18n="cmp.col2">negaflow</th>
-              <th data-i18n="cmp.col3">Paid plug-ins · paid apps · scanner bundles</th>
+              <th data-i18n="cmp.col3">Other film tools · check current product docs</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td data-i18n="cmp.r0.f">Price and licence</td>
               <td data-i18n="cmp.r0.n">Free, Apache-2.0 open source. No subscription, no trial limit, source readable</td>
-              <td data-i18n="cmp.r0.g">Paid licence or subscription, closed source</td>
+              <td data-i18n="cmp.r0.g">Free, one-time purchase and subscription options vary by product</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r6.f">How it runs</td>
               <td data-i18n="cmp.r6.n">Standalone macOS app: import, develop, repair, print and export in one place</td>
-              <td data-i18n="cmp.r6.g">A plug-in inside Lightroom or Photoshop, or software tied to one scanner</td>
+              <td data-i18n="cmp.r6.g">May be a plug-in, standalone app or scanner application</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r1.f">Film base (Orange Mask) Measurement</td>
               <td data-i18n="cmp.r1.n">Spatial analysis (FilmBaseEstimator), eyedropper, direct RGB input</td>
-              <td data-i18n="cmp.r1.g">Simple mask averaging or manual sliders</td>
+              <td data-i18n="cmp.r1.g">Film-base handling varies by product; check its current documentation</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r2.f">Defect Restoration (GrainMend)</td>
-              <td data-i18n="cmp.r2.n">RGB processing in ~1 second (3–90× faster than hardware IR)</td>
-              <td data-i18n="cmp.r2.g">Requires 30–90 second hardware IR scan</td>
+              <td data-i18n="cmp.r2.n">RGB restoration with reviewable masks; optional IR when the plug-in provides it</td>
+              <td data-i18n="cmp.r2.g">RGB restoration and hardware IR are different methods; support varies by product</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r3.f">Original File & Metadata Integrity</td>
               <td data-i18n="cmp.r3.n">Non-destructive, BagIt archive specification, SHA-256 validation</td>
-              <td data-i18n="cmp.r3.g">Modifies originals or overwrites generic sidecars</td>
+              <td data-i18n="cmp.r3.g">Original and sidecar handling varies; check before use</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r4.f">Roll-level EXIF Metadata</td>
               <td data-i18n="cmp.r4.n">Automatic composite EXIF export for camera, lens, film, exposure</td>
-              <td data-i18n="cmp.r4.g">Limited manual metadata fields</td>
+              <td data-i18n="cmp.r4.g">Metadata fields and export behaviour vary by product</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r5.f">macOS Native Acceleration</td>
               <td data-i18n="cmp.r5.n">Metal & Core Image 32-bit floating-point pipeline</td>
-              <td data-i18n="cmp.r5.g">CPU-based non-linear inversion</td>
+              <td data-i18n="cmp.r5.g">Processing and hardware acceleration vary by platform and product</td>
             </tr>
           </tbody>
         </table>
@@ -683,18 +683,18 @@
     <div class="wrap">
       <p class="kicker reveal" data-i18n="cam.kicker">Guide</p>
       <h2 class="reveal" data-i18n="cam.title">Scanning film with a digital camera</h2>
-      <p class="lede reveal" data-i18n="cam.lede">Faster than a flatbed and, with a decent macro lens, sharper. The rig, the alignment, the capture settings, and where the raw files go next.</p>
+      <p class="lede reveal" data-i18n="cam.lede">A camera-scanning setup can be fast and detailed when the lens, alignment and film flatness are right. Here is a practical route from the rig to the raw files.</p>
       <p class="topic-more reveal"><a href="camera-scanning/" data-path="camera-scanning/" data-i18n="topic.more">Read more</a></p>
 
       <div class="faq-grid">
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s1.t">The rig</h3>
-          <p data-i18n="cam.s1.d">A camera that shoots raw, a macro lens that reaches 1:1, a film holder, a light pad, and a copy stand or tripod to hold the camera above it. Getting to 1:1 with extension tubes or bellows costs you flat field, and the corners go soft.</p>
+          <p data-i18n="cam.s1.d">Use a camera that shoots raw, a macro lens suited to the required reproduction ratio, a film holder, a light pad, and a copy stand or tripod. Extension tubes and bellows can work; check corner sharpness and field flatness at the actual capture ratio.</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s2.t">Light</h3>
-          <p data-i18n="cam.s2.d">Diffused, CRI 95 or higher, 5000–5500K. Below that the colour will not come back after inversion, and no amount of grading fixes it. Lift the film a few millimetres off the pad so surface dust and the LED grid fall out of the focal plane. If the pad flickers, stay slower than 1/60s.</p>
+          <p data-i18n="cam.s2.d">Use an even, diffused light source. CRI 95 or higher and 5000–5500K are common starting points, not a guarantee of colour accuracy. Check for flicker or banding before the session and adjust shutter speed if needed.</p>
         </article>
 
         <article class="faq-card reveal">
@@ -704,12 +704,12 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s4.t">Flatness</h3>
-          <p data-i18n="cam.s4.d">Curled film loses the edges. Hold it in a film holder, or between anti-Newton glass. Plain glass gives you Newton rings.</p>
+          <p data-i18n="cam.s4.d">Curled film moves the edges out of focus. Start with a film holder. If glass is needed, test the actual film for reflections and Newton rings.</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s5.t">Capture settings</h3>
-          <p data-i18n="cam.s5.d">Base ISO, f/5.6–f/8, manual focus with live view magnified. Stopping down further costs sharpness to diffraction. Use a remote release or the 2-second timer, and the electronic shutter on mirrorless. Shoot raw and keep the right end of the histogram off the wall — that end is the film base.</p>
+          <p data-i18n="cam.s5.d">Start at base ISO and test the lens for its sharpest aperture; f/5.6–f/8 is a common starting range. Focus manually with magnified live view, use a remote release or timer, shoot raw, and keep the bright end of the histogram from clipping.</p>
         </article>
 
         <article class="faq-card reveal">
@@ -756,7 +756,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="inv.s6.t">6. Pick a look, then export</h3>
-          <p data-i18n="inv.s6.d">The development targets stand in for lab scans from a Frontier or a Noritsu. 16-bit TIFF if you are carrying on editing, JPEG with the roll's EXIF written in if you are not.</p>
+          <p data-i18n="inv.s6.d">Development targets are selectable looks, not copies of a lab scanner’s software or output. Export 16-bit TIFF for further editing, or JPEG with the roll information written to EXIF for a ready-to-use file.</p>
         </article>
       </div>
     </div>
@@ -771,22 +771,22 @@
       <div class="faq-grid">
         <article class="faq-card reveal">
           <h3 data-i18n="pro.f1.t">Batch Copy & Paste Scope</h3>
-          <p data-i18n="pro.f1.d">Batch process entire 36-exposure rolls with selective development adjustment copy & paste, keyboard nudges, and immediate pipeline sync.</p>
+          <p data-i18n="pro.f1.d">Copy only the development settings you choose, then fine-tune individual values from the keyboard.</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="pro.f2.t">Dedicated Negative, Slide & B&W Pipelines</h3>
-          <p data-i18n="pro.f2.d">Separate rendering pipelines for Color Negative, Positive Slide (Dmax), and B&W films—preserving tone without unwanted color shifts.</p>
+          <p data-i18n="pro.f2.d">Colour negative, positive slide, black-and-white negative and positive each use a film-type-specific path.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="pro.f3.t">Decoupled Light Source & Emulsion Calibration</h3>
-          <p data-i18n="pro.f3.d">Decouples LED backlight color temperature from film base measurements, ensuring consistent inversion across different scanners and light pads.</p>
+          <h3 data-i18n="pro.f3.t">Separate film-base and light-source settings</h3>
+          <p data-i18n="pro.f3.d">Film-base measurements and the selected light-source profile are recorded separately. Automatic measurement can be replaced with the eyedropper or direct RGB values.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="pro.f4.t">Roll-Level Neutral Balance</h3>
-          <p data-i18n="pro.f4.d">Evaluates unexposed base and neutral axis statistics across an entire roll to keep color and tone even across all frames.</p>
+          <h3 data-i18n="pro.f4.t">Roll-wide adjustment workflow</h3>
+          <p data-i18n="pro.f4.d">Copy selected settings from one frame to others in the roll, then adjust individual frames where needed.</p>
         </article>
       </div>
     </div>
@@ -805,28 +805,28 @@
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f11.t">SQLite FTS Metadata Search</h3>
-          <p data-i18n="adv.f11.d">Instantly search thousands of film frames by camera, lens, film stock, date, and user tags.</p>
+          <h3 data-i18n="adv.f11.t">Library search and filters</h3>
+          <p data-i18n="adv.f11.d">Search file names, folders, rolls, film, camera, lens, keywords and dates, then filter by rating and workflow state.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f12.t">IT8.7/2 Scanner Target Profiling</h3>
-          <p data-i18n="adv.f12.d">Calibrate scanner sensor and light source color distortions using IT8.7/2 targets for exact color accuracy.</p>
+          <h3 data-i18n="adv.f12.t">IT8 measurement reports</h3>
+          <p data-i18n="adv.f12.d">Record RGB, Lab and DeltaE00 from a pinned IT8.7/1 image and reference file. Real scanner accuracy still requires that device and its matching physical target to be measured.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f13.t">Atmospheric Haze Removal</h3>
-          <p data-i18n="adv.f13.d">Selectively suppresses fog and haze on aged film negatives without destroying original sharpness or grain structure.</p>
+          <h3 data-i18n="adv.f13.t">Clarity and texture controls</h3>
+          <p data-i18n="adv.f13.d">Adjust clarity, sharpening, noise reduction and film grain separately.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f15.t">B&W Split-Toning & Chemical Toning</h3>
-          <p data-i18n="adv.f15.d">Dedicated B&W toning engine supporting highlight/shadow split-toning, Sepia, Selenium, and Cold Tone rendering.</p>
+          <h3 data-i18n="adv.f15.t">Black-and-white toning</h3>
+          <p data-i18n="adv.f15.d">Adjust shadow hue, highlight hue and strength for sepia and selenium toning.</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f16.t">Fixed Sensor Dust Suppression</h3>
-          <p data-i18n="adv.f16.d">Automatically suppresses vertical streaks caused by fixed sensor dust on scanner glass across an entire roll.</p>
+          <h3 data-i18n="adv.f16.t">Capability-driven scanner controls</h3>
+          <p data-i18n="adv.f16.d">Source, resolution, bit depth, scan area, exposure and IR controls appear only when the plug-in reports them.</p>
         </article>
 
         <article class="faq-card reveal">
@@ -1033,7 +1033,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="faq.q9">How does negaflow handle large libraries with hundreds of frames?</h3>
-          <p data-i18n="faq.a9">negaflow uses an SQLite database with WAL mode and automatic frame cache relief, ensuring stable, fluid performance across thousands of photos.</p>
+          <p data-i18n="faq.a9">The catalogue uses SQLite in WAL mode and reduces frame caches under memory pressure. Actual speed depends on library size, storage and the Mac.</p>
         </article>
 
         <article class="faq-card reveal">

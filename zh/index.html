@@ -32,12 +32,12 @@
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="negaflow for macOS with its film development workspace">
+<meta property="og:image:alt" content="negaflow — 胶片负片反转与显影的 macOS 应用">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="negaflow — 胶片负片反转与显影的 macOS 应用">
 <meta name="twitter:description" content="免费开源的 macOS 应用：反转彩色与黑白胶片负片、显影调色、修复灰尘与划痕并输出打印，支持相机翻拍与胶片扫描仪。">
 <meta name="twitter:image" content="https://habinsong.github.io/negaflow-site/assets/og/default.jpg">
-<meta name="twitter:image:alt" content="negaflow for macOS with its film development workspace">
+<meta name="twitter:image:alt" content="negaflow — 胶片负片反转与显影的 macOS 应用">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -154,7 +154,7 @@
           "name": "一次性导入数百张照片的大型胶卷库会卡顿吗？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "negaflow 采用 WAL 模式的 SQLite 数据库与内存自动释放机制，在包含数千张照片的图库中依然保持流畅稳定。"
+            "text": "目录使用 SQLite WAL 模式保存，并在内存压力增大时缩减帧缓存。实际速度取决于图库规模、存储设备和 Mac。"
           }
         },
         {
@@ -413,9 +413,9 @@
       <div class="gm-rgb-focus reveal">
         <div>
           <p class="sub">GrainMend RGB</p>
-          <h3 data-i18n="gm.rgb.title">无需红外通道，也能快速修复</h3>
+          <h3 data-i18n="gm.rgb.title">GrainMend RGB 缺陷修复</h3>
         </div>
-        <p data-i18n="gm.rgb.speed"><b>引导／画笔：约1秒 · 自动：5–10秒</b> 相比通常需要30–90秒的硬件IR方式，GrainMend RGB约快3–90倍。</p>
+        <p data-i18n="gm.rgb.speed"><b>引导、画笔和自动模式都在 Mac 本地处理。</b>处理时间取决于图像尺寸、选区和 Mac。</p>
       </div>
 
       <!-- ── before / after compare ─────────────────────── -->
@@ -473,7 +473,7 @@
       </div>
 
       <div class="gm-grid">
-        <article class="gm-card reveal"><h3 data-i18n="gm.detect.t">媲美硬件IR的检测能力</h3><p data-i18n="gm.note"><b>GrainMend RGB</b> 直接从RGB图像中检测缺陷，并结合周围纹理、方向和结构完成修复，同时区分照片中的线条、网格与划痕。</p></article>
+        <article class="gm-card reveal"><h3 data-i18n="gm.detect.t">直接从 RGB 图像检测</h3><p data-i18n="gm.note"><b>GrainMend RGB</b> 无需红外通道即可寻找缺陷候选。复杂纹理可能产生误检，因此可以检查蒙版和修复结果。</p></article>
         <article class="gm-card reveal"><h3 data-i18n="gm.review.t">亲自检查和修正</h3><p data-i18n="gm.review">可直接查看检测蒙版和修复结果，并按需要重新修正对应区域。</p></article>
         <article class="gm-card reveal"><h3 data-i18n="gm.layer.t">非破坏性图层</h3><p data-i18n="gm.layer">每个 <b>GrainMend RGB</b> 图层都可以调整强度、查看蒙版，并可单独停用或删除。</p></article>
         <article class="gm-card reveal"><h3 data-i18n="gm.safe.t">误检风险提示</h3><p data-i18n="gm.warn">误检区域出现的可能性较高时，会向用户提示。</p></article>
@@ -586,7 +586,7 @@
         </article>
         <article class="gm-card reveal">
           <h3 data-i18n="cap.scn.t">扫描仪</h3>
-          <p data-i18n="cap.scn.d">通过独立进程 <code>negaflow-scanner-sane</code> 插件直接对接 SANE 实体扫描仪并渲染 16-bit 图像。</p>
+          <p data-i18n="cap.scn.d">通过独立进程 <code>negaflow-scanner-sane</code> 插件连接 SANE 扫描仪。仅当设备和后端支持且插件验证结果后，才以 16-bit TIFF 导入。</p>
         </article>
       </div>
     </div>
@@ -623,8 +623,8 @@
   <section id="comparison" class="block">
     <div class="wrap">
       <p class="kicker reveal" data-i18n="cmp.kicker">功能对比</p>
-      <h2 class="reveal" data-i18n="cmp.title">替代付费胶片反转软件的免费开源应用</h2>
-      <p class="lede reveal" data-i18n="cmp.lede">胶片反转通常靠 Lightroom 插件（如 Negative Lab Pro）、付费独立应用（FilmLab、Negbase 等），或扫描仪自带软件（SilverFast、VueScan）完成。negaflow 是一款免费开源的 macOS 应用，反转、显影、除尘去划痕、打印与导出全部自己搞定。</p>
+      <h2 class="reveal" data-i18n="cmp.title">面向 macOS 的免费开源胶片反转应用</h2>
+      <p class="lede reveal" data-i18n="cmp.lede">negaflow 是一款独立的 macOS 应用，可完成胶片反转、显影、缺陷修复、打印和导出。下表只说明 negaflow 的当前功能。Negative Lab Pro、FilmLab、Negbase、SilverFast、VueScan 等其他产品的功能、价格和文件处理方式会随版本变化。</p>
       <p class="topic-more reveal"><a href="../zh/comparison/" data-path="comparison/" data-i18n="topic.more">了解更多</a></p>
 
       <div class="cmp-table-wrap reveal">
@@ -633,44 +633,44 @@
             <tr>
               <th data-i18n="cmp.col1">功能特性</th>
               <th data-i18n="cmp.col2">negaflow</th>
-              <th data-i18n="cmp.col3">付费插件 · 付费应用 · 扫描仪自带软件</th>
+              <th data-i18n="cmp.col3">其他胶片工具 · 请查阅当前产品文档</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td data-i18n="cmp.r0.f">价格与许可</td>
               <td data-i18n="cmp.r0.n">免费，Apache-2.0 开源。无订阅、无试用限制，源码可读</td>
-              <td data-i18n="cmp.r0.g">付费购买或订阅，闭源</td>
+              <td data-i18n="cmp.r0.g">免费、买断和订阅方式因产品而异</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r6.f">运行方式</td>
               <td data-i18n="cmp.r6.n">独立的 macOS 应用：导入、显影、修复、打印、导出都在一处</td>
-              <td data-i18n="cmp.r6.g">运行在 Lightroom 或 Photoshop 内的插件，或绑定某台扫描仪的软件</td>
+              <td data-i18n="cmp.r6.g">可能是插件、独立应用或扫描仪应用</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r1.f">胶片片基 (橙色面罩) 测量</td>
               <td data-i18n="cmp.r1.n">空间分析 (FilmBaseEstimator) 自动测量、吸管、RGB 手动输入</td>
-              <td data-i18n="cmp.r1.g">简单面罩取平均或手动调节</td>
+              <td data-i18n="cmp.r1.g">不同产品处理片基的方式不同，应查阅其当前文档</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r2.f">划痕与灰尘修复 (GrainMend)</td>
-              <td data-i18n="cmp.r2.n">RGB 约 1 秒完成 (比硬件 IR 扫描快 3–90 倍)</td>
-              <td data-i18n="cmp.r2.g">需耗时 30–90 秒的硬件 IR 扫描</td>
+              <td data-i18n="cmp.r2.n">使用可检查蒙版的 RGB 修复；插件提供时可选 IR 路径</td>
+              <td data-i18n="cmp.r2.g">RGB 修复与硬件 IR 是不同方法，支持情况因产品而异</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r3.f">原文件与元数据完整性</td>
               <td data-i18n="cmp.r3.n">无损编辑，BagIt 归档规范，SHA-256 校验</td>
-              <td data-i18n="cmp.r3.g">直接修改原文件或覆盖通用附属文件</td>
+              <td data-i18n="cmp.r3.g">原文件与附属文件的处理方式因产品而异，使用前应确认</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r4.f">胶卷级 EXIF 拍摄记录</td>
               <td data-i18n="cmp.r4.n">导出时自动合成相机、镜头、胶片与曝光 EXIF</td>
-              <td data-i18n="cmp.r4.g">受限的手动元数据输入</td>
+              <td data-i18n="cmp.r4.g">元数据字段与导出方式因产品而异</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r5.f">macOS 原生硬件加速</td>
               <td data-i18n="cmp.r5.n">Metal 与 Core Image 32-bit 浮点处理</td>
-              <td data-i18n="cmp.r5.g">基于 CPU 的通用非线性反转</td>
+              <td data-i18n="cmp.r5.g">处理方式与硬件加速因平台和产品而异</td>
             </tr>
           </tbody>
         </table>
@@ -683,18 +683,18 @@
     <div class="wrap">
       <p class="kicker reveal" data-i18n="cam.kicker">指南</p>
       <h2 class="reveal" data-i18n="cam.title">用数码相机翻拍胶片</h2>
-      <p class="lede reveal" data-i18n="cam.lede">比平板扫描仪快，微距镜头像样的话解析力也更高。装备、对位、拍摄参数，以及拍完的 RAW 交给谁显影。</p>
+      <p class="lede reveal" data-i18n="cam.lede">镜头、对位和胶片平整度合适时，相机翻拍可以兼顾速度与细节。下面是从设备搭建到 RAW 显影的实用流程。</p>
       <p class="topic-more reveal"><a href="../zh/camera-scanning/" data-path="camera-scanning/" data-i18n="topic.more">了解更多</a></p>
 
       <div class="faq-grid">
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s1.t">装备</h3>
-          <p data-i18n="cam.s1.d">能拍 RAW 的相机、可达 1:1 的微距镜头、胶片夹、灯箱，以及把相机架在正上方的翻拍架或三脚架。用接圈或皮腔凑放大倍率会牺牲像场平坦度，四角会发虚。</p>
+          <p data-i18n="cam.s1.d">需要可拍 RAW 的相机、适合所需放大倍率的微距镜头、胶片夹、灯箱，以及翻拍架或三脚架。接圈和皮腔也能使用，但要在实际倍率下检查四角清晰度与像场平坦度。</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s2.t">光源</h3>
-          <p data-i18n="cam.s2.d">漫射光，CRI 95 以上，5000–5500K。CRI 不够，反转之后颜色就回不来，后期也拉不正。把胶片垫高几毫米，灯箱表面的灰尘和 LED 格栅就落在焦平面之外。灯箱有频闪时，快门不要快过 1/60 秒。</p>
+          <p data-i18n="cam.s2.d">使用亮度均匀的漫射光源。CRI 95 以上和 5000–5500K 只是常见起点，并不保证色彩准确。拍摄前检查频闪或条纹，必要时调整快门速度。</p>
         </article>
 
         <article class="faq-card reveal">
@@ -704,12 +704,12 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s4.t">平整度</h3>
-          <p data-i18n="cam.s4.d">卷曲的胶片会丢掉边缘。用胶片夹压住，或夹在防牛顿环玻璃之间。普通玻璃会出牛顿环。</p>
+          <p data-i18n="cam.s4.d">胶片弯曲会让边缘脱焦。先用胶片夹压平；如需玻璃，应使用实际胶片检查反光与牛顿环。</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s5.t">拍摄参数</h3>
-          <p data-i18n="cam.s5.d">最低原生 ISO，光圈 f/5.6–f/8，实时取景放大后手动对焦。再收光圈就因衍射掉解析力。用快门线或 2 秒延时，微单开电子快门。拍 RAW，别让直方图右端贴到边——那一端就是片基。</p>
+          <p data-i18n="cam.s5.d">从原生最低 ISO 开始，并实拍找出镜头最清晰的光圈；f/5.6–f/8 是常见起点。放大实时取景手动对焦，使用快门线或延时，拍 RAW 并避免高光端溢出。</p>
         </article>
 
         <article class="faq-card reveal">
@@ -756,7 +756,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="inv.s6.t">6. 选风格再导出</h3>
-          <p data-i18n="inv.s6.d">显影目标替代了 Frontier、Noritsu 这类冲印店扫描的结果。还要继续修就导 16-bit TIFF，直接用就导写入整卷 EXIF 的 JPEG。</p>
+          <p data-i18n="inv.s6.d">显影目标是可选择的风格，并非复制冲印店扫描仪的软件或输出。继续编辑可导出 16-bit TIFF；直接使用可导出写入整卷 EXIF 信息的 JPEG。</p>
         </article>
       </div>
     </div>
@@ -771,22 +771,22 @@
       <div class="faq-grid">
         <article class="faq-card reveal">
           <h3 data-i18n="pro.f1.t">批量复制与选择性粘贴</h3>
-          <p data-i18n="pro.f1.d">支持调整参数选择性复制粘贴、键盘微调与管线同步，实现 36 张整卷快速批量处理。</p>
+          <p data-i18n="pro.f1.d">只复制选中的显影项目，并可用键盘微调各项数值。</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="pro.f2.t">负片、反转片与黑白专用管线</h3>
-          <p data-i18n="pro.f2.d">为彩色负片、正片反转片 (Dmax) 及黑白胶片提供完全独立的渲染管线，无偏色保留影调。</p>
+          <p data-i18n="pro.f2.d">彩色负片、正片、黑白负片与正片分别使用适合各自胶片类型的处理路径。</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="pro.f3.t">光源光谱与胶片乳剂解耦校准</h3>
-          <p data-i18n="pro.f3.d">解耦 LED 背光色温与片基测量，确保在不同扫描仪和观片灯下保持一致的反转结果。</p>
+          <h3 data-i18n="pro.f3.t">片基与光源设置分开记录</h3>
+          <p data-i18n="pro.f3.d">片基测量值与所选光源配置文件分开保存。也可不用自动测量，改用吸管或直接输入 RGB。</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="pro.f4.t">胶卷级中性平衡一致性</h3>
-          <p data-i18n="pro.f4.d">分析整卷未曝光片基与中性轴统计数据，让整卷 36 张照片的色彩与影调保持一致。</p>
+          <h3 data-i18n="pro.f4.t">整卷调整流程</h3>
+          <p data-i18n="pro.f4.d">把一张照片中选定的设置复制到同一卷的其他照片，再按需要逐张调整。</p>
         </article>
       </div>
     </div>
@@ -805,28 +805,28 @@
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f11.t">SQLite FTS 元数据搜索</h3>
-          <p data-i18n="adv.f11.d">结合相机、镜头、胶片型号、拍摄日期与标签，毫秒级检索数千张胶片。</p>
+          <h3 data-i18n="adv.f11.t">图库搜索与筛选</h3>
+          <p data-i18n="adv.f11.d">搜索文件名、文件夹、胶卷、胶片、相机、镜头、关键词和日期，再按评分与工作状态筛选。</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f12.t">IT8.7/2 色卡扫描校准</h3>
-          <p data-i18n="adv.f12.d">通过分析 IT8.7/2 扫描校准卡，精准校正扫描仪光源与传感器色彩偏差。</p>
+          <h3 data-i18n="adv.f12.t">IT8 测量报告</h3>
+          <p data-i18n="adv.f12.d">从固定的 IT8.7/1 图像与参考文件记录 RGB、Lab 和 DeltaE00。真实扫描仪精度仍需用对应设备与实体色卡测量。</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f13.t">雾霾与薄雾去除</h3>
-          <p data-i18n="adv.f13.d">选择性抑制老旧胶片的薄雾 (Haze) 现象，而不破坏原始锐度与颗粒结构。</p>
+          <h3 data-i18n="adv.f13.t">清晰度与纹理控制</h3>
+          <p data-i18n="adv.f13.d">分别调整清晰度、锐化、降噪和胶片颗粒。</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f15.t">黑白专用分离调色与化学调色</h3>
-          <p data-i18n="adv.f15.d">提供黑白胶片高光/阴影分离调色、棕褐色 (Sepia)、硒色 (Selenium) 及冷色调渲染。</p>
+          <h3 data-i18n="adv.f15.t">黑白调色</h3>
+          <p data-i18n="adv.f15.d">在棕褐色与硒色调色中调整阴影色相、高光色相和强度。</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f16.t">扫描仪固定传感器灰尘纵向线条抑制</h3>
-          <p data-i18n="adv.f16.d">自动抑制因扫描仪玻璃固定灰尘导致的整卷纵向线条噪声。</p>
+          <h3 data-i18n="adv.f16.t">按设备能力显示扫描控制</h3>
+          <p data-i18n="adv.f16.d">只有插件报告支持时，才显示光源、分辨率、bit depth、扫描区域、曝光和 IR 控制。</p>
         </article>
 
         <article class="faq-card reveal">
@@ -1033,7 +1033,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="faq.q9">一次性导入数百张照片的大型胶卷库会卡顿吗？</h3>
-          <p data-i18n="faq.a9">negaflow 采用 WAL 模式的 SQLite 数据库与内存自动释放机制，在包含数千张照片的图库中依然保持流畅稳定。</p>
+          <p data-i18n="faq.a9">目录使用 SQLite WAL 模式保存，并在内存压力增大时缩减帧缓存。实际速度取决于图库规模、存储设备和 Mac。</p>
         </article>
 
         <article class="faq-card reveal">

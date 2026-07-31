@@ -32,12 +32,12 @@
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="negaflow for macOS with its film development workspace">
+<meta property="og:image:alt" content="negaflow — フィルムネガ反転・現像のmacOSアプリ">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="negaflow — フィルムネガ反転・現像のmacOSアプリ">
 <meta name="twitter:description" content="カラー・白黒フィルムネガの反転と現像、ホコリや傷の修復、プリントまで行う無料・オープンソースのmacOSアプリ。カメラスキャンとフィルムスキャナーに対応。">
 <meta name="twitter:image" content="https://habinsong.github.io/negaflow-site/assets/og/default.jpg">
-<meta name="twitter:image:alt" content="negaflow for macOS with its film development workspace">
+<meta name="twitter:image:alt" content="negaflow — フィルムネガ反転・現像のmacOSアプリ">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -154,7 +154,7 @@
           "name": "数百コマの大型ライブラリでも動作は安定していますか？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "WALモードのSQLiteデータベースとメモリ自動解放システムにより、数千枚のライブラリでも動作の重さやフリーズなく安定して動作します。"
+            "text": "カタログはSQLiteのWALモードで保存し、メモリが逼迫するとフレームキャッシュを減らします。実際の速度はライブラリ規模、保存先、Macによって変わります。"
           }
         },
         {
@@ -415,7 +415,7 @@
           <p class="sub">GrainMend RGB</p>
           <h3 data-i18n="gm.rgb.title">GrainMend RGB 欠陥修復</h3>
         </div>
-        <p data-i18n="gm.rgb.speed"><b>ガイド／ブラシ：約1秒 · 自動：5～10秒</b> 通常30～90秒かかるハードウェアIR方式に比べ、約3～90倍高速です。</p>
+        <p data-i18n="gm.rgb.speed"><b>ガイド、ブラシ、自動はすべてMac上で処理します。</b> 処理時間は画像サイズ、選択範囲、Macによって変わります。</p>
       </div>
 
       <!-- ── before / after compare ─────────────────────── -->
@@ -473,7 +473,7 @@
       </div>
 
       <div class="gm-grid">
-        <article class="gm-card reveal"><h3 data-i18n="gm.detect.t">ハードウェアIRに匹敵する検出力</h3><p data-i18n="gm.note"><b>GrainMend RGB</b>はRGB画像から欠陥を検出し、周辺の質感、方向、構造まで確認して修復します。写真内の線や格子は傷と区別します。</p></article>
+        <article class="gm-card reveal"><h3 data-i18n="gm.detect.t">RGB画像から直接検出</h3><p data-i18n="gm.note"><b>GrainMend RGB</b>は赤外線チャンネルを使わず、RGB画像から欠陥候補を探します。複雑な模様では誤検出があり得るため、マスクと修復結果を確認できます。</p></article>
         <article class="gm-card reveal"><h3 data-i18n="gm.review.t">自分で確認して修正</h3><p data-i18n="gm.review">検出マスクと修復結果を自分で確認し、必要な箇所をその場で修正できます。</p></article>
         <article class="gm-card reveal"><h3 data-i18n="gm.layer.t">非破壊レイヤー</h3><p data-i18n="gm.layer">各<b>GrainMend RGB</b>レイヤーは、強度の調整、マスクの確認、個別の無効化や削除ができます。</p></article>
         <article class="gm-card reveal"><h3 data-i18n="gm.safe.t">誤検出の可能性を通知</h3><p data-i18n="gm.warn">誤検出領域が発生する可能性が高い場合は、ユーザーに知らせます。</p></article>
@@ -586,7 +586,7 @@
         </article>
         <article class="gm-card reveal">
           <h3 data-i18n="cap.scn.t">スキャナー</h3>
-          <p data-i18n="cap.scn.d"><code>negaflow-scanner-sane</code>独立プロセスプラグインでSANEスキャナーを直接つなぎ、16-bitでレンダリングします。</p>
+          <p data-i18n="cap.scn.d"><code>negaflow-scanner-sane</code>独立プロセスプラグインでSANEスキャナーを接続します。機器とバックエンドが対応し、プラグインが結果を確認できた場合だけ16-bit TIFFで取り込みます。</p>
         </article>
       </div>
     </div>
@@ -623,8 +623,8 @@
   <section id="comparison" class="block">
     <div class="wrap">
       <p class="kicker reveal" data-i18n="cmp.kicker">機能比較</p>
-      <h2 class="reveal" data-i18n="cmp.title">有料のフィルム反転ソフトに代わる、無料・オープンソースのアプリ</h2>
-      <p class="lede reveal" data-i18n="cmp.lede">フィルム反転は普通、Lightroomのプラグイン（Negative Lab Proなど）か有料の単体アプリ（FilmLab、Negbaseなど）、あるいはスキャナ付属のソフト（SilverFast、VueScan）で行います。negaflowは反転から現像、ホコリと傷の修復、プリントと書き出しまでを単体でこなす、無料・オープンソースのmacOSアプリです。</p>
+      <h2 class="reveal" data-i18n="cmp.title">macOS向けの無料・オープンソースのフィルム反転アプリ</h2>
+      <p class="lede reveal" data-i18n="cmp.lede">negaflowはフィルム反転、現像、欠陥修復、プリント、書き出しを一か所で扱うmacOSアプリです。下の表はnegaflowの現在の機能を説明します。Negative Lab Pro、FilmLab、Negbase、SilverFast、VueScanなど、他製品の機能、価格、ファイルの扱いはバージョンによって異なります。</p>
       <p class="topic-more reveal"><a href="../ja/comparison/" data-path="comparison/" data-i18n="topic.more">詳しく見る</a></p>
 
       <div class="cmp-table-wrap reveal">
@@ -633,44 +633,44 @@
             <tr>
               <th data-i18n="cmp.col1">機能</th>
               <th data-i18n="cmp.col2">negaflow</th>
-              <th data-i18n="cmp.col3">有料プラグイン・有料アプリ・スキャナ付属ソフト</th>
+              <th data-i18n="cmp.col3">その他のフィルム用ツール · 現在の製品資料を確認</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td data-i18n="cmp.r0.f">価格とライセンス</td>
               <td data-i18n="cmp.r0.n">無料、Apache-2.0のオープンソース。サブスクも試用制限もなく、ソースを読める</td>
-              <td data-i18n="cmp.r0.g">有料の購入またはサブスク、ソース非公開</td>
+              <td data-i18n="cmp.r0.g">無料、買い切り、サブスクなど製品ごとに異なる</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r6.f">動作のしかた</td>
               <td data-i18n="cmp.r6.n">単体のmacOSアプリ。読み込み・現像・修復・プリント・書き出しが一か所で完結</td>
-              <td data-i18n="cmp.r6.g">LightroomやPhotoshopの中で動くプラグイン、または特定のスキャナに紐づいたソフト</td>
+              <td data-i18n="cmp.r6.g">プラグイン、単体アプリ、スキャナー用アプリなど製品ごとに異なる</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r1.f">フィルムベース(オレンジマスク)測定</td>
               <td data-i18n="cmp.r1.n">空間解析(FilmBaseEstimator)自動測定、スポイト、RGB手動入力</td>
-              <td data-i18n="cmp.r1.g">単純マスク平均または手動調整</td>
+              <td data-i18n="cmp.r1.g">フィルムベースの扱いは製品ごとに異なるため、現在の資料で確認が必要</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r2.f">ゴミ・傷修復 (GrainMend)</td>
-              <td data-i18n="cmp.r2.n">RGB約1秒処理 (ハードウェアIRスキャン比3〜90倍高速)</td>
-              <td data-i18n="cmp.r2.g">30〜90秒を要するハードウェアIRスキャン専用</td>
+              <td data-i18n="cmp.r2.n">確認できるマスクを使うRGB修復。プラグイン提供時はIR経路も選択可能</td>
+              <td data-i18n="cmp.r2.g">RGB修復とハードウェアIRは別方式で、対応状況も製品ごとに異なる</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r3.f">原データおよびメタデータ保護</td>
               <td data-i18n="cmp.r3.n">非破壊編集、BagItアーカイブ規格、SHA-256検証</td>
-              <td data-i18n="cmp.r3.g">原データ直接編集または汎用サイドカー上書き</td>
+              <td data-i18n="cmp.r3.g">原データとサイドカーの扱いは製品ごとに異なるため、使用前の確認が必要</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r4.f">フィルムロール単位EXIF記録</td>
               <td data-i18n="cmp.r4.n">カメラ、レンズ、フィルム、露光記録を書き出しEXIFに自動合成</td>
-              <td data-i18n="cmp.r4.g">限定的な手動メタデータ入力</td>
+              <td data-i18n="cmp.r4.g">メタデータ項目と書き出し方法は製品ごとに異なる</td>
             </tr>
             <tr>
               <td data-i18n="cmp.r5.f">macOS ネイティブ加速</td>
               <td data-i18n="cmp.r5.n">Metal & Core Image 32-bit 浮動小数点処理</td>
-              <td data-i18n="cmp.r5.g">汎用CPUベースの非リニア反転</td>
+              <td data-i18n="cmp.r5.g">処理方式とハードウェア支援はプラットフォームや製品ごとに異なる</td>
             </tr>
           </tbody>
         </table>
@@ -683,18 +683,18 @@
     <div class="wrap">
       <p class="kicker reveal" data-i18n="cam.kicker">ガイド</p>
       <h2 class="reveal" data-i18n="cam.title">デジタルカメラでフィルムをスキャンする</h2>
-      <p class="lede reveal" data-i18n="cam.lede">フラットベッドより速く、マクロレンズさえまともなら解像も上です。機材、アライメント、撮影設定、そして撮ったRAWを現像へ渡すまで。</p>
+      <p class="lede reveal" data-i18n="cam.lede">カメラスキャンは、レンズ、アライメント、フィルムの平面性が合えば、速く細部まで取り込めます。機材からRAW現像までの実用的な手順です。</p>
       <p class="topic-more reveal"><a href="../ja/camera-scanning/" data-path="camera-scanning/" data-i18n="topic.more">詳しく見る</a></p>
 
       <div class="faq-grid">
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s1.t">機材</h3>
-          <p data-i18n="cam.s1.d">RAWで撮れるカメラ、等倍まで寄れるマクロレンズ、フィルムホルダー、ライトボックス、カメラを真上で支える複写スタンドか三脚。接写リングやベローズで等倍を作ると像面平坦性が落ち、四隅が甘くなります。</p>
+          <p data-i18n="cam.s1.d">RAWで撮れるカメラ、必要な撮影倍率に合うマクロレンズ、フィルムホルダー、ライトボックス、複写スタンドか三脚を使います。接写リングやベローズも使えますが、実際の倍率で四隅の解像と像面平坦性を確認してください。</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s2.t">光源</h3>
-          <p data-i18n="cam.s2.d">拡散光でCRI 95以上、5000〜5500K。CRIが低いと反転後の色が戻らず、後から追い込んでも合いません。フィルムをライトボックスから数ミリ浮かせると、表面のホコリとLEDの格子がピント面から外れます。フリッカーのある機種ではシャッターを1/60秒より遅くします。</p>
+          <p data-i18n="cam.s2.d">均一で拡散した光源を使います。CRI 95以上、5000〜5500Kは一般的な出発点ですが、色精度を保証する値ではありません。撮影前にフリッカーや縞を確認し、必要ならシャッター速度を調整します。</p>
         </article>
 
         <article class="faq-card reveal">
@@ -704,12 +704,12 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s4.t">平面性</h3>
-          <p data-i18n="cam.s4.d">カールしたフィルムは端のピントが逃げます。フィルムホルダーで挟むか、アンチニュートンガラスに挟みます。素のガラスではニュートンリングが出ます。</p>
+          <p data-i18n="cam.s4.d">フィルムが反ると端のピントが外れます。まずフィルムホルダーで平らにし、ガラスを使う場合は反射とニュートンリングを実際のフィルムで確認します。</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="cam.s5.t">撮影設定</h3>
-          <p data-i18n="cam.s5.d">ベースISO、絞りf/5.6〜f/8、ライブビューを拡大してマニュアルフォーカス。それ以上絞ると回折で解像が落ちます。レリーズか2秒タイマー、ミラーレスなら電子シャッター。RAWで撮り、ヒストグラムの右端を壁に付けないこと。その右端がフィルムベースです。</p>
+          <p data-i18n="cam.s5.d">ベースISOから始め、実写でレンズの最もシャープな絞りを確認します。f/5.6〜f/8は一般的な出発点です。拡大ライブビューで手動合焦し、レリーズかタイマーを使い、RAWの明部をクリップさせないよう露出します。</p>
         </article>
 
         <article class="faq-card reveal">
@@ -756,7 +756,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="inv.s6.t">6. ルックを選んで書き出す</h3>
-          <p data-i18n="inv.s6.d">現像ターゲットがFrontierやNoritsuのミニラボスキャンの代わりになります。編集を続けるなら16-bit TIFF、そのまま使うならロール情報をEXIFに入れたJPEGで。</p>
+          <p data-i18n="inv.s6.d">現像ターゲットは選べるルックであり、ラボスキャナーのソフトウェアや出力を複製したものではありません。追加編集には16-bit TIFF、そのまま使うファイルにはロール情報をEXIFへ書き込んだJPEGを選びます。</p>
         </article>
       </div>
     </div>
@@ -771,22 +771,22 @@
       <div class="faq-grid">
         <article class="faq-card reveal">
           <h3 data-i18n="pro.f1.t">一括コピー & ペーストスコープ</h3>
-          <p data-i18n="pro.f1.d">調整値の選択的コピー＆ペースト、キーボードナッジ、パイプライン同期により36コマ全ロールを一括処理します。</p>
+          <p data-i18n="pro.f1.d">選んだ現像項目だけを別の写真へコピーし、キーボードで値を微調整できます。</p>
         </article>
 
         <article class="faq-card reveal">
           <h3 data-i18n="pro.f2.t">ネガ・スライド・モノクロ専用パイプライン</h3>
-          <p data-i18n="pro.f2.d">カラーネガ、ポジスライド(Dmax)、モノクロフィルムのための完全独立レンダリングパイプライン。</p>
+          <p data-i18n="pro.f2.d">カラーネガ、ポジスライド、モノクロのネガとポジを、それぞれのフィルム種別に合う経路で処理します。</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="pro.f3.t">光源分光特性 & フィルム乳剤の分離補正</h3>
-          <p data-i18n="pro.f3.d">LEDバックライトの色温度とフィルムベース測定を分離計算し、光源が変わっても一貫したトーンを維持。</p>
+          <h3 data-i18n="pro.f3.t">フィルムベースと光源設定を分離</h3>
+          <p data-i18n="pro.f3.d">フィルムベースの測定値と選択した光源プロファイルを別々に記録します。自動測定の代わりにスポイトやRGB値も使えます。</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="pro.f4.t">ロール単位の統一トーン維持</h3>
-          <p data-i18n="pro.f4.d">ロール全体の未露光ベースと中立軸統計を解析し、36コマ全体の色とトーンを揃えます。</p>
+          <h3 data-i18n="pro.f4.t">ロール単位の調整作業</h3>
+          <p data-i18n="pro.f4.d">1枚の選択した設定を同じロールの写真へコピーし、必要な写真だけ個別に調整できます。</p>
         </article>
       </div>
     </div>
@@ -805,28 +805,28 @@
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f11.t">SQLite FTS メタデータ検索</h3>
-          <p data-i18n="adv.f11.d">カメラ、レンズ、フィルム種別、撮影日、タグから数千枚のフィルムをミリ秒単位で検索。</p>
+          <h3 data-i18n="adv.f11.t">ライブラリ検索とフィルター</h3>
+          <p data-i18n="adv.f11.d">ファイル名、フォルダー、ロール、フィルム、カメラ、レンズ、キーワード、日付を検索し、評価や作業状態で絞り込みます。</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f12.t">IT8.7/2 ターゲットによるスキャナー校正</h3>
-          <p data-i18n="adv.f12.d">IT8.7/2ターゲット解析によりスキャナー光源とセンサーの歪みを数式で高精度校正。</p>
+          <h3 data-i18n="adv.f12.t">IT8測定レポート</h3>
+          <p data-i18n="adv.f12.d">固定したIT8.7/1画像と基準ファイルからRGB、Lab、DeltaE00を記録します。実機の精度には、その機器と対応する物理ターゲットの測定が必要です。</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f13.t">ヘイズ(かすみ)の除去</h3>
-          <p data-i18n="adv.f13.d">経年劣化フィルムの霞(Haze)現象を解像度や粒子を損なわずに選択的抑制。</p>
+          <h3 data-i18n="adv.f13.t">明瞭度と質感の調整</h3>
+          <p data-i18n="adv.f13.d">明瞭度、シャープネス、ノイズ低減、フィルム粒子を個別に調整します。</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f15.t">モノクロ専用スプリットトーン & 化学調色</h3>
-          <p data-i18n="adv.f15.d">モノクロ専用シャドウ/ハイライト分離調色、セピア、セレン、クールトーン描画に対応。</p>
+          <h3 data-i18n="adv.f15.t">モノクロ調色</h3>
+          <p data-i18n="adv.f15.d">セピアとセレンで、シャドウとハイライトの色相、強さを調整します。</p>
         </article>
 
         <article class="faq-card reveal">
-          <h3 data-i18n="adv.f16.t">固定センサーダストの縦筋抑制</h3>
-          <p data-i18n="adv.f16.d">スキャナーガラス面の固定ダストに起因する縦筋状ノイズをロール全体で自動抑制。</p>
+          <h3 data-i18n="adv.f16.t">機能情報に基づくスキャナー制御</h3>
+          <p data-i18n="adv.f16.d">光源、解像度、bit depth、読み取り範囲、露出、IRは、プラグインが対応を報告した場合だけ表示します。</p>
         </article>
 
         <article class="faq-card reveal">
@@ -1033,7 +1033,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="faq.q9">数百コマの大型ライブラリでも動作は安定していますか？</h3>
-          <p data-i18n="faq.a9">WALモードのSQLiteデータベースとメモリ自動解放システムにより、数千枚のライブラリでも動作の重さやフリーズなく安定して動作します。</p>
+          <p data-i18n="faq.a9">カタログはSQLiteのWALモードで保存し、メモリが逼迫するとフレームキャッシュを減らします。実際の速度はライブラリ規模、保存先、Macによって変わります。</p>
         </article>
 
         <article class="faq-card reveal">

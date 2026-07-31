@@ -32,12 +32,12 @@
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="negaflow for macOS with its film development workspace">
+<meta property="og:image:alt" content="자주 묻는 질문 — negaflow">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="자주 묻는 질문 — negaflow">
 <meta name="twitter:description" content="현재 GitHub 릴리스 파일은 ad-hoc 서명되어 있습니다. 최초 실행 시 경고가 뜨면 시스템 설정 → 개인정보 보호 및 보안으로 이동하여 그래도 열기를 선택하면 정상 실행됩니다.">
 <meta name="twitter:image" content="https://habinsong.github.io/negaflow-site/assets/og/default.jpg">
-<meta name="twitter:image:alt" content="negaflow for macOS with its film development workspace">
+<meta name="twitter:image:alt" content="자주 묻는 질문 — negaflow">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -106,7 +106,6 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <link rel="icon" href="../../assets/favicon-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="../../assets/icon-180.png">
-<link rel="preload" as="image" href="../../assets/icon-512.webp">
 <link rel="stylesheet" href="../../assets/css/style.css?v=132">
 <script>
 /* set appearance + language before first paint */
@@ -242,7 +241,7 @@
 
         <article class="faq-card reveal">
           <h3 data-i18n="faq.q9">수백 장의 필름 롤을 한 번에 등록해도 버벅이지 않나요?</h3>
-          <p data-i18n="faq.a9">negaflow는 WAL 모드의 SQLite 데이터베이스와 메모리 압박 자동 해제(Frame Cache Relief) 시스템을 갖추고 있어 수천 장의 필름 라이브러리에서도 버벅임 없이 안정적으로 동작합니다.</p>
+          <p data-i18n="faq.a9">카탈로그는 SQLite WAL 모드로 저장하고 메모리 압박이 생기면 프레임 캐시를 줄입니다. 실제 속도는 라이브러리 크기, 저장 장치와 Mac 사양에 따라 달라집니다.</p>
         </article>
 
         <article class="faq-card reveal">
