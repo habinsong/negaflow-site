@@ -609,12 +609,31 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
 
 .cmp-stage { margin-top: clamp(28px, 4vw, 48px); }
 
+/*
+ * One glass sheet per widget: the photograph and its controls sit on a single
+ * translucent card, reusing the same .glass treatment as the nav bar. Apple's
+ * guidance is one primary glass surface per view and no stacked translucent
+ * panes, so the photo frame inside stays opaque and the capsule is a plain
+ * tinted fill rather than a second pane of glass.
+ */
+.cmp-card {
+  --cmp-pad: clamp(12px, 1.4vw, 16px);
+  padding: var(--cmp-pad);
+  /* concentric with the frame inside: outer radius = inner radius + padding */
+  border-radius: calc(18px + var(--cmp-pad));
+}
+
 .cmp {
   position: relative;
   border-radius: 18px;
   overflow: hidden;
   background: #000;
   box-shadow: var(--shot-drop);
+}
+
+/* inside the card the frame only needs a rim; the card already casts the drop */
+.cmp-card .cmp {
+  box-shadow: 0 0 0 .5px var(--glass-rim), 0 8px 22px -14px rgba(0, 0, 0, .55);
 }
 
 .cmp-frame {
@@ -653,21 +672,15 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
 .cmp-tag-l { left: 13px; }
 .cmp-tag-r { right: 13px; }
 
-/* floating bar: segmented control over the image, caption underneath */
+/* control bar: sits under the frame, centred. It is on the page background
+   rather than over a photograph, so it uses the header segmented control as-is. */
 .cmp-bar {
-  position: absolute; z-index: 6;
-  left: 50%; bottom: 16px;
-  transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 9px;
-  max-width: calc(100% - 24px);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  margin-top: clamp(14px, 1.6vw, 18px);
 }
 
 .cmp-seg {
   padding: 4px;
-  background: rgba(12, 12, 14, .58);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  backdrop-filter: blur(24px) saturate(180%);
-  box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .18), 0 10px 30px rgba(0, 0, 0, .45);
   max-width: 100%;
   /* long localised labels scroll rather than overflow the frame */
   overflow: auto hidden;
@@ -679,33 +692,26 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
 .cmp-seg button {
   height: 30px;
   padding: 0 14px;
-  color: rgba(255, 255, 255, .68);
   font-size: 13px; font-weight: 550;
 }
-.cmp-seg button:hover { color: #fff; }
-.cmp-seg button[aria-selected="true"] { color: #14141a; }
 .cmp-seg .seg-pill {
   top: 4px;
   height: calc(100% - 8px);
-  background: rgba(255, 255, 255, .94);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
 }
 
 .cmp-hint {
   margin: 0;
   max-width: calc(46ch * var(--measure));
   text-align: center;
-  font-size: 11.5px;
-  line-height: 1.45;
-  color: rgba(255, 255, 255, .74);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, .8);
+  font-size: clamp(12.5px, .25vw + 12px, 13.5px);
+  line-height: 1.55;
+  color: var(--ink-3);
   transition: opacity .25s var(--ease);
 }
 .cmp-hint[hidden] { display: none; }
 
 @media (max-width: 640px) {
   .cmp-seg button { padding: 0 10px; font-size: 12px; }
-  .cmp-hint { font-size: 10.5px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cmp-seg .seg-pill { transition: none; }
@@ -750,7 +756,7 @@ h2 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
 }
 .pl-img.is-on { opacity: 1; }
 
-.pl-note { margin-top: 14px; }
+.pl-note { margin-top: clamp(18px, 2vw, 24px); }
 
 @media (prefers-reduced-motion: reduce) {
   .pl-img { transition: none; }
