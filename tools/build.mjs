@@ -380,9 +380,9 @@ function buildPage(lang, template, dict, version, topic) {
       .map((s, i) => (i === 0 ? s.replace(/<h2( [^>]*)?>/, '<h1$1>').replace(/<\/h2>/, '</h1>') : s))
       .join('\n\n');
 
-    const back = `  <p class="topic-back wrap"><a href="${home || './'}">negaflow</a></p>`;
+    /* no back link: the brand in the bar already goes to the overview */
     html = html.replace(/<main id="main">[\s\S]*<\/main>/,
-      `<main id="main">\n  <span id="top"></span>\n\n${body}\n\n${back}\n</main>`);
+      `<main id="main">\n  <span id="top"></span>\n\n${body}\n</main>`);
     html = html.replace('<body>', '<body class="topic-page">');
   }
 

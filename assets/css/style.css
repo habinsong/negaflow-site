@@ -1115,9 +1115,6 @@ body.lightbox-open {
 .topic-more { margin-top: clamp(14px, 1.6vw, 20px); }
 .topic-more a { cursor: pointer; }
 
-/* the same link, turned around, at the foot of a topic page */
-.topic-back { margin-top: clamp(40px, 5vw, 68px); }
-
 /* a topic page promotes its section heading to the heading of the page */
 .topic-page h1 { font-size: clamp(27px, 3.2vw + 12px, 48px); }
 .topic-page h1 + .lede { margin-top: clamp(14px, 1.6vw, 20px); }
