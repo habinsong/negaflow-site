@@ -32,11 +32,11 @@ ko: {
   'tab.print': '인화',
   'tab.settings': '설정',
   'cap.library': '롤, 폴더, 컬렉션, 별점, 스택, 가상 사본으로 정리합니다.',
-  'cap.develop': '필름 베이스를 재고 반전한 다음 노출과 커브, 색을 잡습니다. Chroma Engine과 GrainMend가 여기 있습니다.',
+  'cap.develop': '필름 베이스를 재고 현상한 다음 노출과 커브, 색을 잡습니다. Chroma Engine과 GrainMend가 여기 있습니다.',
   'cap.print': '프린터 ICC를 거치는 출력과 인화 레이아웃입니다.',
   'cap.settings': '단축키, 폴더 경로, 프리셋을 직접 바꿉니다.',
 
-  'feat.1': '필름 베이스 측정과 컬러·흑백 필름 반전',
+  'feat.1': '필름 베이스 측정과 컬러·흑백 필름 현상',
   'feat.2': '노출, 대비, 커브, HSL, 컬러 그레이딩, 흑백 토닝',
   'feat.3': '선명도, 노이즈 제거, 그레인, 비네팅, 할레이션',
   'feat.4': '롤, 폴더, 컬렉션, 별점, 스택, 가상 사본',
@@ -44,7 +44,7 @@ ko: {
   'feat.6': 'JPEG와 16-bit TIFF 내보내기, ICC 프로파일, 인화 레이아웃',
 
   'chroma.kicker': '현상 엔진',
-  'chroma.lede': '네거티브를 반전하기 전에 미노광 영역에서 필름 베이스를 측정합니다. 자동 측정이 맞지 않으면 스포이드로 영역을 고르거나 RGB 값을 직접 입력합니다.',
+  'chroma.lede': '네거티브를 현상하기 전에 미노광 영역에서 필름 베이스를 측정합니다. 자동 측정이 맞지 않으면 스포이드로 영역을 고르거나 RGB 값을 직접 입력합니다.',
   'target.main': '일반 현상',
   'target.print': '프린터 ICC를 사용하는 출력',
   'target.hs': '미니랩 계열 현상',
@@ -571,8 +571,8 @@ de: {
 /* README_ko.md is the source of truth for the product copy below. */
 
 Object.assign(window.NF_I18N.ko, {
-  'doc.title': 'negaflow — 필름 네거티브 반전·현상 macOS 앱',
-  'doc.desc': '컬러·흑백 필름 네거티브를 반전하고 현상하며, 먼지와 스크래치를 복원하고 인화까지 하는 무료 오픈소스 macOS 앱. 카메라 스캔과 필름 스캐너를 모두 지원합니다.',
+  'doc.title': 'negaflow — 필름 네거티브 현상 macOS 앱',
+  'doc.desc': '컬러·흑백 필름 네거티브를 현상하며, 먼지와 스크래치를 복원하고 인화까지 하는 무료 오픈소스 macOS 앱. 카메라 스캔과 필름 스캐너를 모두 지원합니다.',
   'nav.profiles': '데이터셋',
   'nav.download': '다운로드',
   'hero.kicker': '아날로그 필름을 위한 카메라/스캐너 스캔과 현상·출력까지 전과정을 지원하는 macOS 앱',
@@ -581,16 +581,16 @@ Object.assign(window.NF_I18N.ko, {
   'hero.source': '소스 보기',
   'hero.req': 'macOS 14.0 이상 · Apple Silicon과 Intel · Apache-2.0',
   'intro.body': '<b>negaflow</b>는 스캐너로 스캔한 필름이나 디지털 카메라로 촬영한 필름을 불러와서 현상하는 <b>macOS</b> 앱입니다. 현상 엔진은 <b>Chroma Engine</b>, 먼지와 스크래치 복원 기능은 <b>GrainMend</b>라는 이름을 사용하며 독자 개발한 프로세스 전 과정을 담았습니다. 필름을 현상하고 보정하고 내보내는 과정을 앱 하나에서 끝냅니다.',
-  'core.chroma': '필름 반전·현상 엔진',
+  'core.chroma': '필름 현상 엔진',
   'core.grainmend': '먼지와 스크래치 복원',
   'core.dataset': '직접 만든 데이터셋',
   'core.dataset.detail': '스캐너 프로파일 15개 · 이미지 관측값 928개',
   'core.workspace': '네이티브 작업 공간',
   'core.workspace.detail': '워크플로우',
   'chroma.kicker': '현상 엔진',
-  'chroma.lede': '<b>Chroma Engine</b>은 <code>Chromabase</code> 모듈에 들어 있는 필름 반전·현상 엔진입니다.',
+  'chroma.lede': '<b>Chroma Engine</b>은 <code>Chromabase</code> 모듈에 들어 있는 필름 현상 엔진입니다.',
   'base.title': '자동/수동 측정',
-  'base.body': '필름 베이스는 별도 조작 없이 자동으로 측정되며, 네거티브는 포지티브로 반전됩니다. 직접 맞추려면 스포이드로 미노광 영역을 고르거나 RGB 값을 입력할 수 있습니다.',
+  'base.body': '필름 베이스는 별도 조작 없이 자동으로 측정되며, 네거티브는 포지티브로 현상됩니다. 직접 맞추려면 스포이드로 미노광 영역을 고르거나 RGB 값을 입력할 수 있습니다.',
   'target.heading': '7종 미니랩 & 현상 타깃 룩',
   'target.main': '일반 현상',
   'chroma.variant.original': '원본',
@@ -648,7 +648,7 @@ Object.assign(window.NF_I18N.ko, {
   'cap.develop': '현상 엔진은 <b>Chroma Engine</b>, 먼지와 스크래치 복원 기능은 <b>GrainMend</b>라는 이름을 사용하며 독자 개발한 프로세스 전 과정을 담았습니다. 번들에는 직접 촬영한 필름 자료에서 만든 스캐너 프로파일 15개가 들어 있습니다.',
   'cap.print': 'JPEG와 16-bit TIFF 내보내기, ICC 프로파일과 인화 레이아웃',
   'cap.settings': '단축키, 폴더 경로, 프리셋, 보정까지 원하는 대로 바꿔서 쓸 수 있습니다.',
-  'feat.1': '필름 베이스 측정과 컬러·흑백 필름 반전',
+  'feat.1': '필름 베이스 측정과 컬러·흑백 필름 현상',
   'feat.2': '노출, 대비, 커브, HSL, 컬러 그레이딩, 흑백 토닝',
   'feat.3': '선명도, 노이즈 제거, 그레인, 비네팅, 할레이션',
   'feat.4': '롤, 폴더, 컬렉션, 별점, 스택과 가상 사본',
@@ -710,7 +710,7 @@ Object.assign(window.NF_I18N.ko, {
   'nav.faq': 'FAQ',
   'cs.kicker': '색상 연산 파이프라인',
   'cs.title': '32-bit Float 선형 연산 파이프라인',
-  'cs.lede': '감마 변환 전 32-bit Float Linear 공간에서 반전과 톤을 계산하여 계조 손실과 클리핑을 최소화합니다.',
+  'cs.lede': '감마 변환 전 32-bit Float Linear 공간에서 현상과 톤을 계산하여 계조 손실과 클리핑을 최소화합니다.',
   'cs.card1.t': 'Dmin 밀도 역산',
   'cs.card1.d': '선형 투과율과 미노광 마스크 측정값으로 정밀 밀도 <code>D = log₁₀(Dmin/T)</code>를 계산합니다.',
   'cs.card2.t': 'Stretched Exponential 곡선',
@@ -774,7 +774,7 @@ Object.assign(window.NF_I18N.ko, {
   'cap.kicker': '입력 워크플로우',
   'cap.title': '디지털 캡처 & 스캐너 수집 경로',
   'cap.cam.t': '디지털 카메라',
-  'cap.cam.d': 'RAW/TIFF 파일 가져오기를 지원합니다. 백라이트 색온도와 미노광 베이스를 분리해 계조를 고르게 반전합니다.',
+  'cap.cam.d': 'RAW/TIFF 파일 가져오기를 지원합니다. 백라이트 색온도와 미노광 베이스를 분리해 계조를 고르게 현상합니다.',
   'cap.scn.t': '스캐너',
   'cap.scn.d': '<code>negaflow-scanner-sane</code> 독립 프로세스 플러그인으로 SANE 스캐너를 연결합니다. 장치와 백엔드가 지원하고 플러그인이 확인한 경우 16-bit TIFF로 가져옵니다.',
   'print.kicker': '인화·출력',
@@ -2109,7 +2109,7 @@ Object.assign(window.NF_I18N.de, {
 /* Link from a section on the overview page to its own page. */
 Object.assign(window.NF_I18N.ko, {
   'topic.more': '자세히 보기',
-  'topic.chroma.title': 'Chroma Engine 필름 반전·현상',
+  'topic.chroma.title': 'Chroma Engine 필름 현상',
   'topic.grainmend.title': 'GrainMend 먼지·스크래치 복원',
   'topic.download.title': 'negaflow 다운로드'
 });
@@ -2170,7 +2170,7 @@ Object.assign(window.NF_I18N.ko, {
   'alt.pl.gelatin': 'negaflow 인화 화면의 젤라틴 실버 레이아웃 — 흑백 인화',
   'alt.gm.before': 'GrainMend 복원 전 — 먼지와 스크래치가 남아 있는 필름 스캔',
   'alt.gm.after': 'GrainMend 복원 후 — 먼지와 스크래치를 지운 같은 필름 스캔',
-  'alt.hero': 'negaflow 현상 화면 — 필름 네거티브를 반전하고 보정하는 macOS 작업 공간',
+  'alt.hero': 'negaflow 현상 화면 — 필름 네거티브를 현상하고 보정하는 macOS 작업 공간',
   'alt.icon': 'negaflow 앱 아이콘'
 });
 
@@ -2265,8 +2265,8 @@ Object.assign(window.NF_I18N.de, {
    kinds of tool it stands next to, and the two rows that decide it. */
 
 Object.assign(window.NF_I18N.ko, {
-  'cmp.title': 'macOS용 무료 오픈소스 필름 반전 앱',
-  'cmp.lede': 'negaflow는 필름 반전, 현상, 결함 복원, 인화와 내보내기를 한곳에서 처리하는 독립 실행 macOS 앱입니다. 아래 표는 negaflow의 현재 기능을 설명합니다. Negative Lab Pro, FilmLab, Negbase, SilverFast, VueScan 등 다른 제품의 기능과 가격, 파일 처리 방식은 버전에 따라 달라집니다.',
+  'cmp.title': 'macOS용 무료 오픈소스 필름 현상 앱',
+  'cmp.lede': 'negaflow는 필름 현상, 결함 복원, 인화와 내보내기를 한곳에서 처리하는 독립 실행 macOS 앱입니다. 아래 표는 negaflow의 현재 기능을 설명합니다. Negative Lab Pro, FilmLab, Negbase, SilverFast, VueScan 등 다른 제품의 기능과 가격, 파일 처리 방식은 버전에 따라 달라집니다.',
   'cmp.col3': '다른 필름 작업 도구 · 현재 제품 문서 확인',
   'cmp.r0.f': '가격과 라이선스',
   'cmp.r0.n': '무료, Apache-2.0 오픈소스. 구독도 체험판 제한도 없고 소스를 읽을 수 있음',
@@ -2365,15 +2365,15 @@ Object.assign(window.NF_I18N.ko, {
   'cam.s6.d': 'RAW를 negaflow로 불러오면 필름 베이스를 알아서 찾습니다. 밝기 분포에서 이어진 영역을 묶고 퍼포레이션이나 홀더, 필름 밖 백라이트는 걸러 냅니다. 결과가 마음에 안 들면 스포이드로 미노광 부분을 찍거나 RGB 값을 직접 넣습니다.',
 
   'inv.kicker': '가이드',
-  'inv.nav': '네거티브 반전',
-  'inv.title': '필름 네거티브를 반전하는 법',
-  'inv.lede': '커브 하나 뒤집어서 나온 색이 탁한 데는 이유가 있습니다. 오렌지 마스크를 나눠 내고, 선형에서 반전하고, 인화 곡선을 씌우는 세 가지가 각각 필요합니다.',
+  'inv.nav': '네거티브 현상',
+  'inv.title': '필름 네거티브를 현상하는 법',
+  'inv.lede': '커브 하나 뒤집어서 나온 색이 탁한 데는 이유가 있습니다. 오렌지 마스크를 나눠 내고, 선형에서 현상하고, 인화 곡선을 씌우는 세 가지가 각각 필요합니다.',
   'inv.s1.t': '1. 필름 베이스(Dmin) 측정',
   'inv.s1.d': '오렌지 마스크는 화면 전체에 걸린 필터입니다. 사진 안쪽이 아니라 미노광 부분에서 재야 그 컷의 색이 마스크에 섞이지 않습니다. negaflow는 밝기 분포에서 이어진 영역을 찾아 자동으로 잡고, 스포이드와 RGB 직접 입력도 됩니다.',
   'inv.s2.t': '2. 빼지 말고 나누기',
   'inv.s2.d': '마스크는 투과율이라 선형에서 나눗셈으로 빠집니다. <code>D = log₁₀(Dmin/T)</code>. 감마가 걸린 8비트 이미지에서 빼면 채널이 서로 어긋나고, 흔히 보는 색 틀어짐이 여기서 나옵니다.',
-  'inv.s3.t': '3. 선형에서 반전',
-  'inv.s3.d': '감마를 씌운 다음 반전하면 어두운 쪽 계조가 먼저 뭉갭니다. negaflow는 32-bit Float 선형에서 반전과 톤 계산을 끝내고 마지막에 출력 색공간으로 넘깁니다.',
+  'inv.s3.t': '3. 선형에서 현상',
+  'inv.s3.d': '감마를 씌운 다음 현상하면 어두운 쪽 계조가 먼저 뭉갭니다. negaflow는 32-bit Float 선형에서 현상과 톤 계산을 끝내고 마지막에 출력 색공간으로 넘깁니다.',
   'inv.s4.t': '4. 인화 응답 곡선',
   'inv.s4.d': '네거티브에는 검정도 흰색도 정해져 있지 않습니다. 원래 인화지가 정하던 몫입니다. 검정점·18% 회색·흰색을 기준으로 잡은 곡선을 씌워야 사진으로 보입니다.',
   'inv.s5.t': '5. 롤 단위로 맞추기',
